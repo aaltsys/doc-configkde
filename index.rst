@@ -1,5 +1,5 @@
 .. Configure KDE documentation master file, created by
-   sphinx-quickstart on Sun Jun  3 13:53:47 2012.
+   sphinx-quickstart on Sun Jun  3 14:10:12 2012.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
@@ -10,7 +10,9 @@ Contents:
 
 .. toctree::
    :maxdepth: 2
+   :glob:
 
+   0*
 
 
 Indices and tables

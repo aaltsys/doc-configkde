@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # Configure KDE documentation build configuration file, created by
-# sphinx-quickstart on Sun Jun  3 13:53:47 2012.
+# sphinx-quickstart on Sun Jun  3 14:10:12 2012.
 #
 # This file is execfile()d with the current directory set to its containing dir.
 #
