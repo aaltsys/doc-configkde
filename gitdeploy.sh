@@ -14,11 +14,11 @@ mkdir -p $DEPLOY_DIR
 
 if [ ! -d $DEPLOY_DIR/.git ]
 then
-	cd $DEPLOY_DIR
-	git init
-	git remote add origin $DEPLOY_GIT
-	git fetch origin
-	cd ..
+  cd $DEPLOY_DIR
+  git init
+  git remote add origin $DEPLOY_GIT
+  git fetch origin
+  cd ..
 fi
 
 # Checkout git branch "gh-pages" in the current repository deployment
@@ -26,12 +26,12 @@ fi
 cd $DEPLOY_DIR
 if [ ! "$(git branch | grep \* | awk '{print $2}')" = $DEPLOY_BRANCH ]
 then
-	if [ "$(git branch -lr | grep $DEPLOY_GIT)" ]
-	then
-		git checkout $DEPLOY_BRANCH
-	else
-		git checkout -b $DEPLOY_BRANCH
-	fi
+  if [ "$(git branch -lr | grep $DEPLOY_GIT)" ]
+  then
+    git checkout $DEPLOY_BRANCH
+  else
+    git checkout -b $DEPLOY_BRANCH
+  fi
 fi
 cd ..
 
@@ -39,7 +39,7 @@ cd ..
 
 if [ ! -e "$DEPLOY_DIR/.nojekyll" ]
 then
-	touch "$DEPLOY_DIR/.nojekyll"
+  touch "$DEPLOY_DIR/.nojekyll"
 fi
 
 # Clean the deployment folder and pull the repository branch
@@ -59,10 +59,13 @@ then
 else
   for DIR in $SECTIONS
   do
-	 cd $DIR
-	 make clean $MAKE_METHOD
-	 cp -R _build/$MAKE_METHOD ../$DEPLOY_DIR/$DIR
-	 cd ..
+    if [ -e $DIR ]
+    then
+      cd $DIR
+      make clean $MAKE_METHOD
+      cp -R _build/$MAKE_METHOD ../$DEPLOY_DIR/$DIR
+      cd ..
+    fi
   done
 fi
 
@@ -75,7 +78,10 @@ fi
 
 # Add static content
 
-cp -R $INCLUDE_DIR/* $DEPLOY_DIR
+if [ -e "$INCLUDE_DIR" ]
+then
+  cp -R $INCLUDE_DIR/* $DEPLOY_DIR
+fi
 
 # Deploy the repository branch
 
