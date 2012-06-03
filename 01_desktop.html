@@ -1,0 +1,226 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Desktop Configuration &mdash; Configure KDE 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Configure KDE 1.0 documentation" href="index.html" />
+    <link rel="next" title="Mounting Network File Systems" href="02_filesharing.html" />
+    <link rel="prev" title="Welcome to Configure KDE’s documentation!" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="02_filesharing.html" title="Mounting Network File Systems"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Configure KDE’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Configure KDE 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="desktop-configuration">
+<h1>Desktop Configuration<a class="headerlink" href="#desktop-configuration" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="software-installation">
+<h2>Software Installation<a class="headerlink" href="#software-installation" title="Permalink to this headline">¶</a></h2>
+<p>Download and run scripts as provided from <a class="reference external" href="http://publish.lovels.us">http://publish.lovels.us</a>:</p>
+<p>Main software install script:</p>
+<blockquote>
+<div><a class="reference external" href="http://publish.lovels.us/_downloads/KDE-Mint_12-desktop.sh">http://publish.lovels.us/_downloads/KDE-Mint_12-desktop.sh</a></div></blockquote>
+<p>Rest install script:</p>
+<blockquote>
+<div><a class="reference external" href="http://publish.lovels.us/_downloads/rest-install.sh">http://publish.lovels.us/_downloads/rest-install.sh</a></div></blockquote>
+</div>
+<div class="section" id="id1">
+<h2>Desktop Configuration<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Click the cashew on the menu bar at the right, and add widgets:</p>
+<blockquote>
+<div>Lancelot Launcher
+Pager</div></blockquote>
+</div>
+<div class="section" id="understanding-ssh-keys">
+<h2>Understanding SSH keys<a class="headerlink" href="#understanding-ssh-keys" title="Permalink to this headline">¶</a></h2>
+<p>Each user on each system has a unique ssh key configuration. A user should
+create a key set with the command:</p>
+<div class="highlight-python"><pre>if [ ! -f "$HOME/.ssh/id_rsa" ]; then ssh-keygen; fi</pre>
+</div>
+<p>Keys are stored in the files</p>
+<ul class="simple">
+<li>private key: <tt class="file docutils literal"><span class="pre">~/.ssh/id_rsa</span></tt></li>
+<li>public key:  <tt class="file docutils literal"><span class="pre">~/.ssh/id_rsa.pub</span></tt></li>
+<li>known hosts: <tt class="file docutils literal"><span class="pre">~/.ssh/known_hosts</span></tt></li>
+</ul>
+<p>In /etc/ssh/ssh_config, comment out the line <tt class="docutils literal"><span class="pre">HashKnownHosts</span> <span class="pre">yes</span></tt> with the
+following command:</p>
+<blockquote>
+<div>sudo sed &#8220;s/    HashKnown/#   HashKnown/&#8221; /etc/ssh/ssh_config</div></blockquote>
+<p>Replace ssh with PuTTY as default <a class="reference external" href="ssh://">ssh://</a> handler with the command:</p>
+<blockquote>
+<div>sudo bash &lt; &lt;(wget <a class="reference external" href="https://raw.github.com/gist/1030236/putty-kde.sh">https://raw.github.com/gist/1030236/putty-kde.sh</a> -O-)</div></blockquote>
+<div class="section" id="secure-web-services">
+<h3>Secure web services<a class="headerlink" href="#secure-web-services" title="Permalink to this headline">¶</a></h3>
+<p>Many web services require ssh keys, and they are generally installed through
+cut-and-paste. Display the key using the command:</p>
+<blockquote>
+<div>kate ~/.ssh/id_rsa.public</div></blockquote>
+<p>Press <tt class="kbd docutils literal"><span class="pre">&lt;Ctrl-A&gt;&lt;Ctrl-C&gt;</span></tt> to copy, and paste the key to the web page with
+<tt class="kbd docutils literal"><span class="pre">&lt;Ctrl-V&gt;</span></tt>.</p>
+</div>
+<div class="section" id="remote-file-access">
+<h3>Remote file access<a class="headerlink" href="#remote-file-access" title="Permalink to this headline">¶</a></h3>
+<p>Add an ssh key to a remote server for file access with the command:</p>
+<div class="highlight-python"><pre>ssh-copy-id `id -un`@HOSTSERVER.DOMAIN.TLD</pre>
+</div>
+<p>replacing HOSTSERVER.DOMAIN.TLD with the server&#8217;s fully qualified domain name.</p>
+</div>
+</div>
+<div class="section" id="avoiding-vim">
+<h2>Avoiding VIM<a class="headerlink" href="#avoiding-vim" title="Permalink to this headline">¶</a></h2>
+<p>Change default editor in KDE with the command:</p>
+<div class="line-block">
+<div class="line">sudo update-alternatives &#8211;config editor</div>
+</div>
+<p>Change default editor when opening files in Dolphin:</p>
+<div class="line-block">
+<div class="line">Right-click on file, choose <em>Properties</em></div>
+<div class="line">Click on the wrench to the right of <em>file type</em></div>
+<div class="line">Click on your preferred editor in the <em>Application Preference Order</em> list</div>
+<div class="line">Click <em>Move Up</em> to move your preference up the list</div>
+<div class="line">Click <em>Apply</em>, then close the properties window.</div>
+</div>
+</div>
+<div class="section" id="turn-on-apple-keyboard-function-keys">
+<h2>Turn on Apple Keyboard function keys<a class="headerlink" href="#turn-on-apple-keyboard-function-keys" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line"># display current keyboard state (1=off, 2=on)</div>
+<div class="line">cat /sys/module/hid_apple/parameters/fnmode</div>
+<div class="line"># set keyboard state to 2 (on)</div>
+<div class="line">echo 2 | sudo tee /sys/module/hid_apple/parameters/fnmode</div>
+<div class="line"># make the configuration change permanent version 1 (not working on Mint 12)</div>
+<div class="line">sudo touch /etc/sysfs.conf</div>
+<div class="line">sudo bash &lt; &lt;(echo &#8216;echo &#8220;module/hid_apple/parameters/fnmode = 2&#8221; &gt;&gt; /etc/sysfs.conf&#8217;)</div>
+<div class="line"># make configuration change permanent, version 2</div>
+<div class="line"># still working on this, as it must come before &#8220;exit 0&#8221;</div>
+<div class="line">sudo bash &lt; &lt;(echo &#8216;echo &#8220;echo 2 &gt; /sys/module/hid_apple/parameters/fnmode&#8221; &gt;&gt; /etc/rc.local&#8217;)</div>
+</div>
+<p>References:</p>
+<p><a class="reference external" href="https://help.ubuntu.com/community/AppleKeyboard">AppleKeyboard</a></p>
+</div>
+<div class="section" id="fixing-bugs">
+<h2>Fixing bugs<a class="headerlink" href="#fixing-bugs" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="qfilesystemwatcher-messages">
+<h3>QFileSystemWatcher messages<a class="headerlink" href="#qfilesystemwatcher-messages" title="Permalink to this headline">¶</a></h3>
+<p>Messages from QFileSystemWatcher can be eliminated with:</p>
+<blockquote>
+<div>mkdir -p ~/.config/ibus/bus</div></blockquote>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Desktop Configuration</a><ul>
+<li><a class="reference internal" href="#software-installation">Software Installation</a></li>
+<li><a class="reference internal" href="#id1">Desktop Configuration</a></li>
+<li><a class="reference internal" href="#understanding-ssh-keys">Understanding SSH keys</a><ul>
+<li><a class="reference internal" href="#secure-web-services">Secure web services</a></li>
+<li><a class="reference internal" href="#remote-file-access">Remote file access</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#avoiding-vim">Avoiding VIM</a></li>
+<li><a class="reference internal" href="#turn-on-apple-keyboard-function-keys">Turn on Apple Keyboard function keys</a></li>
+<li><a class="reference internal" href="#fixing-bugs">Fixing bugs</a><ul>
+<li><a class="reference internal" href="#qfilesystemwatcher-messages">QFileSystemWatcher messages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to Configure KDE&#8217;s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="02_filesharing.html"
+                        title="next chapter">Mounting Network File Systems</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/01_desktop.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="02_filesharing.html" title="Mounting Network File Systems"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Configure KDE’s documentation!"
+             >previous</a> |</li>
+        <li><a href="index.html">Configure KDE 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Gerald Lovel.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
