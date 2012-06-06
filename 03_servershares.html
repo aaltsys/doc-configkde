@@ -68,8 +68,8 @@ server, and the top-level domain (.com, .net, etc.). For example,
 <strong>HOSTSERVER.DOMAIN.TLD</strong> might be replaced with <em>workserver.aaltsys.com</em>
 for the work server at AAltSys.</p>
 </div>
-<div class="section" id="part-1-configure-file-systems">
-<h3>Part 1: Configure File Systems<a class="headerlink" href="#part-1-configure-file-systems" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="part-1-configure-filesystems">
+<h3>Part 1: Configure Filesystems<a class="headerlink" href="#part-1-configure-filesystems" title="Permalink to this headline">¶</a></h3>
 <p>This section configures the desktop to use remote filesystems by installing and
 loading the kernel module <strong>fuse</strong>, which is not included by default. Save the
 bash script <a class="reference download internal" href="_downloads/fuse.sh"><tt class="xref download docutils literal"><span class="pre">fuse.sh</span></tt></a> to your home folder,
@@ -179,6 +179,8 @@ for all shell logins:</p>
 </div>
 <div class="section" id="accessing-servers-over-ssh">
 <h2>Accessing Servers over SSH<a class="headerlink" href="#accessing-servers-over-ssh" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="redirecting-ssh-to-putty">
+<h3>Redirecting SSH to PuTTY<a class="headerlink" href="#redirecting-ssh-to-putty" title="Permalink to this headline">¶</a></h3>
 <p>PuTTY is an open-source cross-platform client for secure ssh connections with
 remote hosts. It is available on Windows, Linux, and Mac, and it is the
 preferred client on Windows. PuTTY adds power to interactive sessions. For
@@ -188,6 +190,9 @@ will redirect SSH to PuTTY (courtesy of VonGrippen, AKA Michael Cochran):</p>
 <div class="highlight-python"><pre>sudo bash &lt; &lt;(wget https://raw.github.com/gist/1030236/putty-kde.sh -O-)
 sudo chmod +x /usr/bin/putty.rb</pre>
 </div>
+</div>
+<div class="section" id="example-putty-session">
+<h3>Example PuTTY Session:<a class="headerlink" href="#example-putty-session" title="Permalink to this headline">¶</a></h3>
 <p>This program works magic which is best explained through an example, as follows.
 An administrator wishes to connect to a remote Windows session running as a
 virtual machine on a Linux server. The Linux server is accessed at the domain
@@ -220,6 +225,7 @@ to: <em class="guilabel">rdp</em> :kbd:<tt class="docutils literal"><span class=
 display as if it were local, being redirected to you over SSH.</p>
 </div>
 </div>
+</div>
 
 
           </div>
@@ -231,14 +237,18 @@ display as if it were local, being redirected to you over SSH.</p>
   <ul>
 <li><a class="reference internal" href="#">Mounting Network File Systems</a><ul>
 <li><a class="reference internal" href="#using-sshfs-file-shares-in-linux">Using sshfs File Shares in Linux</a><ul>
-<li><a class="reference internal" href="#part-1-configure-file-systems">Part 1: Configure File Systems</a></li>
+<li><a class="reference internal" href="#part-1-configure-filesystems">Part 1: Configure Filesystems</a></li>
 <li><a class="reference internal" href="#part-2-setup-server-access">Part 2. Setup Server Access</a></li>
 <li><a class="reference internal" href="#part-3-provide-your-ssh-key">Part 3. Provide your ssh key</a></li>
 <li><a class="reference internal" href="#when-this-does-not-work">When this does not work</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#server-sshfs-configuration">Server SSHFS Configuration</a></li>
-<li><a class="reference internal" href="#accessing-servers-over-ssh">Accessing Servers over SSH</a></li>
+<li><a class="reference internal" href="#accessing-servers-over-ssh">Accessing Servers over SSH</a><ul>
+<li><a class="reference internal" href="#redirecting-ssh-to-putty">Redirecting SSH to PuTTY</a></li>
+<li><a class="reference internal" href="#example-putty-session">Example PuTTY Session:</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

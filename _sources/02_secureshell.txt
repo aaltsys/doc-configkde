@@ -12,7 +12,8 @@
 Understanding SSH keys
 =============================
 
-.. sidebar::
+.. sidebar:: Credentials Index
+  
   Each workstation or server in a network should have a unique computer name, 
   and users on a system should have their own usernames. On this premise, the 
   combined computername/username should be unique or uncommonly duplicated 
