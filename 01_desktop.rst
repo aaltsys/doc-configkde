@@ -7,13 +7,21 @@ Software Installation
 
 Download and run scripts as provided from http://publish.lovels.us:
 
-Main software install script:
+Software first install script:
 
   http://publish.lovels.us/_downloads/KDE-Mint_12-desktop.sh
 
-Rest install script:
+Software rest install script:
 
   http://publish.lovels.us/_downloads/rest-install.sh
+
+Other software install (left out of first script):
+
+  sudo aptitude install krdc remmina
+
+A desktop icon can call a remote with the command:
+
+  remmina -c {remotename}
 
 Desktop Configuration
 =============================
@@ -22,49 +30,6 @@ Click the cashew on the menu bar at the right, and add widgets:
   
   Lancelot Launcher
   Pager
-
-Understanding SSH keys
-=============================
-
-Each user on each system has a unique ssh key configuration. A user should 
-create a key set with the command::
-
-  if [ ! -f "$HOME/.ssh/id_rsa" ]; then ssh-keygen; fi
-
-Keys are stored in the files
-
-+ private key: :file:`~/.ssh/id_rsa`
-+ public key:  :file:`~/.ssh/id_rsa.pub`
-+ known hosts: :file:`~/.ssh/known_hosts`
-
-In /etc/ssh/ssh_config, comment out the line ``HashKnownHosts yes`` with the 
-following command:
-
-  sudo sed "s/    HashKnown/#   HashKnown/" /etc/ssh/ssh_config
-
-Replace ssh with PuTTY as default ssh:// handler with the command:
-
-  sudo bash < <(wget https://raw.github.com/gist/1030236/putty-kde.sh -O-)
-
-Secure web services
------------------------------
-
-Many web services require ssh keys, and they are generally installed through 
-cut-and-paste. Display the key using the command:
-
-  kate ~/.ssh/id_rsa.public
-
-Press :kbd:`<Ctrl-A><Ctrl-C>` to copy, and paste the key to the web page with 
-:kbd:`<Ctrl-V>`.
-
-Remote file access
------------------------------
-
-Add an ssh key to a remote server for file access with the command::
-
-  ssh-copy-id `id -un`@HOSTSERVER.DOMAIN.TLD
-
-replacing HOSTSERVER.DOMAIN.TLD with the server's fully qualified domain name.
 
 Avoiding VIM
 =====================================
