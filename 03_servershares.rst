@@ -16,8 +16,8 @@ Using sshfs File Shares in Linux
    **HOSTSERVER.DOMAIN.TLD** might be replaced with *workserver.aaltsys.com* 
    for the work server at AAltSys.
 
-Part 1: Configure File Systems
-""""""""""""""""""""""""""""""""
+Part 1: Configure Filesystems
+-----------------------------
 
 This section configures the desktop to use remote filesystems by installing and 
 loading the kernel module **fuse**, which is not included by default. Save the 
@@ -31,7 +31,7 @@ Assign a mount point (a file directory pointer) for the remote server to use::
   sudo mkdir -p /mnt/HOSTSERVER/
 
 Part 2. Setup Server Access
-""""""""""""""""""""""""""""""""
+-----------------------------
 
 This section is performed once for each remote server, to add information about 
 the server to the local desktop. Instructions are provided using Domain Names. 
@@ -80,7 +80,7 @@ When prompted for the root password of the remote host, press :kbd:`<Ctrl-C>`
 to exit the command.
 
 Part 3. Provide your ssh key
-""""""""""""""""""""""""""""""""
+-----------------------------
 
 This section must be performed for each local user who will access the remote 
 server. Type the following commands to (1) create an ssh private key provided 
@@ -99,7 +99,7 @@ Create desktop links to folders in /mnt/HOSTSERVER for easy access. If the
 workstation will access the server remotely, do not create bookmarks.
 
 When this does not work
-""""""""""""""""""""""""""""""""
+-----------------------------
 
 If the public folder or user home folder will not mount, try the following::
 
@@ -109,7 +109,7 @@ If the public folder or user home folder will not mount, try the following::
 	chmod 600 ~/.ssh/authorized_keys
 
 Server SSHFS Configuration
-================================
+=============================
 
 Install authentication and sharing modules on the server as follows::
 
