@@ -27,7 +27,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Configure KDE 1.0 documentation" href="index.html" />
     <link rel="next" title="DOS programs with dosemu" href="05_dosemu.html" />
-    <link rel="prev" title="Desktop Configuration" href="01_desktop.html" /> 
+    <link rel="prev" title="Remote Secure Shell Sessions" href="02_secureshell.html" /> 
   </head>
   <body>
     <div class="related">
@@ -40,7 +40,7 @@
           <a href="05_dosemu.html" title="DOS programs with dosemu"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="01_desktop.html" title="Desktop Configuration"
+          <a href="02_secureshell.html" title="Remote Secure Shell Sessions"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Configure KDE 1.0 documentation</a> &raquo;</li> 
       </ul>
@@ -77,7 +77,7 @@ open a console session, and execute the script with the command:</p>
 <div class="highlight-python"><pre>sudo bash fuse.sh</pre>
 </div>
 <p>Assign a mount point (a file directory pointer) for the remote server to use:</p>
-<div class="highlight-python"><pre>sudo mkdir /mnt/HOSTSERVER/</pre>
+<div class="highlight-python"><pre>sudo mkdir -p /mnt/HOSTSERVER/</pre>
 </div>
 </div>
 <div class="section" id="part-2-setup-server-access">
@@ -179,54 +179,45 @@ for all shell logins:</p>
 </div>
 <div class="section" id="accessing-servers-over-ssh">
 <h2>Accessing Servers over SSH<a class="headerlink" href="#accessing-servers-over-ssh" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="redirecting-ssh-to-putty">
-<h3>Redirecting SSH to PuTTY<a class="headerlink" href="#redirecting-ssh-to-putty" title="Permalink to this headline">¶</a></h3>
 <p>PuTTY is an open-source cross-platform client for secure ssh connections with
 remote hosts. It is available on Windows, Linux, and Mac, and it is the
 preferred client on Windows. PuTTY adds power to interactive sessions. For
 example, a user can add a port forwarding rule within a running terminal session.</p>
-<p>For a KDE desktop system derived from Debian, the following console command
+<p>For a KDE desktop system derived from Debian, the following console commands
 will redirect SSH to PuTTY (courtesy of VonGrippen, AKA Michael Cochran):</p>
-<div class="highlight-python"><pre>sudo bash &lt; &lt;(wget https://raw.github.com/gist/1030236/putty-kde.sh -O-)</pre>
+<div class="highlight-python"><pre>sudo bash &lt; &lt;(wget https://raw.github.com/gist/1030236/putty-kde.sh -O-)
+sudo chmod +x /usr/bin/putty.rb</pre>
 </div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p>Another approach is to download <a class="reference download internal" href="_downloads/putty-kde.sh"><tt class="xref download docutils literal"><span class="pre">putty-kde.sh</span></tt></a>
-and install the script with the console command:</p>
-<div class="last highlight-python"><pre>sudo bash putty-kde.sh</pre>
-</div>
-</div>
-</div>
-<div class="section" id="example-putty-session">
-<h3>Example PuTTY Session:<a class="headerlink" href="#example-putty-session" title="Permalink to this headline">¶</a></h3>
 <p>This program works magic which is best explained through an example, as follows.
 An administrator wishes to connect to a remote Windows session running as a
-virtual machine on a Linux server. The Linux server is accessed at the domain name
-<tt class="docutils literal"><span class="pre">https://remoteserver.support.aaltsys.com</span></tt>. Both the Windows session and the Linux server
-authenticate <tt class="docutils literal"><span class="pre">username</span></tt> and <tt class="docutils literal"><span class="pre">password</span></tt> for logins.</p>
-<p>First display a terminal window on the local machine, then ssh to the remote server:</p>
-<div class="highlight-python"><pre>xdg-open ssh://username@remoteserver.support.aaltsys.com</pre>
+virtual machine on a Linux server. The Linux server is accessed at the domain
+name <tt class="docutils literal"><span class="pre">https://remoteserver.support.aaltsys.com</span></tt>. Both the Windows session and
+the Linux server authenticate <tt class="docutils literal"><span class="pre">username</span></tt> and <tt class="docutils literal"><span class="pre">password</span></tt> for logins.</p>
+<p>First start a console on the local machine, then ssh to the remote server:</p>
+<div class="highlight-python"><pre>xdg-open ssh://`id -un`@HOSTNAME.DOMAIN.TLD</pre>
 </div>
-<p>Now explore the remote environment to identify Windows RDP servers. Recommended commands are:</p>
+<p>Now explore the remote environment to identify Windows RDP servers. Recommended
+commands are:</p>
 <div class="highlight-python"><pre>smbclient -L NETBIOSNAME
 smbtree</pre>
 </div>
-<p>These commands identify the virtualized windows session as <tt class="docutils literal"><span class="pre">XPUNLIMITED</span></tt>. Now find the IP for
-this machine using either of the commands:</p>
-<div class="highlight-python"><pre>net lookup XPUNLIMITED
-nmblookup XPUNLIMITED</pre>
+<p>These commands identify a windows session on host <tt class="docutils literal"><span class="pre">XPUSER</span></tt>. Now find the IP
+for this machine using either of the commands:</p>
+<div class="highlight-python"><pre>net lookup XPUSER
+nmblookup XPUSER</pre>
 </div>
-<p>The remote Windows terminal server <strong>XPUNLIMITED</strong> uses IP <strong>192.168.2.243</strong> in its local network.
-Display the PuTTY menu with &lt;Ctrl-RightClick&gt;, and choose <em class="menuselection">Change Settings...</em>.
-Then select Category: <em class="menuselection">Connection &gt; SSH &gt; Tunnels</em> and enter:</p>
+<p>The remote Windows terminal server <strong>XPUSER</strong> uses IP <strong>192.168.2.243</strong> in its
+local network. Display the PuTTY menu with &lt;Ctrl-RightClick&gt;, and choose
+<em class="menuselection">Change Settings...</em>. Then select Category:
+<em class="menuselection">Connection &gt; SSH &gt; Tunnels</em> and enter:</p>
 <div class="highlight-python"><pre>Source port -- 3389
 Destination -- 192.168.2.243:3389
 Click -- Add
 Click -- Apply</pre>
 </div>
-<p>Finally, open the KRDC Remote Desktop client on the KDE Desktop, and connect to: <em class="guilabel">rdp</em> :kbd:<tt class="docutils literal"><span class="pre">localhost</span></tt>.
-A remote Windows RDP session will display as if it were local, being redirected to you over SSH.</p>
-</div>
+<p>Finally, open the KRDC Remote Desktop client on the KDE Desktop, and connect
+to: <em class="guilabel">rdp</em> :kbd:<tt class="docutils literal"><span class="pre">localhost</span></tt>. A remote Windows RDP session will
+display as if it were local, being redirected to you over SSH.</p>
 </div>
 </div>
 
@@ -247,24 +238,20 @@ A remote Windows RDP session will display as if it were local, being redirected 
 </ul>
 </li>
 <li><a class="reference internal" href="#server-sshfs-configuration">Server SSHFS Configuration</a></li>
-<li><a class="reference internal" href="#accessing-servers-over-ssh">Accessing Servers over SSH</a><ul>
-<li><a class="reference internal" href="#redirecting-ssh-to-putty">Redirecting SSH to PuTTY</a></li>
-<li><a class="reference internal" href="#example-putty-session">Example PuTTY Session:</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#accessing-servers-over-ssh">Accessing Servers over SSH</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="01_desktop.html"
-                        title="previous chapter">Desktop Configuration</a></p>
+  <p class="topless"><a href="02_secureshell.html"
+                        title="previous chapter">Remote Secure Shell Sessions</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="05_dosemu.html"
                         title="next chapter">DOS programs with dosemu</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="_sources/02_filesharing.txt"
+    <li><a href="_sources/03_servershares.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -294,7 +281,7 @@ A remote Windows RDP session will display as if it were local, being redirected 
           <a href="05_dosemu.html" title="DOS programs with dosemu"
              >next</a> |</li>
         <li class="right" >
-          <a href="01_desktop.html" title="Desktop Configuration"
+          <a href="02_secureshell.html" title="Remote Secure Shell Sessions"
              >previous</a> |</li>
         <li><a href="index.html">Configure KDE 1.0 documentation</a> &raquo;</li> 
       </ul>

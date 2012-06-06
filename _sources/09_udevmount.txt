@@ -2,6 +2,8 @@
  Mounting Devices through udev
 ######################################
 
+.. NOTE:: This method of hot-mounting a drive is superceded.
+
 eSATA hot-mount drive setup
 ======================================
 

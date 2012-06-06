@@ -26,7 +26,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Configure KDE 1.0 documentation" href="index.html" />
-    <link rel="next" title="Mounting Network File Systems" href="02_filesharing.html" />
+    <link rel="next" title="Remote Secure Shell Sessions" href="02_secureshell.html" />
     <link rel="prev" title="Welcome to Configure KDE’s documentation!" href="index.html" /> 
   </head>
   <body>
@@ -37,7 +37,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="02_filesharing.html" title="Mounting Network File Systems"
+          <a href="02_secureshell.html" title="Remote Secure Shell Sessions"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="index.html" title="Welcome to Configure KDE’s documentation!"
@@ -56,12 +56,18 @@
 <div class="section" id="software-installation">
 <h2>Software Installation<a class="headerlink" href="#software-installation" title="Permalink to this headline">¶</a></h2>
 <p>Download and run scripts as provided from <a class="reference external" href="http://publish.lovels.us">http://publish.lovels.us</a>:</p>
-<p>Main software install script:</p>
+<p>Software first install script:</p>
 <blockquote>
 <div><a class="reference external" href="http://publish.lovels.us/_downloads/KDE-Mint_12-desktop.sh">http://publish.lovels.us/_downloads/KDE-Mint_12-desktop.sh</a></div></blockquote>
-<p>Rest install script:</p>
+<p>Software rest install script:</p>
 <blockquote>
 <div><a class="reference external" href="http://publish.lovels.us/_downloads/rest-install.sh">http://publish.lovels.us/_downloads/rest-install.sh</a></div></blockquote>
+<p>Other software install (left out of first script):</p>
+<blockquote>
+<div>sudo aptitude install krdc remmina</div></blockquote>
+<p>A desktop icon can call a remote with the command:</p>
+<blockquote>
+<div>remmina -c {remotename}</div></blockquote>
 </div>
 <div class="section" id="id1">
 <h2>Desktop Configuration<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
@@ -69,42 +75,6 @@
 <blockquote>
 <div>Lancelot Launcher
 Pager</div></blockquote>
-</div>
-<div class="section" id="understanding-ssh-keys">
-<h2>Understanding SSH keys<a class="headerlink" href="#understanding-ssh-keys" title="Permalink to this headline">¶</a></h2>
-<p>Each user on each system has a unique ssh key configuration. A user should
-create a key set with the command:</p>
-<div class="highlight-python"><pre>if [ ! -f "$HOME/.ssh/id_rsa" ]; then ssh-keygen; fi</pre>
-</div>
-<p>Keys are stored in the files</p>
-<ul class="simple">
-<li>private key: <tt class="file docutils literal"><span class="pre">~/.ssh/id_rsa</span></tt></li>
-<li>public key:  <tt class="file docutils literal"><span class="pre">~/.ssh/id_rsa.pub</span></tt></li>
-<li>known hosts: <tt class="file docutils literal"><span class="pre">~/.ssh/known_hosts</span></tt></li>
-</ul>
-<p>In /etc/ssh/ssh_config, comment out the line <tt class="docutils literal"><span class="pre">HashKnownHosts</span> <span class="pre">yes</span></tt> with the
-following command:</p>
-<blockquote>
-<div>sudo sed &#8220;s/    HashKnown/#   HashKnown/&#8221; /etc/ssh/ssh_config</div></blockquote>
-<p>Replace ssh with PuTTY as default <a class="reference external" href="ssh://">ssh://</a> handler with the command:</p>
-<blockquote>
-<div>sudo bash &lt; &lt;(wget <a class="reference external" href="https://raw.github.com/gist/1030236/putty-kde.sh">https://raw.github.com/gist/1030236/putty-kde.sh</a> -O-)</div></blockquote>
-<div class="section" id="secure-web-services">
-<h3>Secure web services<a class="headerlink" href="#secure-web-services" title="Permalink to this headline">¶</a></h3>
-<p>Many web services require ssh keys, and they are generally installed through
-cut-and-paste. Display the key using the command:</p>
-<blockquote>
-<div>kate ~/.ssh/id_rsa.public</div></blockquote>
-<p>Press <tt class="kbd docutils literal"><span class="pre">&lt;Ctrl-A&gt;&lt;Ctrl-C&gt;</span></tt> to copy, and paste the key to the web page with
-<tt class="kbd docutils literal"><span class="pre">&lt;Ctrl-V&gt;</span></tt>.</p>
-</div>
-<div class="section" id="remote-file-access">
-<h3>Remote file access<a class="headerlink" href="#remote-file-access" title="Permalink to this headline">¶</a></h3>
-<p>Add an ssh key to a remote server for file access with the command:</p>
-<div class="highlight-python"><pre>ssh-copy-id `id -un`@HOSTSERVER.DOMAIN.TLD</pre>
-</div>
-<p>replacing HOSTSERVER.DOMAIN.TLD with the server&#8217;s fully qualified domain name.</p>
-</div>
 </div>
 <div class="section" id="avoiding-vim">
 <h2>Avoiding VIM<a class="headerlink" href="#avoiding-vim" title="Permalink to this headline">¶</a></h2>
@@ -160,11 +130,6 @@ cut-and-paste. Display the key using the command:</p>
 <li><a class="reference internal" href="#">Desktop Configuration</a><ul>
 <li><a class="reference internal" href="#software-installation">Software Installation</a></li>
 <li><a class="reference internal" href="#id1">Desktop Configuration</a></li>
-<li><a class="reference internal" href="#understanding-ssh-keys">Understanding SSH keys</a><ul>
-<li><a class="reference internal" href="#secure-web-services">Secure web services</a></li>
-<li><a class="reference internal" href="#remote-file-access">Remote file access</a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#avoiding-vim">Avoiding VIM</a></li>
 <li><a class="reference internal" href="#turn-on-apple-keyboard-function-keys">Turn on Apple Keyboard function keys</a></li>
 <li><a class="reference internal" href="#fixing-bugs">Fixing bugs</a><ul>
@@ -179,8 +144,8 @@ cut-and-paste. Display the key using the command:</p>
   <p class="topless"><a href="index.html"
                         title="previous chapter">Welcome to Configure KDE&#8217;s documentation!</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="02_filesharing.html"
-                        title="next chapter">Mounting Network File Systems</a></p>
+  <p class="topless"><a href="02_secureshell.html"
+                        title="next chapter">Remote Secure Shell Sessions</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/01_desktop.txt"
@@ -210,7 +175,7 @@ cut-and-paste. Display the key using the command:</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="02_filesharing.html" title="Mounting Network File Systems"
+          <a href="02_secureshell.html" title="Remote Secure Shell Sessions"
              >next</a> |</li>
         <li class="right" >
           <a href="index.html" title="Welcome to Configure KDE’s documentation!"
