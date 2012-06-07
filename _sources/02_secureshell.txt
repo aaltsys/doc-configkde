@@ -4,9 +4,9 @@
 
 .. Note::
    Throughout these instructions, replace **HOSTNAME**, **DOMAIN**, and 
-   **TLD** with the name of the server to be accessed, the domain for the 
-   server, and the top-level domain (.com, .net, etc.). For example, 
-   **HOSTNAME.DOMAIN.TLD** might be replaced with *workserver.github.com* 
+   **TLD** with the name of the computer to be accessed, the domain for the 
+   computer, and the top-level domain (.com, .net, etc.). For example, 
+   **HOSTNAME.DOMAIN.TLD** might be replaced with **workserver.github.com** 
    for the work server at GitHub.
 
 Understanding SSH keys
@@ -20,8 +20,8 @@ Understanding SSH keys
   across a computer network. This makes credential management more transparent.
 
 SSH is a free, open-source public key credential and encryption system which 
-forms the basis for secure communication on the Internet Protocol networks. SSH
-creates credentials with keys indexed to the combined computername/username, as 
+forms the basis for secure communication on Internet Protocol networks. SSH 
+credential keys are indexed to the combination of computername/username, as 
 mentioned in the sidebar. This permits authorizing system access while offering 
 a mechanism to reject credentials for specific computername/usernames, as when 
 a computer is stolen. 
@@ -39,22 +39,23 @@ Resulting keys are stored in the files
 + public key:  :file:`~/.ssh/id_rsa.pub`
 + known hosts: :file:`~/.ssh/known_hosts`
 
-List the hidden :file:`.ssh` directory to see the permissions:
+List the hidden :file:`.ssh` directory to see the permissions::
 
   ls -al ~/.ssh
 
 Recommended configuration
 -----------------------------
 
-On each computer, comment out the line ``HashKnownHosts yes`` in file 
-:file:`/etc/ssh/ssh_config` with the following command:
+On each computer, comment out the line :command:`HashKnownHosts yes` in file 
+:file:`/etc/ssh/ssh_config` with the following command::
 
   sudo sed -i "s/    HashKnown/#   HashKnown/" /etc/ssh/ssh_config
 
 Using SSH in web browsers
 -----------------------------
 
-Replace ssh with PuTTY as the default ssh:// handler with the commands:
+Replace :command:`ssh` with :command:`PuTTY` as the default :command:`ssh\://` 
+handler with the commands::
 
   sudo bash < <(wget https://raw.github.com/gist/1030236/putty-kde.sh -O-)
   sudo chmod +x /usr/bin/putty.rb
@@ -65,11 +66,12 @@ Test this configuration in your browser by going to the link address::
 
 .. note::
   Firefox requires you to type in the program name to handle ssh, 
-  :file:`xdg-open`. Google Chrome's omnisearch box is a serious hindrance with 
-  ssh links, but will work. GitHub will not log you in over ssh, of course.
+  :command:`xdg-open`. Google Chrome's omnisearch box is a serious hindrance 
+  with ssh links, but will work. GitHub will not log you in over ssh, of 
+  course.
 
 Press :kbd:`<Ctrl-RightClick>` to change PuTTY settings in a running session. 
-Make permanent changes by saving :menuselection:`Session --> Default Settings`. 
+Make changes permanent by saving :menuselection:`Session --> Default Settings`. 
 
 Commands to install keys
 -----------------------------
@@ -79,13 +81,13 @@ system for secure access with the command::
 
   ssh-copy-id `id -un`@HOSTNAME.DOMAIN.TLD
 
-replacing HOSTNAME.DOMAIN.TLD with the server's fully qualified domain name.
+replacing HOSTNAME.DOMAIN.TLD with the computer's fully qualified domain name.
 
 Secure web services
 -----------------------------
 
 Many web services which require ssh keys, such as GitHub, install keys through 
-cut-and-paste. Display a user's local public key using the command:
+cut-and-paste. Display a user's local public key using the command::
 
   kate ~/.ssh/id_rsa.public
 
@@ -95,11 +97,11 @@ page with :kbd:`<Ctrl-V>`.
 Managing Changed SSH Keys
 =============================
 
-An **ssh** session may abort when starting. The most likely cause for this is a 
-changed ssh key on either the local or the remote system. Address this problem 
-in a console session. When a new key is created on the local system, copy the 
-key to the remote system with the :command:`ssh-copy-id` command as described 
-above. 
+An :command:`ssh` session may abort when starting. The most likely cause for 
+this is a changed ssh key on either the local or the remote system. Address 
+this problem in a console session. When a new key is created on the local 
+system, copy the key to the remote system with the :command:`ssh-copy-id` 
+command as described above. 
 
 If a remote system key is changed, connect to the remote system with::
 
@@ -128,7 +130,12 @@ From a console session, login to a remote system with the command::
 Port forwarding for RDP:
 -----------------------------
 
+::
+
 	ssh -L3389:[remoteIP]:3389 [username]@HOSTNAME.DOMAIN.TLD
+
+Display the forwarded :command:`RDP` session in :command:`Remmina` or 
+:command:`KRDC`.
 
 Gnome terminal
 -----------------------------

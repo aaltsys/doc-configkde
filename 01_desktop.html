@@ -10,7 +10,7 @@
     
     <title>Desktop Configuration &mdash; Configure KDE 1.0 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -44,91 +44,18 @@
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Configure KDE 1.0 documentation</a> &raquo;</li> 
       </ul>
-    </div>  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
-            
-  <div class="section" id="desktop-configuration">
-<h1>Desktop Configuration<a class="headerlink" href="#desktop-configuration" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="software-installation">
-<h2>Software Installation<a class="headerlink" href="#software-installation" title="Permalink to this headline">¶</a></h2>
-<p>Download and run scripts as provided from <a class="reference external" href="http://publish.lovels.us">http://publish.lovels.us</a>:</p>
-<p>Software first install script:</p>
-<blockquote>
-<div><a class="reference external" href="http://publish.lovels.us/_downloads/KDE-Mint_12-desktop.sh">http://publish.lovels.us/_downloads/KDE-Mint_12-desktop.sh</a></div></blockquote>
-<p>Software rest install script:</p>
-<blockquote>
-<div><a class="reference external" href="http://publish.lovels.us/_downloads/rest-install.sh">http://publish.lovels.us/_downloads/rest-install.sh</a></div></blockquote>
-<p>Other software install (left out of first script):</p>
-<blockquote>
-<div>sudo aptitude install krdc remmina</div></blockquote>
-<p>A desktop icon can call a remote with the command:</p>
-<blockquote>
-<div>remmina -c {remotename}</div></blockquote>
-</div>
-<div class="section" id="id1">
-<h2>Desktop Configuration<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>Click the cashew on the menu bar at the right, and add widgets:</p>
-<blockquote>
-<div>Lancelot Launcher
-Pager</div></blockquote>
-</div>
-<div class="section" id="avoiding-vim">
-<h2>Avoiding VIM<a class="headerlink" href="#avoiding-vim" title="Permalink to this headline">¶</a></h2>
-<p>Change default editor in KDE with the command:</p>
-<div class="line-block">
-<div class="line">sudo update-alternatives &#8211;config editor</div>
-</div>
-<p>Change default editor when opening files in Dolphin:</p>
-<div class="line-block">
-<div class="line">Right-click on file, choose <em>Properties</em></div>
-<div class="line">Click on the wrench to the right of <em>file type</em></div>
-<div class="line">Click on your preferred editor in the <em>Application Preference Order</em> list</div>
-<div class="line">Click <em>Move Up</em> to move your preference up the list</div>
-<div class="line">Click <em>Apply</em>, then close the properties window.</div>
-</div>
-</div>
-<div class="section" id="turn-on-apple-keyboard-function-keys">
-<h2>Turn on Apple Keyboard function keys<a class="headerlink" href="#turn-on-apple-keyboard-function-keys" title="Permalink to this headline">¶</a></h2>
-<div class="line-block">
-<div class="line"># display current keyboard state (1=off, 2=on)</div>
-<div class="line">cat /sys/module/hid_apple/parameters/fnmode</div>
-<div class="line"># set keyboard state to 2 (on)</div>
-<div class="line">echo 2 | sudo tee /sys/module/hid_apple/parameters/fnmode</div>
-<div class="line"># make the configuration change permanent version 1 (not working on Mint 12)</div>
-<div class="line">sudo touch /etc/sysfs.conf</div>
-<div class="line">sudo bash &lt; &lt;(echo &#8216;echo &#8220;module/hid_apple/parameters/fnmode = 2&#8221; &gt;&gt; /etc/sysfs.conf&#8217;)</div>
-<div class="line"># make configuration change permanent, version 2</div>
-<div class="line"># still working on this, as it must come before &#8220;exit 0&#8221;</div>
-<div class="line">sudo bash &lt; &lt;(echo &#8216;echo &#8220;echo 2 &gt; /sys/module/hid_apple/parameters/fnmode&#8221; &gt;&gt; /etc/rc.local&#8217;)</div>
-</div>
-<p>References:</p>
-<p><a class="reference external" href="https://help.ubuntu.com/community/AppleKeyboard">AppleKeyboard</a></p>
-</div>
-<div class="section" id="fixing-bugs">
-<h2>Fixing bugs<a class="headerlink" href="#fixing-bugs" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="qfilesystemwatcher-messages">
-<h3>QFileSystemWatcher messages<a class="headerlink" href="#qfilesystemwatcher-messages" title="Permalink to this headline">¶</a></h3>
-<p>Messages from QFileSystemWatcher can be eliminated with:</p>
-<blockquote>
-<div>mkdir -p ~/.config/ibus/bus</div></blockquote>
-</div>
-</div>
-</div>
-
-
-          </div>
-        </div>
-      </div>
+    </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Desktop Configuration</a><ul>
-<li><a class="reference internal" href="#software-installation">Software Installation</a></li>
+<li><a class="reference internal" href="#software-installation">Software Installation</a><ul>
+<li><a class="reference internal" href="#software-first-install-script">Software first install script</a></li>
+<li><a class="reference internal" href="#software-rest-install-script">Software rest install script</a></li>
+<li><a class="reference internal" href="#software-not-in-script">Software not in script</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#id1">Desktop Configuration</a></li>
 <li><a class="reference internal" href="#avoiding-vim">Avoiding VIM</a></li>
 <li><a class="reference internal" href="#turn-on-apple-keyboard-function-keys">Turn on Apple Keyboard function keys</a></li>
@@ -164,6 +91,88 @@ Pager</div></blockquote>
     </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="desktop-configuration">
+<h1>Desktop Configuration<a class="headerlink" href="#desktop-configuration" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="software-installation">
+<h2>Software Installation<a class="headerlink" href="#software-installation" title="Permalink to this headline">¶</a></h2>
+<p>Download and run scripts as provided and described at <a class="reference external" href="http://publish.lovels.us">http://publish.lovels.us</a>.</p>
+<div class="section" id="software-first-install-script">
+<h3>Software first install script<a class="headerlink" href="#software-first-install-script" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>wget http://publish.lovels.us/_downloads/KDE-Mint_12-desktop.sh -o first-install.sh
+bash first-install.sh</pre>
+</div>
+</div>
+<div class="section" id="software-rest-install-script">
+<h3>Software rest install script<a class="headerlink" href="#software-rest-install-script" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>wget http://publish.lovels.us/_downloads/rest-install.sh -o rest-install.sh
+bash rest-install.sh</pre>
+</div>
+</div>
+<div class="section" id="software-not-in-script">
+<h3>Software not in script<a class="headerlink" href="#software-not-in-script" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>sudo aptitude install krdc remmina</pre>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Desktop Configuration<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Click the cashew on the menu bar at the right, and add widgets:</p>
+<ul class="simple">
+<li>Lancelot Launcher</li>
+<li>Pager</li>
+</ul>
+</div>
+<div class="section" id="avoiding-vim">
+<h2>Avoiding VIM<a class="headerlink" href="#avoiding-vim" title="Permalink to this headline">¶</a></h2>
+<p>Change default editor in KDE with the command:</p>
+<div class="highlight-python"><pre>sudo update-alternatives --config editor</pre>
+</div>
+<p>Change default editor when opening files in Dolphin:</p>
+<ul class="simple">
+<li>Right-click on file, choose <em>Properties</em></li>
+<li>Click on the wrench to the right of <em>file type</em></li>
+<li>Click on your preferred editor in the <em>Application Preference Order</em> list</li>
+<li>Click <em>Move Up</em> to move your preference up the list</li>
+<li>Click <em>Apply</em>, then close the properties window.</li>
+</ul>
+</div>
+<div class="section" id="turn-on-apple-keyboard-function-keys">
+<h2>Turn on Apple Keyboard function keys<a class="headerlink" href="#turn-on-apple-keyboard-function-keys" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><pre># display current keyboard state (1=off, 2=on)
+cat /sys/module/hid_apple/parameters/fnmode
+# set keyboard state to 2 (on)
+echo 2 | sudo tee /sys/module/hid_apple/parameters/fnmode
+# make the configuration change permanent version 1 (not working on Mint 12)
+sudo touch /etc/sysfs.conf
+sudo bash &lt; &lt;(echo 'echo "module/hid_apple/parameters/fnmode = 2" &gt;&gt; /etc/sysfs.conf')
+# make configuration change permanent, version 2
+# still working on this, as it must come before "exit 0"
+sudo bash &lt; &lt;(echo 'echo "echo 2 &gt; /sys/module/hid_apple/parameters/fnmode" &gt;&gt; /etc/rc.local')</pre>
+</div>
+<p>References:</p>
+<p><a class="reference external" href="https://help.ubuntu.com/community/AppleKeyboard">AppleKeyboard</a></p>
+</div>
+<div class="section" id="fixing-bugs">
+<h2>Fixing bugs<a class="headerlink" href="#fixing-bugs" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="qfilesystemwatcher-messages">
+<h3>QFileSystemWatcher messages<a class="headerlink" href="#qfilesystemwatcher-messages" title="Permalink to this headline">¶</a></h3>
+<p>Messages from QFileSystemWatcher can be eliminated with:</p>
+<div class="highlight-python"><pre>mkdir -p ~/.config/ibus/bus</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
         </div>
       </div>
       <div class="clearer"></div>

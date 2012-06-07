@@ -10,7 +10,7 @@
     
     <title>Remote Secure Shell Sessions &mdash; Configure KDE 1.0 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -44,144 +44,7 @@
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Configure KDE 1.0 documentation</a> &raquo;</li> 
       </ul>
-    </div>  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
-            
-  <div class="section" id="remote-secure-shell-sessions">
-<h1>Remote Secure Shell Sessions<a class="headerlink" href="#remote-secure-shell-sessions" title="Permalink to this headline">¶</a></h1>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Throughout these instructions, replace <strong>HOSTNAME</strong>, <strong>DOMAIN</strong>, and
-<strong>TLD</strong> with the name of the server to be accessed, the domain for the
-server, and the top-level domain (.com, .net, etc.). For example,
-<strong>HOSTNAME.DOMAIN.TLD</strong> might be replaced with <em>workserver.github.com</em>
-for the work server at GitHub.</p>
-</div>
-<div class="section" id="understanding-ssh-keys">
-<h2>Understanding SSH keys<a class="headerlink" href="#understanding-ssh-keys" title="Permalink to this headline">¶</a></h2>
-<div class="sidebar">
-<p class="first sidebar-title">Credentials Index</p>
-<p class="last">Each workstation or server in a network should have a unique computer name,
-and users on a system should have their own usernames. On this premise, the
-combined computername/username should be unique or uncommonly duplicated
-across a computer network. This makes credential management more transparent.</p>
-</div>
-<p>SSH is a free, open-source public key credential and encryption system which
-forms the basis for secure communication on the Internet Protocol networks. SSH
-creates credentials with keys indexed to the combined computername/username, as
-mentioned in the sidebar. This permits authorizing system access while offering
-a mechanism to reject credentials for specific computername/usernames, as when
-a computer is stolen.</p>
-</div>
-<div class="section" id="configuring-ssh-for-a-user">
-<h2>Configuring SSH for a user<a class="headerlink" href="#configuring-ssh-for-a-user" title="Permalink to this headline">¶</a></h2>
-<p>Each user should create a key set with the command:</p>
-<div class="highlight-python"><pre>if [ ! -f "$HOME/.ssh/id_rsa" ]; then ssh-keygen; fi</pre>
-</div>
-<p>Resulting keys are stored in the files</p>
-<ul class="simple">
-<li>private key: <tt class="file docutils literal"><span class="pre">~/.ssh/id_rsa</span></tt></li>
-<li>public key:  <tt class="file docutils literal"><span class="pre">~/.ssh/id_rsa.pub</span></tt></li>
-<li>known hosts: <tt class="file docutils literal"><span class="pre">~/.ssh/known_hosts</span></tt></li>
-</ul>
-<p>List the hidden <tt class="file docutils literal"><span class="pre">.ssh</span></tt> directory to see the permissions:</p>
-<blockquote>
-<div>ls -al ~/.ssh</div></blockquote>
-<div class="section" id="recommended-configuration">
-<h3>Recommended configuration<a class="headerlink" href="#recommended-configuration" title="Permalink to this headline">¶</a></h3>
-<p>On each computer, comment out the line <tt class="docutils literal"><span class="pre">HashKnownHosts</span> <span class="pre">yes</span></tt> in file
-<tt class="file docutils literal"><span class="pre">/etc/ssh/ssh_config</span></tt> with the following command:</p>
-<blockquote>
-<div>sudo sed -i &#8220;s/    HashKnown/#   HashKnown/&#8221; /etc/ssh/ssh_config</div></blockquote>
-</div>
-<div class="section" id="using-ssh-in-web-browsers">
-<h3>Using SSH in web browsers<a class="headerlink" href="#using-ssh-in-web-browsers" title="Permalink to this headline">¶</a></h3>
-<p>Replace ssh with PuTTY as the default <a class="reference external" href="ssh://">ssh://</a> handler with the commands:</p>
-<blockquote>
-<div>sudo bash &lt; &lt;(wget <a class="reference external" href="https://raw.github.com/gist/1030236/putty-kde.sh">https://raw.github.com/gist/1030236/putty-kde.sh</a> -O-)
-sudo chmod +x /usr/bin/putty.rb</div></blockquote>
-<p>Test this configuration in your browser by going to the link address:</p>
-<div class="highlight-python"><pre>ssh://github.com</pre>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Firefox requires you to type in the program name to handle ssh,
-<tt class="file docutils literal"><span class="pre">xdg-open</span></tt>. Google Chrome&#8217;s omnisearch box is a serious hindrance with
-ssh links, but will work. GitHub will not log you in over ssh, of course.</p>
-</div>
-<p>Press <tt class="kbd docutils literal"><span class="pre">&lt;Ctrl-RightClick&gt;</span></tt> to change PuTTY settings in a running session.
-Make permanent changes by saving <em class="menuselection">Session ‣ Default Settings</em>.</p>
-</div>
-<div class="section" id="commands-to-install-keys">
-<h3>Commands to install keys<a class="headerlink" href="#commands-to-install-keys" title="Permalink to this headline">¶</a></h3>
-<p>Where a user has login privileges on a system, add an ssh key to the remote
-system for secure access with the command:</p>
-<div class="highlight-python"><pre>ssh-copy-id `id -un`@HOSTNAME.DOMAIN.TLD</pre>
-</div>
-<p>replacing HOSTNAME.DOMAIN.TLD with the server&#8217;s fully qualified domain name.</p>
-</div>
-<div class="section" id="secure-web-services">
-<h3>Secure web services<a class="headerlink" href="#secure-web-services" title="Permalink to this headline">¶</a></h3>
-<p>Many web services which require ssh keys, such as GitHub, install keys through
-cut-and-paste. Display a user&#8217;s local public key using the command:</p>
-<blockquote>
-<div>kate ~/.ssh/id_rsa.public</div></blockquote>
-<p>In Kate, press <tt class="kbd docutils literal"><span class="pre">&lt;Ctrl-A&gt;&lt;Ctrl-C&gt;</span></tt> to copy, and paste the key to the web
-page with <tt class="kbd docutils literal"><span class="pre">&lt;Ctrl-V&gt;</span></tt>.</p>
-</div>
-</div>
-<div class="section" id="managing-changed-ssh-keys">
-<h2>Managing Changed SSH Keys<a class="headerlink" href="#managing-changed-ssh-keys" title="Permalink to this headline">¶</a></h2>
-<p>An <strong>ssh</strong> session may abort when starting. The most likely cause for this is a
-changed ssh key on either the local or the remote system. Address this problem
-in a console session. When a new key is created on the local system, copy the
-key to the remote system with the <strong class="command">ssh-copy-id</strong> command as described
-above.</p>
-<p>If a remote system key is changed, connect to the remote system with:</p>
-<div class="highlight-python"><pre>ssh `id -un`@HOSTNAME.DOMAIN.TLD</pre>
-</div>
-<p>A console message will identify the line number in <tt class="file docutils literal"><span class="pre">~/.ssh/known_hosts</span></tt>
-file which contains an invalid key. Delete this line with the command:</p>
-<div class="highlight-python"><pre>sed -i '[linenumber]d' ~/.ssh/known_hosts</pre>
-</div>
-<p>where the expression <tt class="docutils literal"><span class="pre">[linenumber]</span></tt> is replaced with a line number.</p>
-<p>Then reconnect from the console, and save the new key when prompted.</p>
-</div>
-<div class="section" id="remote-logins-over-ssh">
-<h2>Remote logins over ssh<a class="headerlink" href="#remote-logins-over-ssh" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="basic">
-<h3>Basic:<a class="headerlink" href="#basic" title="Permalink to this headline">¶</a></h3>
-<p>From a console session, login to a remote system with the command:</p>
-<div class="highlight-python"><pre>ssh `id -un`@HOSTNAME.DOMAIN.TLD</pre>
-</div>
-</div>
-<div class="section" id="port-forwarding-for-rdp">
-<h3>Port forwarding for RDP:<a class="headerlink" href="#port-forwarding-for-rdp" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div>ssh -L3389:[remoteIP]:3389 [username]&#64;HOSTNAME.DOMAIN.TLD</div></blockquote>
-</div>
-<div class="section" id="gnome-terminal">
-<h3>Gnome terminal<a class="headerlink" href="#gnome-terminal" title="Permalink to this headline">¶</a></h3>
-<p>NX performing X-11 Forwarding with gnome-terminal:</p>
-<div class="highlight-python"><pre>gnome-terminal -x ssh -L8889:localhost:8888 [username]@HOSTNAME.DOMAIN.TLD</pre>
-</div>
-</div>
-<div class="section" id="kde-putty">
-<h3>KDE PuTTY<a class="headerlink" href="#kde-putty" title="Permalink to this headline">¶</a></h3>
-<p>Select <em class="menuselection">Applications ‣ Internet ‣ PuTTY SSH Client</em> from the
-menu.</p>
-</div>
-</div>
-</div>
-
-
-          </div>
-        </div>
-      </div>
+    </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
@@ -231,6 +94,147 @@ menu.</p>
     </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="remote-secure-shell-sessions">
+<h1>Remote Secure Shell Sessions<a class="headerlink" href="#remote-secure-shell-sessions" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Throughout these instructions, replace <strong>HOSTNAME</strong>, <strong>DOMAIN</strong>, and
+<strong>TLD</strong> with the name of the computer to be accessed, the domain for the
+computer, and the top-level domain (.com, .net, etc.). For example,
+<strong>HOSTNAME.DOMAIN.TLD</strong> might be replaced with <strong>workserver.github.com</strong>
+for the work server at GitHub.</p>
+</div>
+<div class="section" id="understanding-ssh-keys">
+<h2>Understanding SSH keys<a class="headerlink" href="#understanding-ssh-keys" title="Permalink to this headline">¶</a></h2>
+<div class="sidebar">
+<p class="first sidebar-title">Credentials Index</p>
+<p class="last">Each workstation or server in a network should have a unique computer name,
+and users on a system should have their own usernames. On this premise, the
+combined computername/username should be unique or uncommonly duplicated
+across a computer network. This makes credential management more transparent.</p>
+</div>
+<p>SSH is a free, open-source public key credential and encryption system which
+forms the basis for secure communication on Internet Protocol networks. SSH
+credential keys are indexed to the combination of computername/username, as
+mentioned in the sidebar. This permits authorizing system access while offering
+a mechanism to reject credentials for specific computername/usernames, as when
+a computer is stolen.</p>
+</div>
+<div class="section" id="configuring-ssh-for-a-user">
+<h2>Configuring SSH for a user<a class="headerlink" href="#configuring-ssh-for-a-user" title="Permalink to this headline">¶</a></h2>
+<p>Each user should create a key set with the command:</p>
+<div class="highlight-python"><pre>if [ ! -f "$HOME/.ssh/id_rsa" ]; then ssh-keygen; fi</pre>
+</div>
+<p>Resulting keys are stored in the files</p>
+<ul class="simple">
+<li>private key: <tt class="file docutils literal"><span class="pre">~/.ssh/id_rsa</span></tt></li>
+<li>public key:  <tt class="file docutils literal"><span class="pre">~/.ssh/id_rsa.pub</span></tt></li>
+<li>known hosts: <tt class="file docutils literal"><span class="pre">~/.ssh/known_hosts</span></tt></li>
+</ul>
+<p>List the hidden <tt class="file docutils literal"><span class="pre">.ssh</span></tt> directory to see the permissions:</p>
+<div class="highlight-python"><pre>ls -al ~/.ssh</pre>
+</div>
+<div class="section" id="recommended-configuration">
+<h3>Recommended configuration<a class="headerlink" href="#recommended-configuration" title="Permalink to this headline">¶</a></h3>
+<p>On each computer, comment out the line <strong class="command">HashKnownHosts yes</strong> in file
+<tt class="file docutils literal"><span class="pre">/etc/ssh/ssh_config</span></tt> with the following command:</p>
+<div class="highlight-python"><pre>sudo sed -i "s/    HashKnown/#   HashKnown/" /etc/ssh/ssh_config</pre>
+</div>
+</div>
+<div class="section" id="using-ssh-in-web-browsers">
+<h3>Using SSH in web browsers<a class="headerlink" href="#using-ssh-in-web-browsers" title="Permalink to this headline">¶</a></h3>
+<p>Replace <strong class="command">ssh</strong> with <strong class="command">PuTTY</strong> as the default <strong class="command">ssh://</strong>
+handler with the commands:</p>
+<div class="highlight-python"><pre>sudo bash &lt; &lt;(wget https://raw.github.com/gist/1030236/putty-kde.sh -O-)
+sudo chmod +x /usr/bin/putty.rb</pre>
+</div>
+<p>Test this configuration in your browser by going to the link address:</p>
+<div class="highlight-python"><pre>ssh://github.com</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Firefox requires you to type in the program name to handle ssh,
+<strong class="command">xdg-open</strong>. Google Chrome&#8217;s omnisearch box is a serious hindrance
+with ssh links, but will work. GitHub will not log you in over ssh, of
+course.</p>
+</div>
+<p>Press <tt class="kbd docutils literal"><span class="pre">&lt;Ctrl-RightClick&gt;</span></tt> to change PuTTY settings in a running session.
+Make changes permanent by saving <em class="menuselection">Session ‣ Default Settings</em>.</p>
+</div>
+<div class="section" id="commands-to-install-keys">
+<h3>Commands to install keys<a class="headerlink" href="#commands-to-install-keys" title="Permalink to this headline">¶</a></h3>
+<p>Where a user has login privileges on a system, add an ssh key to the remote
+system for secure access with the command:</p>
+<div class="highlight-python"><pre>ssh-copy-id `id -un`@HOSTNAME.DOMAIN.TLD</pre>
+</div>
+<p>replacing HOSTNAME.DOMAIN.TLD with the computer&#8217;s fully qualified domain name.</p>
+</div>
+<div class="section" id="secure-web-services">
+<h3>Secure web services<a class="headerlink" href="#secure-web-services" title="Permalink to this headline">¶</a></h3>
+<p>Many web services which require ssh keys, such as GitHub, install keys through
+cut-and-paste. Display a user&#8217;s local public key using the command:</p>
+<div class="highlight-python"><pre>kate ~/.ssh/id_rsa.public</pre>
+</div>
+<p>In Kate, press <tt class="kbd docutils literal"><span class="pre">&lt;Ctrl-A&gt;&lt;Ctrl-C&gt;</span></tt> to copy, and paste the key to the web
+page with <tt class="kbd docutils literal"><span class="pre">&lt;Ctrl-V&gt;</span></tt>.</p>
+</div>
+</div>
+<div class="section" id="managing-changed-ssh-keys">
+<h2>Managing Changed SSH Keys<a class="headerlink" href="#managing-changed-ssh-keys" title="Permalink to this headline">¶</a></h2>
+<p>An <strong class="command">ssh</strong> session may abort when starting. The most likely cause for
+this is a changed ssh key on either the local or the remote system. Address
+this problem in a console session. When a new key is created on the local
+system, copy the key to the remote system with the <strong class="command">ssh-copy-id</strong>
+command as described above.</p>
+<p>If a remote system key is changed, connect to the remote system with:</p>
+<div class="highlight-python"><pre>ssh `id -un`@HOSTNAME.DOMAIN.TLD</pre>
+</div>
+<p>A console message will identify the line number in <tt class="file docutils literal"><span class="pre">~/.ssh/known_hosts</span></tt>
+file which contains an invalid key. Delete this line with the command:</p>
+<div class="highlight-python"><pre>sed -i '[linenumber]d' ~/.ssh/known_hosts</pre>
+</div>
+<p>where the expression <tt class="docutils literal"><span class="pre">[linenumber]</span></tt> is replaced with a line number.</p>
+<p>Then reconnect from the console, and save the new key when prompted.</p>
+</div>
+<div class="section" id="remote-logins-over-ssh">
+<h2>Remote logins over ssh<a class="headerlink" href="#remote-logins-over-ssh" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="basic">
+<h3>Basic:<a class="headerlink" href="#basic" title="Permalink to this headline">¶</a></h3>
+<p>From a console session, login to a remote system with the command:</p>
+<div class="highlight-python"><pre>ssh `id -un`@HOSTNAME.DOMAIN.TLD</pre>
+</div>
+</div>
+<div class="section" id="port-forwarding-for-rdp">
+<h3>Port forwarding for RDP:<a class="headerlink" href="#port-forwarding-for-rdp" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>ssh -L3389:[remoteIP]:3389 [username]@HOSTNAME.DOMAIN.TLD</pre>
+</div>
+<p>Display the forwarded <strong class="command">RDP</strong> session in <strong class="command">Remmina</strong> or
+<strong class="command">KRDC</strong>.</p>
+</div>
+<div class="section" id="gnome-terminal">
+<h3>Gnome terminal<a class="headerlink" href="#gnome-terminal" title="Permalink to this headline">¶</a></h3>
+<p>NX performing X-11 Forwarding with gnome-terminal:</p>
+<div class="highlight-python"><pre>gnome-terminal -x ssh -L8889:localhost:8888 [username]@HOSTNAME.DOMAIN.TLD</pre>
+</div>
+</div>
+<div class="section" id="kde-putty">
+<h3>KDE PuTTY<a class="headerlink" href="#kde-putty" title="Permalink to this headline">¶</a></h3>
+<p>Select <em class="menuselection">Applications ‣ Internet ‣ PuTTY SSH Client</em> from the
+menu.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
         </div>
       </div>
       <div class="clearer"></div>

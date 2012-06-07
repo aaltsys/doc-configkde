@@ -10,7 +10,7 @@
     
     <title>DOS programs with dosemu &mdash; Configure KDE 1.0 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -44,92 +44,22 @@
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Configure KDE 1.0 documentation</a> &raquo;</li> 
       </ul>
-    </div>  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
-            
-  <div class="section" id="dos-programs-with-dosemu">
-<h1>DOS programs with dosemu<a class="headerlink" href="#dos-programs-with-dosemu" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="installing-dos-emulation">
-<h2>Installing DOS emulation<a class="headerlink" href="#installing-dos-emulation" title="Permalink to this headline">¶</a></h2>
-<p>To install dosemu, display a terminal from <em class="menuselection">Accessories ‣ Terminal</em>.
-Then enter the commands:</p>
-<div class="highlight-python"><pre>sudo aptitude install dosemu xauth
-sudo sysctl -w vm.mmap_min_addr=0
-sudo bash &lt; &lt;(echo 'echo "vm.mmap_min_addr=0" &gt;&gt; /etc/sysctl.conf')</pre>
-</div>
-<p>The DOS system can be started from <em class="menuselection">Applications ‣ System Tools ‣ DOS emulator</em>.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last"><strong>xauth</strong> is required for remote execution over <strong>ssh</strong> on Ubuntu 8.04.</p>
-</div>
-</div>
-<div class="section" id="dos-performance-and-video">
-<h2>DOS performance and video<a class="headerlink" href="#dos-performance-and-video" title="Permalink to this headline">¶</a></h2>
-<p>Dosemu settings for each user may be set by editing configuration file ~/.dosemu:</p>
-<div class="highlight-python"><pre>nano ~/.dosemurc</pre>
-</div>
-<p>To make dosemu run faster, add a command:</p>
-<div class="highlight-python"><pre>$_hogthreshold = (xx)</pre>
-</div>
-<p>where <strong>xx</strong> is the percentage of CPU time to devote to dosemu (defaults to 1 percent).</p>
-<p>To display a DOS window looking like the original DOS 640X480 EGA/VGA screen, add a command:</p>
-<div class="highlight-python"><pre>$_X_font = vga12x30</pre>
-</div>
-<p>The following command will change video globally for all users (but run this only once):</p>
-<div class="highlight-python"><pre>sudo sed -i '/$_X_font/ a\$_X_font = vga12x30' /etc/dosemu/dosemu.conf</pre>
-</div>
-<p>DOS video configurations include: <tt class="docutils literal"><span class="pre">vga,</span> <span class="pre">vga8x19,</span> <span class="pre">vga11x19,</span> <span class="pre">vga10x24,</span> <span class="pre">vga12x30,</span> <span class="pre">vga-cp866,</span> <span class="pre">and</span> <span class="pre">vga10x20-cp866</span></tt>.</p>
-</div>
-<div class="section" id="running-dosemu-from-a-script">
-<h2>Running Dosemu from a Script<a class="headerlink" href="#running-dosemu-from-a-script" title="Permalink to this headline">¶</a></h2>
-<p>A DOS program may be executed from the Linux command line by calling <cite>dosemu</cite> followed
-by the name of the DOS program (.bat, .exe, .com) to execute. If other commands are
-required in the context of the DOS program, then a shell script may perform the complete
-task. For example, the WARES program would change file permissions from public to private
-when executed by a user outside of group <cite>__USERS__</cite>. This can be corrected by issuing
-a <cite>chmod</cite> command after executing WARES. To create a shell script to include this,
-say <cite>wares.sh</cite>, edit the script file with <cite>nano ~/wares.sh</cite>:</p>
-<div class="highlight-python"><pre>dosemu C:\WARES.BAT
-sudo chmod -R 777 /home/samba/shares/arev/*</pre>
-</div>
-<p>Make the shell script executable with the command, <cite>chmod +x ~/wares.sh</cite>. Finally, execute
-the DOS session by typing <cite>~/wares.sh</cite> at the command line.</p>
-</div>
-<div class="section" id="accessing-linux-file-shares">
-<h2>Accessing Linux file shares<a class="headerlink" href="#accessing-linux-file-shares" title="Permalink to this headline">¶</a></h2>
-<p>The dosemu command LREDIR will mount a Linux directory to a DOS drive letter. For example,:</p>
-<div class="highlight-python"><pre>LREDIR W: LINUX\FS/home/samba/shares/arev
-LREDIR S: LINUX\FS/home/samba/shares/public</pre>
-</div>
-<p>A DOS batch file within dosemu can incorporate mount commands and DOS program
-execution, as illustrated previously with <cite>C:\WARES.BAT</cite>. To create this batch file,
-start <cite>dosemu</cite> and enter the file with the command <cite>EDIT WARES.BAT</cite>:</p>
-<div class="highlight-python"><pre>LREDIR W: LINUX\FS/home/samba/shares/arev
-LREDIR S: LINUX\FS/home/samba/shares/public
-W:
-WARES.BAT WARES</pre>
-</div>
-<p>Save the batch file and exit the editor with <tt class="kbd docutils literal"><span class="pre">Alt-F,S;Alt-F,X</span></tt>. Then type the
-name of the batch file to test execute it. Exit the dosemu session with the command <cite>exitemu</cite>.</p>
-</div>
-</div>
-
-
-          </div>
-        </div>
-      </div>
+    </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">DOS programs with dosemu</a><ul>
-<li><a class="reference internal" href="#installing-dos-emulation">Installing DOS emulation</a></li>
+<li><a class="reference internal" href="#installing-dos-emulation">Installing DOS emulation</a><ul>
 <li><a class="reference internal" href="#dos-performance-and-video">DOS performance and video</a></li>
-<li><a class="reference internal" href="#running-dosemu-from-a-script">Running Dosemu from a Script</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#running-dosemu">Running Dosemu</a><ul>
+<li><a class="reference internal" href="#interactive-dosemu-sessions">Interactive DOSemu sessions</a></li>
+<li><a class="reference internal" href="#dos-program-sessions">DOS program sessions</a></li>
+<li><a class="reference internal" href="#scripted-dosemu-sessions">Scripted DOSemu sessions</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#accessing-linux-file-shares">Accessing Linux file shares</a></li>
 </ul>
 </li>
@@ -159,6 +89,106 @@ name of the batch file to test execute it. Exit the dosemu session with the comm
     </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="dos-programs-with-dosemu">
+<h1>DOS programs with dosemu<a class="headerlink" href="#dos-programs-with-dosemu" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="installing-dos-emulation">
+<h2>Installing DOS emulation<a class="headerlink" href="#installing-dos-emulation" title="Permalink to this headline">¶</a></h2>
+<p>Install dosemu at a console, <em class="menuselection">Accessories ‣ Terminal</em>, with
+the commands:</p>
+<div class="highlight-python"><pre>sudo aptitude install dosemu xauth
+sudo sysctl -w vm.mmap_min_addr=0
+sudo bash &lt; &lt;(echo 'echo "vm.mmap_min_addr=0" &gt;&gt; /etc/sysctl.conf')</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><strong>xauth</strong> is required for remote execution over <strong>ssh</strong> on Ubuntu 8.04.</p>
+</div>
+<div class="section" id="dos-performance-and-video">
+<h3>DOS performance and video<a class="headerlink" href="#dos-performance-and-video" title="Permalink to this headline">¶</a></h3>
+<p>Dosemu configuration may be set either globally or for each user. User settings
+are stored in configuration file <tt class="file docutils literal"><span class="pre">~/.dosemurc</span></tt>, while global settings are
+kept in <tt class="file docutils literal"><span class="pre">/etc/dosemu/dosemu.conf</span></tt>. One-time commands are shown following;
+make testing and ongoing changes with editing commands
+<strong class="command">sudoedit /etc/dosemu/dosemu.conf</strong> (global) or
+<strong class="command">nano ~/.dosemurc</strong> (per user).</p>
+<p>To make dosemu run faster, change the hogthreshold <tt class="kbd docutils literal"><span class="pre">xx</span></tt> with the command:</p>
+<div class="highlight-python"><pre>echo '$_hogthreshold = (xx)' &gt;&gt; ~/.dosemurc</pre>
+</div>
+<p>where <strong>xx</strong> is the percentage of CPU time to devote to dosemu, which defaults
+to 1 percent.</p>
+<p>Emulate the DOS 640X480 EGA/VGA display with the command:</p>
+<div class="highlight-python"><pre>echo '$_X_font = vga12x30' &gt;&gt; ~/.dosemurc</pre>
+</div>
+<p>The following command would change video globally for all users (but run this
+only once):</p>
+<div class="highlight-python"><pre>sudo sed -i '/$_X_font/ a\$_X_font = vga12x30' /etc/dosemu/dosemu.conf</pre>
+</div>
+<p>DOS video configurations include: vga, vga8x19, vga11x19, vga10x24, vga12x30,
+vga-cp866, and vga10x20-cp866.</p>
+</div>
+</div>
+<div class="section" id="running-dosemu">
+<h2>Running Dosemu<a class="headerlink" href="#running-dosemu" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="interactive-dosemu-sessions">
+<h3>Interactive DOSemu sessions<a class="headerlink" href="#interactive-dosemu-sessions" title="Permalink to this headline">¶</a></h3>
+<p>To start an interactive DOSemu session, type <strong class="command">dosemu</strong> at the console
+or select <em class="menuselection">Applications ‣ System ‣ DOS emulator</em> from the
+system menu. To exit the command line of an interactive session, type the
+command <strong class="command">exitemu</strong>.</p>
+</div>
+<div class="section" id="dos-program-sessions">
+<h3>DOS program sessions<a class="headerlink" href="#dos-program-sessions" title="Permalink to this headline">¶</a></h3>
+<p>A DOS program may be executed from the Linux command line by calling
+<strong class="command">dosemu</strong> followed by the name of the DOS program (.bat, .exe, .com)
+to execute. When the called program exits in DOSemu, the DOSemu session will
+close.</p>
+</div>
+<div class="section" id="scripted-dosemu-sessions">
+<h3>Scripted DOSemu sessions<a class="headerlink" href="#scripted-dosemu-sessions" title="Permalink to this headline">¶</a></h3>
+<p>If other commands are required in the context of the DOS program, then a
+shell script may perform the complete task. For example, suppose program
+<strong>WARES</strong> would change shared file permissions from public to private when
+executed by a user not in group <cite>__USERS__</cite>. Issuing a <strong class="command">chmod</strong>
+command after executing WARES would fix permissions. A script <tt class="file docutils literal"><span class="pre">wares.sh</span></tt>
+for this purpose could be created with command <strong class="command">nano ~/wares.sh</strong>:</p>
+<div class="highlight-python"><pre>dosemu C:\WARES.BAT
+sudo chmod -R 777 /home/samba/shares/wares/*</pre>
+</div>
+<p>Make the shell script executable with command <strong class="command">chmod +x ~/wares.sh</strong>.
+Finally, run the DOS session by typing <strong class="command">~/wares.sh</strong> at the console.</p>
+</div>
+</div>
+<div class="section" id="accessing-linux-file-shares">
+<h2>Accessing Linux file shares<a class="headerlink" href="#accessing-linux-file-shares" title="Permalink to this headline">¶</a></h2>
+<p>The dosemu command <strong class="command">LREDIR</strong> will mount a Linux directory to a DOS
+drive letter; for example:</p>
+<div class="highlight-python"><pre>LREDIR W: LINUX\FS/home/samba/shares/wares
+LREDIR S: LINUX\FS/home/samba/shares/public</pre>
+</div>
+<p>A DOS batch file within dosemu can incorporate mount commands and DOS program
+execution, as illustrated previously with <cite>C:\WARES.BAT</cite>. To create this batch
+file, start <strong class="command">dosemu</strong> and enter the file with the command
+<strong class="command">EDIT WARES.BAT</strong>:</p>
+<div class="highlight-python"><pre>LREDIR W: LINUX\FS/home/samba/shares/wares
+LREDIR S: LINUX\FS/home/samba/shares/public
+W:
+WARES.BAT WARES</pre>
+</div>
+<p>Save the batch file and exit the editor with <tt class="kbd docutils literal"><span class="pre">&lt;Alt-F&gt;,S;&lt;Alt-F&gt;,X</span></tt>. Then
+type the name of the batch file to execute it.</p>
+</div>
+</div>
+
+
+          </div>
         </div>
       </div>
       <div class="clearer"></div>
