@@ -89,7 +89,7 @@ Secure web services
 Many web services which require ssh keys, such as GitHub, install keys through 
 cut-and-paste. Display a user's local public key using the command::
 
-  kate ~/.ssh/id_rsa.public
+  kate ~/.ssh/id_rsa.pub
 
 In Kate, press :kbd:`<Ctrl-A><Ctrl-C>` to copy, and paste the key to the web 
 page with :kbd:`<Ctrl-V>`.
