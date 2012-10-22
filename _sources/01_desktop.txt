@@ -5,38 +5,28 @@
 Software Installation
 =============================
 
-Download and run scripts as provided and described at http://publish.lovels.us.
-
-Software first install script
------------------------------
-
-::
-
-  wget http://publish.lovels.us/_downloads/KDE-Mint_12-desktop.sh -o first-install.sh
-  bash first-install.sh
-
-Software rest install script
------------------------------
-
-::
-
-  wget http://publish.lovels.us/_downloads/rest-install.sh -o rest-install.sh
-  bash rest-install.sh
-
-Software not in script
------------------------------
-
-::
-
-  sudo aptitude install krdc remmina
+Installation of Linux and scripted OS configuration is described at 
+http://publish.lovels.us/02_installation.html.
 
 Desktop Configuration
 =============================
 
-Click the cashew on the menu bar at the right, and add widgets:
-    
-+ Lancelot Launcher
-+ Pager
+For laptops and netbooks, the workspace type may default to *Netbook*. This is 
+changed as follows:
+
++ Open *System Settings*
++ Under *Workspace Appearance and Behavior*, open *Workspace Behavior*
++ Click the *Workspace* cashew icon
++ Click the droplist next to *Workspace Type:* and select *Desktop*
++ Click the *Apply* button in the bottom-right of the window
++ Close *System Settings*
+
+Add an improved system menu and multi-workspace paging as follows:
+
++ Click the configuration cashew at the right on the menu bar
++ Click *+ add widgets...*
++ Add *Lancelot Launcher*, remove *Application Launcher*
++ If missing, add *Pager* (already installed on KUbuntu; not installed on Mint) 
 
 Avoiding VIM
 =====================================

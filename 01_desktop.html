@@ -50,12 +50,7 @@
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Desktop Configuration</a><ul>
-<li><a class="reference internal" href="#software-installation">Software Installation</a><ul>
-<li><a class="reference internal" href="#software-first-install-script">Software first install script</a></li>
-<li><a class="reference internal" href="#software-rest-install-script">Software rest install script</a></li>
-<li><a class="reference internal" href="#software-not-in-script">Software not in script</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#software-installation">Software Installation</a></li>
 <li><a class="reference internal" href="#id1">Desktop Configuration</a></li>
 <li><a class="reference internal" href="#avoiding-vim">Avoiding VIM</a></li>
 <li><a class="reference internal" href="#turn-on-apple-keyboard-function-keys">Turn on Apple Keyboard function keys</a></li>
@@ -103,31 +98,27 @@
 <h1>Desktop Configuration<a class="headerlink" href="#desktop-configuration" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="software-installation">
 <h2>Software Installation<a class="headerlink" href="#software-installation" title="Permalink to this headline">¶</a></h2>
-<p>Download and run scripts as provided and described at <a class="reference external" href="http://publish.lovels.us">http://publish.lovels.us</a>.</p>
-<div class="section" id="software-first-install-script">
-<h3>Software first install script<a class="headerlink" href="#software-first-install-script" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><pre>wget http://publish.lovels.us/_downloads/KDE-Mint_12-desktop.sh -o first-install.sh
-bash first-install.sh</pre>
-</div>
-</div>
-<div class="section" id="software-rest-install-script">
-<h3>Software rest install script<a class="headerlink" href="#software-rest-install-script" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><pre>wget http://publish.lovels.us/_downloads/rest-install.sh -o rest-install.sh
-bash rest-install.sh</pre>
-</div>
-</div>
-<div class="section" id="software-not-in-script">
-<h3>Software not in script<a class="headerlink" href="#software-not-in-script" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><pre>sudo aptitude install krdc remmina</pre>
-</div>
-</div>
+<p>Installation of Linux and scripted OS configuration is described at
+<a class="reference external" href="http://publish.lovels.us/02_installation.html">http://publish.lovels.us/02_installation.html</a>.</p>
 </div>
 <div class="section" id="id1">
 <h2>Desktop Configuration<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>Click the cashew on the menu bar at the right, and add widgets:</p>
+<p>For laptops and netbooks, the workspace type may default to <em>Netbook</em>. This is
+changed as follows:</p>
 <ul class="simple">
-<li>Lancelot Launcher</li>
-<li>Pager</li>
+<li>Open <em>System Settings</em></li>
+<li>Under <em>Workspace Appearance and Behavior</em>, open <em>Workspace Behavior</em></li>
+<li>Click the <em>Workspace</em> cashew icon</li>
+<li>Click the droplist next to <em>Workspace Type:</em> and select <em>Desktop</em></li>
+<li>Click the <em>Apply</em> button in the bottom-right of the window</li>
+<li>Close <em>System Settings</em></li>
+</ul>
+<p>Add an improved system menu and multi-workspace paging as follows:</p>
+<ul class="simple">
+<li>Click the configuration cashew at the right on the menu bar</li>
+<li>Click <em>+ add widgets...</em></li>
+<li>Add <em>Lancelot Launcher</em>, remove <em>Application Launcher</em></li>
+<li>If missing, add <em>Pager</em> (already installed on KUbuntu; not installed on Mint)</li>
 </ul>
 </div>
 <div class="section" id="avoiding-vim">
