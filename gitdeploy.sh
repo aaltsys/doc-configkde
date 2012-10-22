@@ -2,6 +2,7 @@
 # Script to deploy .rst documents in a git repository to github gh-pages
 
 SECTIONS=""
+DOWNLOADS_DIR="_downloads"
 DEPLOY_DIR="_deploy"
 INCLUDE_DIR="_include"
 DEPLOY_GIT="git@github.com:garlovel/config-kde.git"
@@ -26,7 +27,7 @@ fi
 cd $DEPLOY_DIR
 if [ ! "$(git branch | grep \* | awk '{print $2}')" = $DEPLOY_BRANCH ]
 then
-  if [ "$(git branch -lr | grep $DEPLOY_GIT)" ]
+  if [ "$(git branch -lr | grep $DEPLOY_BRANCH)" ]
   then
     git checkout $DEPLOY_BRANCH
   else
@@ -59,7 +60,7 @@ then
 else
   for DIR in $SECTIONS
   do
-    if [ -e $DIR ]
+    if [ -d $DIR ]
     then
       cd $DIR
       make clean $MAKE_METHOD
@@ -71,26 +72,33 @@ fi
 
 # Add downloads if they exist
 
-if [ -e "$DOWNLOADS_DIR" ]
+if [ -d $DOWNLOADS_DIR ]
 then
   cp -R $DOWNLOADS_DIR $DEPLOY_DIR
 fi
 
-# Add static content
+# Add static content (remove CNAME if not garlovel)
 
-if [ -e "$INCLUDE_DIR" ]
+if [ -d $INCLUDE_DIR ]
 then
   cp -R $INCLUDE_DIR/* $DEPLOY_DIR
+  if [ "$DEPLOY_GIT" == "${DEPLOY_GIT/garlovel/}" ]
+  then
+    rm $DEPLOY_DIR/CNAME
+  fi
 fi
 
 # Deploy the repository branch
 
-cd $DEPLOY_DIR
-git add .
-git commit -a -m "Deployed documentation"
-git push origin $DEPLOY_BRANCH
-cd ..
+if [ -d $DEPLOY_DIR ]
+then
+  cd $DEPLOY_DIR
+  git add .
+  git commit -a -m "Deployed documentation"
+  git push origin $DEPLOY_BRANCH
+  cd ..
+fi
 
 echo "Deployed! Be sure that your source changes are commited and pushed as well."
 
-# Author: Michael Cochran, mcochran@linux.com
+# Authors: Michael Cochran, mcochran@linux.com & Gerald Lovel, gerald@lovels.us
