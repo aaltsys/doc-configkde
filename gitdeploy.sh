@@ -5,7 +5,7 @@ SECTIONS=""
 DOWNLOADS_DIR="_downloads"
 DEPLOY_DIR="_deploy"
 INCLUDE_DIR="_include"
-DEPLOY_GIT="git@github.com:garlovel/config-kde.git"
+DEPLOY_GIT="git@github.com:aaltsys/doc-configkde.git"
 DEPLOY_BRANCH="gh-pages"
 MAKE_METHOD="html"
 
@@ -82,7 +82,7 @@ fi
 if [ -d $INCLUDE_DIR ]
 then
   cp -R $INCLUDE_DIR/* $DEPLOY_DIR
-  if [ "$DEPLOY_GIT" == "${DEPLOY_GIT/garlovel/}" ]
+  if [ "$DEPLOY_GIT" == "${DEPLOY_GIT/aaltsys/}" ]
   then
     rm $DEPLOY_DIR/CNAME
   fi
