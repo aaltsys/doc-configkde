@@ -36,9 +36,8 @@ Clipboard and Editor Configuration
   :guilabel:`Synchronize contents of the clipboard and the selection`.
 
 + Open the editor `Kate`.
-+ On :menuselection:`View --> Tool Views`, Check all three options:
-  :menuselection:`Show Sidebars`, :menuselection:`Show Documents`,
-  :menuselection:`Show Terminal`.
++ On :menuselection:`View --> Tool Views`, Check the options:
+  :menuselection:`Show Sidebars`, :menuselection:`Show Documents`.
 
 Avoiding VIM
 =====================================
