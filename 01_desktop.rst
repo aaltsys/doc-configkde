@@ -6,7 +6,7 @@ Software Installation
 =============================
 
 Installation of Linux and scripted OS configuration is described at 
-http://publish.lovels.us/02_installation.html.
+http://publish.aaltsys.com/02_installation.html.
 
 Desktop Configuration
 =============================
@@ -27,6 +27,18 @@ Add an improved system menu and multi-workspace paging as follows:
 + Click *+ add widgets...*
 + Add *Lancelot Launcher*, remove *Application Launcher*
 + If missing, add *Pager* (already installed on KUbuntu; not installed on Mint) 
+
+Clipboard and Editor Configuration
+=====================================
+
++ Click the scissors on the task bar, and choose :guilabel:`Configure Klipper...`.
++ On the :guilabel:`General` tab, check the box labeled 
+  :guilabel:`Synchronize contents of the clipboard and the selection`.
+
++ Open the editor `Kate`.
++ On :menuselection:`View --> Tool Views`, Check all three options:
+  :menuselection:`Show Sidebars`, :menuselection:`Show Documents`,
+  :menuselection:`Show Terminal`.
 
 Avoiding VIM
 =====================================
