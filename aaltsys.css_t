@@ -1,0 +1,50 @@
+/*
+ * aaltsys.css
+ * ~~~~~~~~~~~~~~~
+ *
+ * AAltsys modifications and corrections to Sphinx stylesheet: sphinxdoc theme.
+ *
+ */
+
+@import url("sphinxdoc.css");
+
+/* -- page layout ----------------------------------------------------------- */
+
+body {
+    margin: 5px 5px 5px 5px;
+}
+
+/* -- body styles ----------------------------------------------------------- */
+
+table, table.docutils {
+  margin: 0.5em -0.5em 0.5em -0.5em;
+  border-collapse: separate;
+  border-spacing: .25em;
+}
+
+table th, table td, table.docutils th, table.docutils td {
+  padding: 0 0.25em 0 0.25em;
+}
+
+th p, td p, th p.first.last, td p.first.last {
+  margin: 0 0 0 0; 
+}
+
+.admonition table, .warning table {
+  margin: 0 0.5em 0.5em 0.5em;
+}
+
+/* for bordered tables with borders even with text, the css would be:
+
+table, table.docutils {
+  margin: 0.5em 0 0.5em 0;
+  border: 1px;
+  border-collapse: separate;
+  border-spacing: .25em;
+}
+
+.admonition table, .warning table {
+  margin: 0 1em 0.5em 1em;
+}
+
+*/
