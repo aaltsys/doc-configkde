@@ -10,6 +10,9 @@
 */*~
 */*kate-swp
 
+# cloud9 revision tracking
+.c9revisions/*
+
 # built folder content (.html, .doc, .pdf)
 *build/*
 */*build/*
@@ -18,14 +21,12 @@
 *deploy/*
 */*deploy/*
 
-# static folder content
-# *static/*
-*/*static/*
-# *include/*
-*/*include/*
-
 # keep directories which include .gitkeep
 !.git_keep
 !.gitkeep
 !*/.git_keep
 !*/.gitkeep
+
+# Private files
+# .htaccess
+# .htpasswd
