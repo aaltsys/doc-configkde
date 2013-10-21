@@ -85,7 +85,7 @@ computer. Type the following commands to (1) create ssh keys provided a set
 does not exist, and (2) copy the user public key to the remote computer for 
 authentication::
 
-	if [ ! -f "$HOME/.ssh/id_rsa" ]; then ssh-keygen; fi
+	if [ ! -f ~/.ssh/id_rsa ]; then ssh-keygen -N '' -f ~/.ssh/id_rsa; fi
 	ssh-copy-id `id -un`@HOSTNAME.DOMAIN.TLD
 
 Now verify that the remote folders will mount::
