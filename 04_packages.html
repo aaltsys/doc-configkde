@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Managing Software Packages &mdash; Configure KDE 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/aaltsys.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Configure KDE 1.0 documentation" href="index.html" />
+    <link rel="next" title="DOS programs with dosemu" href="05_dosemu.html" />
+    <link rel="prev" title="Mounting Network File Systems" href="03_servershares.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="05_dosemu.html" title="DOS programs with dosemu"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="03_servershares.html" title="Mounting Network File Systems"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Configure KDE 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Managing Software Packages</a><ul>
+<li><a class="reference internal" href="#general-package-rules">General package rules</a></li>
+<li><a class="reference internal" href="#package-management-utilities">Package management utilities</a><ul>
+<li><a class="reference internal" href="#synaptics">synaptics</a></li>
+<li><a class="reference internal" href="#apt-get">apt-get</a></li>
+<li><a class="reference internal" href="#apt-cache">apt-cache</a></li>
+<li><a class="reference internal" href="#apt-mark">apt-mark</a></li>
+<li><a class="reference internal" href="#apt-show-versions">apt-show-versions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#special-commands">Special commands</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="03_servershares.html"
+                        title="previous chapter">Mounting Network File Systems</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="05_dosemu.html"
+                        title="next chapter">DOS programs with dosemu</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/04_packages.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="managing-software-packages">
+<h1>Managing Software Packages<a class="headerlink" href="#managing-software-packages" title="Permalink to this headline">¶</a></h1>
+<p>Open Source software packages are maintained in repositories. Each release has
+a version number, and package dependencies are recorded so that matching
+versions of packages can be installed together. Occasionally software updates
+are not aligned perfectly, and an update to one program and its dependencies
+will break other installed programs.</p>
+<p>This article explains how to manage installed and upgraded packages in an
+Ubuntu system using utility programs <strong class="program">synaptic</strong>, <strong class="program">dpkg</strong>, and
+<strong class="program">apt-{anything}</strong>.</p>
+<div class="section" id="general-package-rules">
+<h2>General package rules<a class="headerlink" href="#general-package-rules" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Only one package management program may be run at a time. Do not,say, start
+<strong class="program">synaptics</strong> in a window and try to run an <strong class="program">apt-</strong> utility
+in a console terminal at the same time.</li>
+<li>Package programs require root privileges. Use <strong class="command">sudo</strong> to execute all
+commands.</li>
+<li>Wild-card expressions are permitted in version numbers. When using versions,
+make sure the version expression uniquely selects the desired version from
+available cached packages.</li>
+</ul>
+</div>
+<div class="section" id="package-management-utilities">
+<h2>Package management utilities<a class="headerlink" href="#package-management-utilities" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="synaptics">
+<h3>synaptics<a class="headerlink" href="#synaptics" title="Permalink to this headline">¶</a></h3>
+<p>Use the synaptics menu option <em class="menuselection">File ‣ History</em> to review
+package changes.</p>
+</div>
+<div class="section" id="apt-get">
+<h3>apt-get<a class="headerlink" href="#apt-get" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>sudo apt-get update &amp;&amp; sudo apt-get upgrade
+sudo apt-get install {package}={version}
+sudo apt-get -f install</pre>
+</div>
+</div>
+<div class="section" id="apt-cache">
+<h3>apt-cache<a class="headerlink" href="#apt-cache" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>sudo apt-cache policy {package}</pre>
+</div>
+</div>
+<div class="section" id="apt-mark">
+<h3>apt-mark<a class="headerlink" href="#apt-mark" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>apt-mark hold {package} --version {version}</pre>
+</div>
+</div>
+<div class="section" id="apt-show-versions">
+<h3>apt-show-versions<a class="headerlink" href="#apt-show-versions" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>apt-show-versions {package}</pre>
+</div>
+</div>
+</div>
+<div class="section" id="special-commands">
+<h2>Special commands<a class="headerlink" href="#special-commands" title="Permalink to this headline">¶</a></h2>
+<p>Show all packages installed or upgraded in the past 3 days:</p>
+<div class="highlight-python"><pre>find /var/lib/dpkg/info/ -name \*.list -mtime -3 | sed `s#.list$##; s#.*/##`</pre>
+</div>
+<p>Place a package on hold using a pin file:</p>
+<div class="highlight-python"><pre>sed -i 'Package: {program}\nPin: {version}\nPin-Priority: 1000' /etc/apt/preferences/{program/</pre>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="05_dosemu.html" title="DOS programs with dosemu"
+             >next</a></li>
+        <li class="right" >
+          <a href="03_servershares.html" title="Mounting Network File Systems"
+             >previous</a> |</li>
+        <li><a href="index.html">Configure KDE 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Gerald Lovel.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

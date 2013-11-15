@@ -24,7 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Configure KDE 1.0 documentation" href="index.html" />
-    <link rel="next" title="DOS programs with dosemu" href="05_dosemu.html" />
+    <link rel="next" title="Managing Software Packages" href="04_packages.html" />
     <link rel="prev" title="Remote Secure Shell Sessions" href="02_secureshell.html" /> 
   </head>
   <body>
@@ -32,7 +32,7 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="05_dosemu.html" title="DOS programs with dosemu"
+          <a href="04_packages.html" title="Managing Software Packages"
              accesskey="N">next</a></li>
         <li class="right" >
           <a href="02_secureshell.html" title="Remote Secure Shell Sessions"
@@ -66,8 +66,8 @@
   <p class="topless"><a href="02_secureshell.html"
                         title="previous chapter">Remote Secure Shell Sessions</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="05_dosemu.html"
-                        title="next chapter">DOS programs with dosemu</a></p>
+  <p class="topless"><a href="04_packages.html"
+                        title="next chapter">Managing Software Packages</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/03_servershares.txt"
@@ -169,7 +169,7 @@ to exit the command.</p>
 computer. Type the following commands to (1) create ssh keys provided a set
 does not exist, and (2) copy the user public key to the remote computer for
 authentication:</p>
-<div class="highlight-python"><pre>if [ ! -f ~/.ssh/id_rsa ]; then ssh-keygen -N '' -f ~/.ssh/id_rsa; fi
+<div class="highlight-python"><pre>if [ ! -f "$HOME/.ssh/id_rsa" ]; then ssh-keygen; fi
 ssh-copy-id `id -un`@HOSTNAME.DOMAIN.TLD</pre>
 </div>
 <p>Now verify that the remote folders will mount:</p>
@@ -285,7 +285,7 @@ will display as if it were local, being redirected to you over SSH.</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="05_dosemu.html" title="DOS programs with dosemu"
+          <a href="04_packages.html" title="Managing Software Packages"
              >next</a></li>
         <li class="right" >
           <a href="02_secureshell.html" title="Remote Secure Shell Sessions"
