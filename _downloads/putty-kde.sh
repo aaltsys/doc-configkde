@@ -36,7 +36,7 @@ Xcommand << "-P #{uri.port}" if uri.port
 Xcommand << "-#{uri.scheme}" if uri.scheme
 Xcommand << "#{uri.host}"
 X
-X\`"#{command.join(' ')}"\`
+X\`#{command.join(" ")}\`
 END-of-/usr/bin/putty.rb
 
 echo x - /usr/share/kde4/services/ssh.protocol
