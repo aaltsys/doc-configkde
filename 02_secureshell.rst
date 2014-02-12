@@ -55,18 +55,13 @@ Using SSH in web browsers
 -----------------------------
 
 Replace :command:`ssh` with :command:`PuTTY` as the default :command:`ssh\://` 
-handler with the commands::
+handler for your browser with the command::
 
-  bash < <(wget http://git.io/kde-putty -O-)
-  
-or::
-
-  sudo bash < <(wget https://raw.github.com/gist/1030236/putty-kde.sh -O-)
-  sudo chmod +x /usr/bin/putty.rb
+   bash < <(wget http://git.io/kde-putty -O-)
 
 Test this configuration in your browser by going to the link address::
 
-  ssh://github.com
+   ssh://github.com
 
 .. note::
   Firefox requires you to type in the program name to handle ssh, 

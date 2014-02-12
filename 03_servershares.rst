@@ -163,9 +163,13 @@ will redirect SSH to PuTTY (courtesy of VonGrippen, AKA Michael Cochran)::
  
    bash < <(wget http://git.io/kde-putty -O-)
 
-.. note:: A URL shortener simplifies download commands. The source file is at
-   https://raw.github.com/aaltsys/doc-configkde/master/_downloads/putty-kde.sh,
-   and the command to shorten the URL was 
+Test the command's result in your browser with the following link::
+
+   ssh://github.com
+
+.. note:: The URL http://git.io/kde-putty points to the source file at
+   https://raw.github.com/aaltsys/doc-configkde/master/_downloads/putty-kde.sh.
+   The URL shortening command was 
    :command:`curl -i http://git.io -F "url=https://raw.github.com/aaltsys/doc-configkde/master/_downloads/putty-kde.sh" -F "code=kde-putty"`
 
 Example PuTTY Session:
