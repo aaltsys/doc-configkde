@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>KDE Desktop Management &mdash; Configure KDE 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/aaltsys.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Configure KDE 1.0 documentation" href="index.html" />
+    <link rel="next" title="Mounting Devices through udev" href="09_udevmount.html" />
+    <link rel="prev" title="DOS programs with dosemu" href="05_dosemu.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="09_udevmount.html" title="Mounting Devices through udev"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="05_dosemu.html" title="DOS programs with dosemu"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Configure KDE 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">KDE Desktop Management</a><ul>
+<li><a class="reference internal" href="#understanding-ssh-keys">Understanding SSH keys</a></li>
+<li><a class="reference internal" href="#avoiding-vim">Avoiding VIM</a></li>
+<li><a class="reference internal" href="#apple-keyboard-function-keys">Apple Keyboard function keys</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="05_dosemu.html"
+                        title="previous chapter">DOS programs with dosemu</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="09_udevmount.html"
+                        title="next chapter">Mounting Devices through udev</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/08_kde_tricks.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="kde-desktop-management">
+<h1>KDE Desktop Management<a class="headerlink" href="#kde-desktop-management" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="understanding-ssh-keys">
+<h2>Understanding SSH keys<a class="headerlink" href="#understanding-ssh-keys" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>private key: <tt class="file docutils literal"><span class="pre">~/.ssh/id_rsa</span></tt></li>
+<li>public key: <tt class="file docutils literal"><span class="pre">~/.ssh/id_rsa.pub</span></tt></li>
+<li>known hosts <tt class="file docutils literal"><span class="pre">~/.ssh/known_hosts</span></tt></li>
+</ul>
+<p>In <tt class="file docutils literal"><span class="pre">/etc/ssh/ssh_config</span></tt>, comment out the line <tt class="docutils literal"><span class="pre">HashKnownHosts</span> <span class="pre">yes</span></tt>
+with the following command:</p>
+<div class="highlight-python"><pre>sudo sed "s/    HashKnown/#   HashKnown/" /etc/ssh/ssh_config</pre>
+</div>
+<p>Replace <strong class="program">ssh</strong> with <strong class="program">PuTTY</strong> as default <strong class="program">ssh://</strong>
+handler with the command:</p>
+<div class="highlight-python"><pre>sudo bash &lt; &lt;(wget https://raw.github.com/gist/1030236/putty-kde.sh -O-)</pre>
+</div>
+<p>Alternatively, click <a class="reference download internal" href="_downloads/putty-kde.sh"><tt class="xref download docutils literal"><span class="pre">this</span> <span class="pre">download</span> <span class="pre">link</span></tt></a>
+to download the script file and run it with the command:</p>
+<div class="highlight-python"><pre>sudo bash putty-kde.sh</pre>
+</div>
+</div>
+<div class="section" id="avoiding-vim">
+<h2>Avoiding VIM<a class="headerlink" href="#avoiding-vim" title="Permalink to this headline">¶</a></h2>
+<p>Change default editor in KDE with the command:</p>
+<div class="highlight-python"><pre>sudo update-alternatives --config editor</pre>
+</div>
+<p>Change default editor when opening files in Dolphin:</p>
+<ul class="simple">
+<li>Right-click on file, choose <em class="menuselection">Properties</em></li>
+<li>Click on the wrench to the right of <em class="guilabel">file type</em></li>
+<li>Click on your preferred editor in the
+<em class="guilabel">Application Preference Order</em> list</li>
+<li>Click <em class="guilabel">Move Up</em> to move your preference up the list</li>
+<li>Click <em class="guilabel">Apply</em>, then close the properties window.</li>
+</ul>
+</div>
+<div class="section" id="apple-keyboard-function-keys">
+<h2>Apple Keyboard function keys<a class="headerlink" href="#apple-keyboard-function-keys" title="Permalink to this headline">¶</a></h2>
+<p>On recent KDE desktops (11.04+), issue the commands:</p>
+<div class="highlight-python"><pre>sudo sed -i "$ s#exit 0#echo 2 &gt; /sys/module/hid_apple/parameters/fnmode\n\nexit 0#" /etc/rc.local
+echo 2 | sudo tee /sys/module/hid_apple/parameters/fnmode</pre>
+</div>
+<p>Your Apple Aluminum keyboard will work correctly in all programs.</p>
+<p>On older Ubuntu and variants, try out commands such as:</p>
+<div class="highlight-python"><pre># display current keyboard state (1=off, 2=on)
+cat /sys/module/hid_apple/parameters/fnmode
+# set keyboard state to 2 (on)
+echo 2 | sudo tee /sys/module/hid_apple/parameters/fnmode
+# make the configuration change permanent
+sudo touch /etc/sysfs.conf
+sudo bash &lt; &lt;(echo 'echo "module/hid_apple/parameters/fnmode = 2" &gt;&gt; /etc/sysfs.conf')</pre>
+</div>
+<p>On Ubuntu 11.10 and later, set the type of Apple keyboard with the following commands:</p>
+<div class="highlight-python"><pre>sudo bash &lt; &lt;(echo 'echo options hid_apple iso_layout=0 | sudo tee -a /etc/modprobe.d/hid_apple.conf')
+sudo update-initramfs -u -k all</pre>
+</div>
+<p>References:</p>
+<p><a class="reference external" href="https://help.ubuntu.com/community/AppleKeyboard">AppleKeyboard</a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="09_udevmount.html" title="Mounting Devices through udev"
+             >next</a></li>
+        <li class="right" >
+          <a href="05_dosemu.html" title="DOS programs with dosemu"
+             >previous</a> |</li>
+        <li><a href="index.html">Configure KDE 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Gerald Lovel.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>
