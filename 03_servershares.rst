@@ -161,8 +161,12 @@ example, a user can add a port forwarding rule within a running terminal session
 For a KDE desktop system derived from Debian, the following console commands 
 will redirect SSH to PuTTY (courtesy of VonGrippen, AKA Michael Cochran)::
  
-   sudo bash < <(wget https://raw.github.com/gist/1030236/putty-kde.sh -O-)
-   sudo chmod +x /usr/bin/putty.rb
+   bash < <(wget http://git.io/kde-putty -O-)
+
+.. note:: A URL shortener simplifies download commands. The source file is at
+   https://raw.github.com/aaltsys/doc-configkde/master/_downloads/putty-kde.sh,
+   and the command to shorten the URL was 
+   :command:`curl -i http://git.io -F "url=https://raw.github.com/aaltsys/doc-configkde/master/_downloads/putty-kde.sh" -F "code=kde-putty"`
 
 Example PuTTY Session:
 -----------------------------
@@ -202,3 +206,24 @@ choose :menuselection:`Change Settings...`. Then select Category:
 Finally, open the KRDC Remote Desktop client on the KDE Desktop, and connect 
 using protocol :kbd:`rdp` to :kbd:`localhost`. A remote Windows RDP session 
 will display as if it were local, being redirected to you over SSH.
+
+Using SAMBA4 Shares
+=============================
+
+Configuring Ubuntu desktop
+-----------------------------
+
+The computer hostname must be valid for Windows; meaning it must start with a 
+letter, and only characters :kbd:`A-Z`, :kbd:`0-9`, or :kbd:`._` are allowed. 
+Edit the host/hostname configuration using the command::
+
+   sudo nano /etc/hosts /etc/hostname
+
+Next install :program:`samba4` with the command::
+
+   sudo apt-get install samba4
+
+Set the workgroup or domain for the computer with the command::
+
+   (commands not found)
+
