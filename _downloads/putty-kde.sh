@@ -30,13 +30,13 @@ Xrequire 'uri'
 X
 Xuri=URI.parse(ARGV[0])
 Xcommand = Array.new
-Xcommand << `which putty`.gsub("\n", "")
+Xcommand << \`which putty\`.gsub("\n", "")
 Xcommand << "-l #{uri.user}" if uri.user
 Xcommand << "-P #{uri.port}" if uri.port
 Xcommand << "-#{uri.scheme}" if uri.scheme
 Xcommand << "#{uri.host}"
 X
-X\`#{command.join(" ")}\`
+X\`"#{command.join(' ')}"\`
 END-of-/usr/bin/putty.rb
 
 echo x - /usr/share/kde4/services/ssh.protocol
