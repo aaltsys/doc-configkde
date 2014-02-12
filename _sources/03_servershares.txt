@@ -2,14 +2,14 @@
 Mounting Network File Systems
 ################################
 
-.. Note::
+.. note::
   This guide describes connecting to either local or remote computer systems 
   from Debian/Ubuntu/Mint desktops. Syntax will differ with other systems.
 
 Using sshfs File Shares in Linux
 ================================
 
-.. Note::
+.. note::
    Throughout these instructions, replace **HOSTNAME**, **DOMAIN**, and 
    **TLD** with the host computer name to be accessed, the domain for the 
    host computer, and the top-level domain (.com, .net, etc.). For example, 
@@ -24,29 +24,29 @@ loading the kernel module **fuse**, which is not included by default. Save the
 bash script :download:`fuse.sh <_downloads/fuse.sh>` to your home folder, 
 open a console session, and execute the script with the command:: 
 
-	sudo bash fuse.sh
+   sudo bash fuse.sh
 
 Assign a local mount point (a file directory pointer) for shares on the remote 
 computer::
 
-	sudo mkdir -p /mnt/HOSTNAME/
+   sudo mkdir -p /mnt/HOSTNAME/
 
 Part 2. Setup Server Access
 -----------------------------
 
 .. sidebar:: /etc/auto.master
-	
-	Each entry in **auto.master** defines a file access point which binds to a 
-	remote computer. For example, file requests to **/mnt/HOSTNAME** will 
-	automount **HOSTNAME** shares. 	Shares will be unmounted if idle for over 
-	30 seconds.
-	
-	**/etc/auto.HOSTNAME**
-	
-	A list of share mappings is required for each remote computer. Here 
-	**HOSTNAME** has two shares, **PUBLIC** and remote user home folder *****. 
-	Entries start with a name (e.g., ``public``), followed by configuration
-	parameters, user ssh credentials, and the URI for accessing the share.
+   
+   Each entry in **auto.master** defines a file access point which binds to a 
+   remote computer. For example, file requests to **/mnt/HOSTNAME** will 
+   automount **HOSTNAME** shares. 	Shares will be unmounted if idle for over 
+   30 seconds.
+   
+   **/etc/auto.HOSTNAME**
+   
+   A list of share mappings is required for each remote computer. Here 
+   **HOSTNAME** has two shares, **PUBLIC** and remote user home folder *****. 
+   Entries start with a name (e.g., ``public``), followed by configuration
+   parameters, user ssh credentials, and the URI for accessing the share.
 
 This section is performed once for each remote computer, to add information 
 about the computer to the local desktop. Instructions are provided using Domain 
@@ -57,22 +57,22 @@ works whether the connection is local, bridged, VPN, or public.
 Add a line describing a computer to **auto.master** with the following console 
 command (remember, replace HOSTNAME with the computer name)::
  
-	sudo bash < <(echo 'echo "/mnt/HOSTNAME /etc/auto.HOSTNAME --timeout=30 --ghost" >> /etc/auto.master')
+   sudo bash < <(echo 'echo "/mnt/HOSTNAME /etc/auto.HOSTNAME --timeout=30 --ghost" >> /etc/auto.master')
 
 Create and edit the host computer configuration file, :file:`auto.HOSTNAME`, to 
 provide share-specific information::
 
-	sudoedit /etc/auto.HOSTNAME
+   sudoedit /etc/auto.HOSTNAME
 
 and enter and save the share configuration information, such as::
 
-	public -fstype=fuse,rw,nodev,nonempty,noatime,max_read=65536,allow_other,compression=yes,uid=$UID,gid=$GID,StrictHostKeyChecking=no,IdentityFile=$HOME/.ssh/id_rsa,umask=0007 :sshfs\#$USER@HOSTNAME.DOMAIN.TLD\:/home/samba/shares/public/
-	* -fstype=fuse,rw,allow_other,nodev,nonempty,noatime,max_read=65536,compression=yes,uid=$UID,gid=$GID,StrictHostKeyChecking=no,IdentityFile=$HOME/.ssh/id_rsa,umask=0077 :sshfs\#$USER@HOSTNAME.DOMAIN.TLD\:/home/&
+   public -fstype=fuse,rw,nodev,nonempty,noatime,max_read=65536,allow_other,compression=yes,uid=$UID,gid=$GID,StrictHostKeyChecking=no,IdentityFile=$HOME/.ssh/id_rsa,umask=0007 :sshfs\#$USER@HOSTNAME.DOMAIN.TLD\:/home/samba/shares/public/
+   * -fstype=fuse,rw,allow_other,nodev,nonempty,noatime,max_read=65536,compression=yes,uid=$UID,gid=$GID,StrictHostKeyChecking=no,IdentityFile=$HOME/.ssh/id_rsa,umask=0077 :sshfs\#$USER@HOSTNAME.DOMAIN.TLD\:/home/&
 
 Restart the autofs module to load the changed configuration::
 
-	sudo service autofs restart
-	sudo ssh HOSTNAME.DOMAIN.TLD
+   sudo service autofs restart
+   sudo ssh HOSTNAME.DOMAIN.TLD
 
 When prompted for the root password of the remote host, press :kbd:`<Ctrl-C>` 
 to exit the command.
@@ -85,13 +85,13 @@ computer. Type the following commands to (1) create ssh keys provided a set
 does not exist, and (2) copy the user public key to the remote computer for 
 authentication::
 
-	if [ ! -f "$HOME/.ssh/id_rsa" ]; then ssh-keygen; fi
-	ssh-copy-id `id -un`@HOSTNAME.DOMAIN.TLD
+   if [ ! -f "$HOME/.ssh/id_rsa" ]; then ssh-keygen; fi
+   ssh-copy-id `id -un`@HOSTNAME.DOMAIN.TLD
 
 Now verify that the remote folders will mount::
 
-	ls -al /mnt/HOSTNAME
-	ls /mnt/HOSTNAME/`id -un`
+   ls -al /mnt/HOSTNAME
+   ls /mnt/HOSTNAME/`id -un`
 
 Create desktop links to folders in :file:`/mnt/HOSTNAME` for easy access. On 
 workstations which might access servers remotely over slow Internet links, do 
@@ -102,40 +102,40 @@ When this does not work
 
 If the public folder or user home folder will not mount, try the following::
 
-	ssh `id -un`@HOSTNAME.DOMAIN.TLD
-	chmod og-w ~
-	chmod og-w ~/.ssh
-	chmod 600 ~/.ssh/authorized_keys
+   ssh `id -un`@HOSTNAME.DOMAIN.TLD
+   chmod og-w ~
+   chmod og-w ~/.ssh
+   chmod 600 ~/.ssh/authorized_keys
 
 Server SSHFS Configuration
 =============================
 
 Install authentication and sharing modules on the remote server as follows::
 
-	sudo aptitude install openssh-server libpam-modules
+   sudo aptitude install openssh-server libpam-modules
 
 The default host umask=0022 will shade permissions for files and folders 
 created on the remote shares. Private home folders with umask=0077 will work 
 just fine, but public folders needing umask=0007 will result in incorrect 
 permissions which block write access. To prevent this problem::
 
-	sudoedit /etc/pam.d/sshd
+   sudoedit /etc/pam.d/sshd
 
 Now add the following three lines::
 
-	# Default umask mask for SSH/SFTP sessions
-	# Shell sessions: Override with /etc/profile or ~/.bashrc or ~/.profile 
-	session    optional     pam_umask.so umask=0000
+   # Default umask mask for SSH/SFTP sessions
+   # Shell sessions: Override with /etc/profile or ~/.bashrc or ~/.profile 
+   session    optional     pam_umask.so umask=0000
 
 As noted above, actual ssh shell logins on the remote host will get the default 
 umask=022 on new files and directories. The following command will change this 
 for all shell logins::
 
-	sudo sed -i s/umask 022/umask 0007/ /etc/profile
+   sudo sed -i s/umask 022/umask 0007/ /etc/profile
 
 A logged in user could change just her own default umask with the command::
 
-	sudo sed -i s/#umask\ 022/umask\ 0007/ ~/.profile
+   sudo sed -i s/#umask\ 022/umask\ 0007/ ~/.profile
 
 References:
 
@@ -161,8 +161,12 @@ example, a user can add a port forwarding rule within a running terminal session
 For a KDE desktop system derived from Debian, the following console commands 
 will redirect SSH to PuTTY (courtesy of VonGrippen, AKA Michael Cochran)::
  
-	sudo bash < <(wget https://raw.github.com/gist/1030236/putty-kde.sh -O-)
-	sudo chmod +x /usr/bin/putty.rb
+   bash < <(wget http://git.io/kde-putty -O-)
+
+.. note:: A URL shortener simplifies download commands. The source file is at
+   https://raw.github.com/aaltsys/doc-configkde/master/_downloads/putty-kde.sh,
+   and the command to shorten the URL was 
+   :command:`curl -i http://git.io -F "url=https://raw.github.com/aaltsys/doc-configkde/master/_downloads/putty-kde.sh" -F "code=kde-putty"`
 
 Example PuTTY Session:
 -----------------------------
@@ -175,19 +179,19 @@ server authenticate ``username`` and ``password`` for logins.
 
 First start a console on the local machine, then ssh to the remote server::
 
-  xdg-open ssh://`id -un`@HOSTNAME.DOMAIN.TLD
+   xdg-open ssh://`id -un`@HOSTNAME.DOMAIN.TLD
 
 Now explore the remote environment to identify Windows RDP servers. Recommended 
 commands are::
 
-  smbclient -L NETBIOSNAME
-  smbtree
+   smbclient -L NETBIOSNAME
+   smbtree
 
 These commands identify a windows session on host ``XPUSER``. Now find the IP 
 for this machine using either of the commands::
 
-  net lookup XPUSER
-  nmblookup XPUSER
+   net lookup XPUSER
+   nmblookup XPUSER
 
 Suppose the remote Windows terminal server **XPUSER** uses IP **192.168.2.243** 
 in its local network. Display the PuTTY menu with :kbd:`<Ctrl-RightClick>`, and 
@@ -202,3 +206,24 @@ choose :menuselection:`Change Settings...`. Then select Category:
 Finally, open the KRDC Remote Desktop client on the KDE Desktop, and connect 
 using protocol :kbd:`rdp` to :kbd:`localhost`. A remote Windows RDP session 
 will display as if it were local, being redirected to you over SSH.
+
+Using SAMBA4 Shares
+=============================
+
+Configuring Ubuntu desktop
+-----------------------------
+
+The computer hostname must be valid for Windows; meaning it must start with a 
+letter, and only characters :kbd:`A-Z`, :kbd:`0-9`, or :kbd:`._` are allowed. 
+Edit the host/hostname configuration using the command::
+
+   sudo nano /etc/hosts /etc/hostname
+
+Next install :program:`samba4` with the command::
+
+   sudo apt-get install samba4
+
+Set the workgroup or domain for the computer with the command::
+
+   (commands not found)
+

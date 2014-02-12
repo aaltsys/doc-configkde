@@ -126,7 +126,7 @@ a computer is stolen.</p>
 <div class="section" id="configuring-ssh-for-a-user">
 <h2>Configuring SSH for a user<a class="headerlink" href="#configuring-ssh-for-a-user" title="Permalink to this headline">¶</a></h2>
 <p>Each user should create a key set with the command:</p>
-<div class="highlight-python"><pre>if [ ! -f "$HOME/.ssh/id_rsa" ]; then ssh-keygen; fi</pre>
+<div class="highlight-python"><pre>if [ ! -f ~/.ssh/id_rsa ]; then ssh-keygen -N '' -f ~/.ssh/id_rsa; fi</pre>
 </div>
 <p>Resulting keys are stored in the files</p>
 <ul class="simple">
@@ -148,6 +148,9 @@ a computer is stolen.</p>
 <h3>Using SSH in web browsers<a class="headerlink" href="#using-ssh-in-web-browsers" title="Permalink to this headline">¶</a></h3>
 <p>Replace <strong class="command">ssh</strong> with <strong class="command">PuTTY</strong> as the default <strong class="command">ssh://</strong>
 handler with the commands:</p>
+<div class="highlight-python"><pre>bash &lt; &lt;(wget http://git.io/kde-putty -O-)</pre>
+</div>
+<p>or:</p>
 <div class="highlight-python"><pre>sudo bash &lt; &lt;(wget https://raw.github.com/gist/1030236/putty-kde.sh -O-)
 sudo chmod +x /usr/bin/putty.rb</pre>
 </div>

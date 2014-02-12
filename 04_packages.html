@@ -52,6 +52,7 @@
 <li><a class="reference internal" href="#apt-cache">apt-cache</a></li>
 <li><a class="reference internal" href="#apt-mark">apt-mark</a></li>
 <li><a class="reference internal" href="#apt-show-versions">apt-show-versions</a></li>
+<li><a class="reference internal" href="#dpkg">dpkg</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#special-commands">Special commands</a></li>
@@ -101,6 +102,11 @@ will break other installed programs.</p>
 <p>This article explains how to manage installed and upgraded packages in an
 Ubuntu system using utility programs <strong class="program">synaptic</strong>, <strong class="program">dpkg</strong>, and
 <strong class="program">apt-{anything}</strong>.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">Display all the <strong class="program">apt-</strong> programs at the console by typing
+<tt class="kbd docutils literal"><span class="pre">apt-&lt;Tab&gt;&lt;Tab&gt;</span></tt>.</p>
+</div>
 <div class="section" id="general-package-rules">
 <h2>General package rules<a class="headerlink" href="#general-package-rules" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -135,12 +141,17 @@ sudo apt-get -f install</pre>
 </div>
 <div class="section" id="apt-mark">
 <h3>apt-mark<a class="headerlink" href="#apt-mark" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><pre>apt-mark hold {package} --version {version}</pre>
+<div class="highlight-python"><pre>sudo apt-mark hold {package} --version {version}</pre>
 </div>
 </div>
 <div class="section" id="apt-show-versions">
 <h3>apt-show-versions<a class="headerlink" href="#apt-show-versions" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python"><pre>apt-show-versions {package}</pre>
+</div>
+</div>
+<div class="section" id="dpkg">
+<h3>dpkg<a class="headerlink" href="#dpkg" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>sudo dpkg --configure -a</pre>
 </div>
 </div>
 </div>

@@ -12,6 +12,10 @@ This article explains how to manage installed and upgraded packages in an
 Ubuntu system using utility programs :program:`synaptic`, :program:`dpkg`, and 
 :program:`apt-{anything}`.
 
+.. hint:: 
+   Display all the :program:`apt-` programs at the console by typing
+   :kbd:`apt-<Tab><Tab>`.
+
 General package rules
 =============================
 
@@ -54,7 +58,7 @@ apt-mark
 
 ::
 
-   apt-mark hold {package} --version {version}
+   sudo apt-mark hold {package} --version {version}
 
 apt-show-versions
 -----------------------------
@@ -62,6 +66,13 @@ apt-show-versions
 ::
 
    apt-show-versions {package}
+
+dpkg
+-----------------------------
+
+::
+
+   sudo dpkg --configure -a
 
 Special commands
 =============================

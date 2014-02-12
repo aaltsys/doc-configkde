@@ -58,6 +58,10 @@
 <li><a class="reference internal" href="#example-putty-session">Example PuTTY Session:</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#using-samba4-shares">Using SAMBA4 Shares</a><ul>
+<li><a class="reference internal" href="#configuring-ubuntu-desktop">Configuring Ubuntu desktop</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -130,7 +134,7 @@ computer:</p>
 <p class="first sidebar-title">/etc/auto.master</p>
 <p>Each entry in <strong>auto.master</strong> defines a file access point which binds to a
 remote computer. For example, file requests to <strong>/mnt/HOSTNAME</strong> will
-automount <strong>HOSTNAME</strong> shares.  Shares will be unmounted if idle for over
+automount <strong>HOSTNAME</strong> shares.       Shares will be unmounted if idle for over
 30 seconds.</p>
 <p><strong>/etc/auto.HOSTNAME</strong></p>
 <p class="last">A list of share mappings is required for each remote computer. Here
@@ -234,8 +238,14 @@ preferred client on Windows. PuTTY adds power to interactive sessions. For
 example, a user can add a port forwarding rule within a running terminal session.</p>
 <p>For a KDE desktop system derived from Debian, the following console commands
 will redirect SSH to PuTTY (courtesy of VonGrippen, AKA Michael Cochran):</p>
-<div class="highlight-python"><pre>sudo bash &lt; &lt;(wget https://raw.github.com/gist/1030236/putty-kde.sh -O-)
-sudo chmod +x /usr/bin/putty.rb</pre>
+<div class="highlight-python"><pre>bash &lt; &lt;(wget http://git.io/kde-putty -O-)</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">A URL shortener simplifies download commands. The source file is at
+<a class="reference external" href="https://raw.github.com/aaltsys/doc-configkde/master/_downloads/putty-kde.sh">https://raw.github.com/aaltsys/doc-configkde/master/_downloads/putty-kde.sh</a>,
+and the command to shorten the URL was
+<strong class="command">curl -i http://git.io -F &#8220;url=https://raw.github.com/aaltsys/doc-configkde/master/_downloads/putty-kde.sh&#8221; -F &#8220;code=kde-putty&#8221;</strong></p>
 </div>
 </div>
 <div class="section" id="example-putty-session">
@@ -271,6 +281,23 @@ choose <em class="menuselection">Change Settings...</em>. Then select Category:
 <p>Finally, open the KRDC Remote Desktop client on the KDE Desktop, and connect
 using protocol <tt class="kbd docutils literal"><span class="pre">rdp</span></tt> to <tt class="kbd docutils literal"><span class="pre">localhost</span></tt>. A remote Windows RDP session
 will display as if it were local, being redirected to you over SSH.</p>
+</div>
+</div>
+<div class="section" id="using-samba4-shares">
+<h2>Using SAMBA4 Shares<a class="headerlink" href="#using-samba4-shares" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="configuring-ubuntu-desktop">
+<h3>Configuring Ubuntu desktop<a class="headerlink" href="#configuring-ubuntu-desktop" title="Permalink to this headline">¶</a></h3>
+<p>The computer hostname must be valid for Windows; meaning it must start with a
+letter, and only characters <tt class="kbd docutils literal"><span class="pre">A-Z</span></tt>, <tt class="kbd docutils literal"><span class="pre">0-9</span></tt>, or <tt class="kbd docutils literal"><span class="pre">._</span></tt> are allowed.
+Edit the host/hostname configuration using the command:</p>
+<div class="highlight-python"><pre>sudo nano /etc/hosts /etc/hostname</pre>
+</div>
+<p>Next install <strong class="program">samba4</strong> with the command:</p>
+<div class="highlight-python"><pre>sudo apt-get install samba4</pre>
+</div>
+<p>Set the workgroup or domain for the computer with the command:</p>
+<div class="highlight-python"><pre>(commands not found)</pre>
+</div>
 </div>
 </div>
 </div>
