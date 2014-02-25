@@ -1,26 +1,19 @@
-#!/bin/sh
-# This is a shell archive.  Save it in a file, remove anything before
-# this line, and then unpack it by entering "sh file".  Note, it may
-# create directories; files and directories will be owned by you and
-# have default permissions.
-#
+#!/bin/bash
+
+echo "Setup putty to handle ssh URLs in terminal, not browser"
+
 # This archive contains:
 #
 #	/usr/bin/putty.rb
 #	/usr/share/kde4/services/ssh.protocol
 #
 # if [[ $EUID -ne 0 ]] ; then echo 'try again using sudo' ; exit 1 ; fi
-
-echo "This script requires superuser privileges to run."
-echo "Enter your password when prompted by sudo."
-
-# clear any previous sudo permission
+# Clear and reestablish sudo privileges to run this program as root
 sudo -k
+echo -e "\e[1;31m Authentication required \e[0m"
+sudo sh << SCRIPT
 
-# run inside sudo
-sudo sh <<SCRIPT
-
-   apt-get -y install ruby-full putty
+apt-get -y install ruby-full putty
 
 echo x - /usr/bin/putty.rb
 sed 's/^X//' >/usr/bin/putty.rb << 'END-of-/usr/bin/putty.rb'
@@ -56,7 +49,7 @@ XIcon=application-x-deb
 XClass=:internet
 END-of-/usr/share/kde4/services/ssh.protocol
 
-   chmod +x /usr/bin/putty.rb
+chmod +x /usr/bin/putty.rb
 
 SCRIPT
 

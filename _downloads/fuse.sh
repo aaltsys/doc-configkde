@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
 
-echo "This script requires superuser privileges to run."
-echo "Enter your password when prompted by sudo."
+# NOTE: fuse-utils before Ubuntu 13.10, fuse after. Script tries both, depends
+#       on what is in the repositories. Error messages are unimportant.
 
-# clear any previous sudo permission
+echo "Install autofs, fuse, and sshfs file systems"
+
+# if [[ $EUID -ne 0 ]] ; then echo 'try again using sudo' ; exit 1 ; fi
+# Clear and reestablish sudo privileges to run this program as root
 sudo -k
+echo -e "\e[1;31m Authentication required \e[0m"
+sudo bash << SCRIPT
 
-# run inside sudo
-sudo sh <<SCRIPT
-
-   apt-get --no-upgrade install sshfs fuse-utils autofs
+   apt-get --no-upgrade install sshfs fuse fuse-utils autofs
    modprobe --first-time fuse
-   if [ $? -eq 0 ] ; then 
+   if [[ -z "$(grep 'fuse' /etc/modules)" ]] ; then 
       echo "fuse" >> /etc/modules
    fi 
 
