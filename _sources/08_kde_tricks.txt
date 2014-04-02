@@ -2,28 +2,6 @@
  KDE Desktop Management
 #############################
 
-Understanding SSH keys
-=============================
-
-+ private key: :file:`~/.ssh/id_rsa`
-+ public key: :file:`~/.ssh/id_rsa.pub`
-+ known hosts :file:`~/.ssh/known_hosts`
-
-In :file:`/etc/ssh/ssh_config`, comment out the line ``HashKnownHosts yes`` 
-with the following command::
-
-  sudo sed "s/    HashKnown/#   HashKnown/" /etc/ssh/ssh_config
-
-Replace :program:`ssh` with :program:`PuTTY` as default :program:`ssh://` 
-handler with the command::
-
-  sudo bash < <(wget https://raw.github.com/gist/1030236/putty-kde.sh -O-)
-
-Alternatively, click :download:`this download link <_downloads/putty-kde.sh>` 
-to download the script file and run it with the command::
-
-  sudo bash putty-kde.sh
-  
 Avoiding VIM
 =============================
 

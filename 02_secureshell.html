@@ -146,9 +146,19 @@ a computer is stolen.</p>
 </div>
 <div class="section" id="using-ssh-in-web-browsers">
 <h3>Using SSH in web browsers<a class="headerlink" href="#using-ssh-in-web-browsers" title="Permalink to this headline">¶</a></h3>
-<p>Replace <strong class="command">ssh</strong> with <strong class="command">PuTTY</strong> as the default <strong class="command">ssh://</strong>
-handler for your browser with the command:</p>
+<p>PuTTY is an open-source cross-platform client for secure connections with
+remote hosts. It is available on Windows, Linux, and Mac, and it is the
+preferred client on Windows. PuTTY adds power to interactive sessions. For
+example, a user can add a port forwarding rule within a running terminal
+session.</p>
+<p>For a KDE desktop system derived from Debian, replace <strong class="command">ssh</strong> with
+<strong class="command">PuTTY</strong> as the default <strong class="command">ssh://</strong> handler for your browser with
+the following command (courtesy of VonGrippen, AKA Michael Cochran):</p>
 <div class="highlight-python"><pre>bash &lt; &lt;(wget http://git.io/kde-putty -O-)</pre>
+</div>
+<p>Alternatively, click <a class="reference download internal" href="_downloads/putty-kde.sh"><tt class="xref download docutils literal"><span class="pre">this</span> <span class="pre">download</span> <span class="pre">link</span></tt></a>
+to download the script file and run it with the command:</p>
+<div class="highlight-python"><pre>sudo bash putty-kde.sh</pre>
 </div>
 <p>Test this configuration in your browser by going to the link address:</p>
 <div class="highlight-python"><pre>ssh://github.com</pre>

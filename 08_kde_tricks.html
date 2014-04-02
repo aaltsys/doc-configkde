@@ -45,7 +45,6 @@
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">KDE Desktop Management</a><ul>
-<li><a class="reference internal" href="#understanding-ssh-keys">Understanding SSH keys</a></li>
 <li><a class="reference internal" href="#avoiding-vim">Avoiding VIM</a></li>
 <li><a class="reference internal" href="#apple-keyboard-function-keys">Apple Keyboard function keys</a></li>
 </ul>
@@ -86,26 +85,6 @@
             
   <div class="section" id="kde-desktop-management">
 <h1>KDE Desktop Management<a class="headerlink" href="#kde-desktop-management" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="understanding-ssh-keys">
-<h2>Understanding SSH keys<a class="headerlink" href="#understanding-ssh-keys" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>private key: <tt class="file docutils literal"><span class="pre">~/.ssh/id_rsa</span></tt></li>
-<li>public key: <tt class="file docutils literal"><span class="pre">~/.ssh/id_rsa.pub</span></tt></li>
-<li>known hosts <tt class="file docutils literal"><span class="pre">~/.ssh/known_hosts</span></tt></li>
-</ul>
-<p>In <tt class="file docutils literal"><span class="pre">/etc/ssh/ssh_config</span></tt>, comment out the line <tt class="docutils literal"><span class="pre">HashKnownHosts</span> <span class="pre">yes</span></tt>
-with the following command:</p>
-<div class="highlight-python"><pre>sudo sed "s/    HashKnown/#   HashKnown/" /etc/ssh/ssh_config</pre>
-</div>
-<p>Replace <strong class="program">ssh</strong> with <strong class="program">PuTTY</strong> as default <strong class="program">ssh://</strong>
-handler with the command:</p>
-<div class="highlight-python"><pre>sudo bash &lt; &lt;(wget https://raw.github.com/gist/1030236/putty-kde.sh -O-)</pre>
-</div>
-<p>Alternatively, click <a class="reference download internal" href="_downloads/putty-kde.sh"><tt class="xref download docutils literal"><span class="pre">this</span> <span class="pre">download</span> <span class="pre">link</span></tt></a>
-to download the script file and run it with the command:</p>
-<div class="highlight-python"><pre>sudo bash putty-kde.sh</pre>
-</div>
-</div>
 <div class="section" id="avoiding-vim">
 <h2>Avoiding VIM<a class="headerlink" href="#avoiding-vim" title="Permalink to this headline">¶</a></h2>
 <p>Change default editor in KDE with the command:</p>
