@@ -54,11 +54,23 @@ On each computer, comment out the line :command:`HashKnownHosts yes` in file
 Using SSH in web browsers
 -----------------------------
 
-Replace :command:`ssh` with :command:`PuTTY` as the default :command:`ssh\://` 
-handler for your browser with the command::
+PuTTY is an open-source cross-platform client for secure connections with 
+remote hosts. It is available on Windows, Linux, and Mac, and it is the 
+preferred client on Windows. PuTTY adds power to interactive sessions. For 
+example, a user can add a port forwarding rule within a running terminal 
+session.
+
+For a KDE desktop system derived from Debian, replace :command:`ssh` with 
+:command:`PuTTY` as the default :command:`ssh\://` handler for your browser with 
+the following command (courtesy of VonGrippen, AKA Michael Cochran)::
 
    bash < <(wget http://git.io/kde-putty -O-)
 
+Alternatively, click :download:`this download link <_downloads/putty-kde.sh>` 
+to download the script file and run it with the command::
+
+  sudo bash putty-kde.sh
+ 
 Test this configuration in your browser by going to the link address::
 
    ssh://github.com
