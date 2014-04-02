@@ -45,12 +45,11 @@
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">DOS programs with dosemu</a><ul>
-<li><a class="reference internal" href="#installing-dos-emulation">Installing DOS emulation</a><ul>
+<li><a class="reference internal" href="#installing-dos-emulation">Installing DOS emulation</a></li>
 <li><a class="reference internal" href="#dos-performance-and-video">DOS performance and video</a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#running-dosemu">Running Dosemu</a><ul>
 <li><a class="reference internal" href="#interactive-dosemu-sessions">Interactive DOSemu sessions</a></li>
+<li><a class="reference internal" href="#keyboard-capture">Keyboard Capture</a></li>
 <li><a class="reference internal" href="#dos-program-sessions">DOS program sessions</a></li>
 <li><a class="reference internal" href="#scripted-dosemu-sessions">Scripted DOSemu sessions</a></li>
 </ul>
@@ -102,33 +101,35 @@ the commands:</p>
 sudo sysctl -w vm.mmap_min_addr=0
 sudo bash &lt; &lt;(echo 'echo "vm.mmap_min_addr=0" &gt;&gt; /etc/sysctl.conf')</pre>
 </div>
+<p>The DOS system can be started from
+<em class="menuselection">Applications ‣ System Tools ‣ DOS emulator</em>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last"><strong>xauth</strong> is required for remote execution over <strong>ssh</strong> on Ubuntu 8.04.</p>
+<p class="last"><strong>xauth</strong> is required for remote X11 execution over <strong>ssh</strong>. Some versions of
+Ubuntu (8.04, for example) omit this package.</p>
+</div>
 </div>
 <div class="section" id="dos-performance-and-video">
-<h3>DOS performance and video<a class="headerlink" href="#dos-performance-and-video" title="Permalink to this headline">¶</a></h3>
-<p>Dosemu configuration may be set either globally or for each user. User settings
-are stored in configuration file <tt class="file docutils literal"><span class="pre">~/.dosemurc</span></tt>, while global settings are
-kept in <tt class="file docutils literal"><span class="pre">/etc/dosemu/dosemu.conf</span></tt>. One-time commands are shown following;
-make testing and ongoing changes with editing commands
-<strong class="command">sudoedit /etc/dosemu/dosemu.conf</strong> (global) or
-<strong class="command">nano ~/.dosemurc</strong> (per user).</p>
-<p>To make dosemu run faster, change the hogthreshold <tt class="kbd docutils literal"><span class="pre">xx</span></tt> with the command:</p>
+<h2>DOS performance and video<a class="headerlink" href="#dos-performance-and-video" title="Permalink to this headline">¶</a></h2>
+<p>Change <strong class="program">dosemu</strong> configuration with commands to edit either global
+configuration file <strong class="command">sudoedit /etc/dosemu/dosemu.conf</strong> or user file
+<strong class="command">nano ~/.dosemurc</strong>.</p>
+<p>Emulate the DOS 640X480 EGA/VGA display with the command:</p>
+<div class="highlight-python"><pre>echo '$_X_font = vga12x30' &gt;&gt; ~/.dosemurc</pre>
+</div>
+<p>The following command would change this setting globally for all users:</p>
+<div class="highlight-python"><pre>sudo sed -ie "/$_X_font/c\$_X_font = vga12x30" /etc/dosemu/dosemu.conf</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">DOS video configurations include:
+<tt class="docutils literal"><span class="pre">vga,</span> <span class="pre">vga8x19,</span> <span class="pre">vga11x19,</span> <span class="pre">vga10x24,</span> <span class="pre">vga12x30,</span> <span class="pre">vga-cp866,</span> <span class="pre">and</span> <span class="pre">vga10x20-cp866</span></tt>.</p>
+</div>
+<p>To make dosemu run faster for the current user, add a command:</p>
 <div class="highlight-python"><pre>echo '$_hogthreshold = (xx)' &gt;&gt; ~/.dosemurc</pre>
 </div>
 <p>where <strong>xx</strong> is the percentage of CPU time to devote to dosemu, which defaults
 to 1 percent.</p>
-<p>Emulate the DOS 640X480 EGA/VGA display with the command:</p>
-<div class="highlight-python"><pre>echo '$_X_font = vga12x30' &gt;&gt; ~/.dosemurc</pre>
-</div>
-<p>The following command would change video globally for all users (but run this
-only once):</p>
-<div class="highlight-python"><pre>sudo sed -i '/$_X_font/ a\$_X_font = vga12x30' /etc/dosemu/dosemu.conf</pre>
-</div>
-<p>DOS video configurations include: vga, vga8x19, vga11x19, vga10x24, vga12x30,
-vga-cp866, and vga10x20-cp866.</p>
-</div>
 </div>
 <div class="section" id="running-dosemu">
 <h2>Running Dosemu<a class="headerlink" href="#running-dosemu" title="Permalink to this headline">¶</a></h2>
@@ -136,8 +137,15 @@ vga-cp866, and vga10x20-cp866.</p>
 <h3>Interactive DOSemu sessions<a class="headerlink" href="#interactive-dosemu-sessions" title="Permalink to this headline">¶</a></h3>
 <p>To start an interactive DOSemu session, type <strong class="command">dosemu</strong> at the console
 or select <em class="menuselection">Applications ‣ System ‣ DOS emulator</em> from the
-system menu. To exit the command line of an interactive session, type the
-command <strong class="command">exitemu</strong>.</p>
+system menu.</p>
+<p>Exit the command line of an interactive session by typing <strong class="command">exitemu</strong>
+or by pressing <tt class="kbd docutils literal"><span class="pre">Control-Alt-PgDn</span></tt>.</p>
+</div>
+<div class="section" id="keyboard-capture">
+<h3>Keyboard Capture<a class="headerlink" href="#keyboard-capture" title="Permalink to this headline">¶</a></h3>
+<p>Press <tt class="kbd docutils literal"><span class="pre">&lt;Shift-Ctrl-Alt-K&gt;</span></tt> to switch into and out of keygrab mode in
+DOSEMU. The <tt class="kbd docutils literal"><span class="pre">&lt;Shift&gt;</span></tt> is required in KDE, optional in Gnome and maybe
+other desktops.</p>
 </div>
 <div class="section" id="dos-program-sessions">
 <h3>DOS program sessions<a class="headerlink" href="#dos-program-sessions" title="Permalink to this headline">¶</a></h3>

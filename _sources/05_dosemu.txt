@@ -8,40 +8,42 @@ Installing DOS emulation
 Install dosemu at a console, :menuselection:`Accessories --> Terminal`, with 
 the commands::
 
-	sudo aptitude install dosemu xauth
-	sudo sysctl -w vm.mmap_min_addr=0
-	sudo bash < <(echo 'echo "vm.mmap_min_addr=0" >> /etc/sysctl.conf')
+   sudo aptitude install dosemu xauth
+   sudo sysctl -w vm.mmap_min_addr=0
+   sudo bash < <(echo 'echo "vm.mmap_min_addr=0" >> /etc/sysctl.conf')
 
-.. Note:: **xauth** is required for remote execution over **ssh** on Ubuntu 8.04.
+The DOS system can be started from 
+:menuselection:`Applications --> System Tools --> DOS emulator`.
+
+.. Note:: 
+   **xauth** is required for remote X11 execution over **ssh**. Some versions of
+   Ubuntu (8.04, for example) omit this package.
 
 DOS performance and video
------------------------------
+=============================
 
-Dosemu configuration may be set either globally or for each user. User settings 
-are stored in configuration file :file:`~/.dosemurc`, while global settings are 
-kept in :file:`/etc/dosemu/dosemu.conf`. One-time commands are shown following; 
-make testing and ongoing changes with editing commands 
-:command:`sudoedit /etc/dosemu/dosemu.conf` (global) or 
-:command:`nano ~/.dosemurc` (per user).
-
-To make dosemu run faster, change the hogthreshold :kbd:`xx` with the command:: 
-
-	echo '$_hogthreshold = (xx)' >> ~/.dosemurc
-
-where **xx** is the percentage of CPU time to devote to dosemu, which defaults 
-to 1 percent.
+Change :program:`dosemu` configuration with commands to edit either global 
+configuration file :command:`sudoedit /etc/dosemu/dosemu.conf` or user file
+:command:`nano ~/.dosemurc`.
 
 Emulate the DOS 640X480 EGA/VGA display with the command::
 
-	echo '$_X_font = vga12x30' >> ~/.dosemurc
+   echo '$_X_font = vga12x30' >> ~/.dosemurc
 
-The following command would change video globally for all users (but run this 
-only once)::
+The following command would change this setting globally for all users::
 
-	sudo sed -i '/$_X_font/ a\$_X_font = vga12x30' /etc/dosemu/dosemu.conf
+   sudo sed -ie "/$_X_font/c\$_X_font = vga12x30" /etc/dosemu/dosemu.conf
 
-DOS video configurations include: vga, vga8x19, vga11x19, vga10x24, vga12x30, 
-vga-cp866, and vga10x20-cp866.
+.. note::
+   DOS video configurations include: 
+   ``vga, vga8x19, vga11x19, vga10x24, vga12x30, vga-cp866, and vga10x20-cp866``.
+
+To make dosemu run faster for the current user, add a command:: 
+
+   echo '$_hogthreshold = (xx)' >> ~/.dosemurc
+
+where **xx** is the percentage of CPU time to devote to dosemu, which defaults 
+to 1 percent.
 
 Running Dosemu
 =============================
@@ -51,8 +53,17 @@ Interactive DOSemu sessions
 
 To start an interactive DOSemu session, type :command:`dosemu` at the console 
 or select :menuselection:`Applications --> System --> DOS emulator` from the
-system menu. To exit the command line of an interactive session, type the
-command :command:`exitemu`.
+system menu. 
+
+Exit the command line of an interactive session by typing :command:`exitemu`
+or by pressing :kbd:`Control-Alt-PgDn`.
+
+Keyboard Capture
+-----------------------------
+
+Press :kbd:`<Shift-Ctrl-Alt-K>` to switch into and out of keygrab mode in 
+DOSEMU. The :kbd:`<Shift>` is required in KDE, optional in Gnome and maybe
+other desktops.
 
 DOS program sessions
 -----------------------------
@@ -72,8 +83,8 @@ executed by a user not in group `__USERS__`. Issuing a :command:`chmod`
 command after executing WARES would fix permissions. A script :file:`wares.sh` 
 for this purpose could be created with command :command:`nano ~/wares.sh`::
 
-	dosemu C:\WARES.BAT
-	sudo chmod -R 777 /home/samba/shares/wares/*
+   dosemu C:\WARES.BAT
+   sudo chmod -R 777 /home/samba/shares/wares/*
 
 Make the shell script executable with command :command:`chmod +x ~/wares.sh`. 
 Finally, run the DOS session by typing :command:`~/wares.sh` at the console. 
@@ -84,22 +95,19 @@ Accessing Linux file shares
 The dosemu command :command:`LREDIR` will mount a Linux directory to a DOS 
 drive letter; for example::
 
-	LREDIR W: LINUX\FS/home/samba/shares/wares 
-	LREDIR S: LINUX\FS/home/samba/shares/public
+   LREDIR W: LINUX\FS/home/samba/shares/wares 
+   LREDIR S: LINUX\FS/home/samba/shares/public
 
 A DOS batch file within dosemu can incorporate mount commands and DOS program 
 execution, as illustrated previously with `C:\\WARES.BAT`. To create this batch 
 file, start :command:`dosemu` and enter the file with the command 
 :command:`EDIT WARES.BAT`::
 
-	LREDIR W: LINUX\FS/home/samba/shares/wares
-	LREDIR S: LINUX\FS/home/samba/shares/public
-	W:
-	WARES.BAT WARES
+   LREDIR W: LINUX\FS/home/samba/shares/wares
+   LREDIR S: LINUX\FS/home/samba/shares/public
+   W:
+   WARES.BAT WARES
 
 Save the batch file and exit the editor with :kbd:`<Alt-F>,S;<Alt-F>,X`. Then 
 type the name of the batch file to execute it. 
-
-
-
 
