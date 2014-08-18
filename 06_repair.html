@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Repairing Problems &mdash; Configure KDE 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/aaltsys.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Configure KDE 1.0 documentation" href="index.html" />
+    <link rel="next" title="KDE Desktop Management" href="08_kde_tricks.html" />
+    <link rel="prev" title="DOS programs with dosemu" href="05_dosemu.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="08_kde_tricks.html" title="KDE Desktop Management"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="05_dosemu.html" title="DOS programs with dosemu"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Configure KDE 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Repairing Problems</a><ul>
+<li><a class="reference internal" href="#reinstalling-grub2">Reinstalling GRUB2</a></li>
+<li><a class="reference internal" href="#awkward-messages">Awkward Messages</a><ul>
+<li><a class="reference internal" href="#qfilesystemwatcher-message">QFileSystemWatcher message</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="05_dosemu.html"
+                        title="previous chapter">DOS programs with dosemu</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="08_kde_tricks.html"
+                        title="next chapter">KDE Desktop Management</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/06_repair.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="repairing-problems">
+<span id="repair"></span><h1>Repairing Problems<a class="headerlink" href="#repairing-problems" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="reinstalling-grub2">
+<h2>Reinstalling GRUB2<a class="headerlink" href="#reinstalling-grub2" title="Permalink to this headline">¶</a></h2>
+<p>A volume copy, Windows install, or other operation might overwrite the MBR on a
+boot device, preventing GRUB from loading. The simplest solution to restore GRUB
+is to reinstall it. This requires a current installation disk or boot device.</p>
+<p>Boot the computer from installation media, and proceed to the desktop rather
+than selecting install. Choose <em class="menuselection">System ‣ Terminal</em> from the
+desktop menu to display a console window. Then type the following commands:</p>
+<div class="highlight-python"><pre>sudo mount /dev/sdLX /mnt
+sudo grub-install --root-directory=/mnt /dev/sdL
+sudo reboot</pre>
+</div>
+<p>where the <strong>L</strong> and <strong>X</strong> of <strong>sdLX</strong> and <strong>sdL</strong> should be replaced by:</p>
+<ul class="simple">
+<li>L = the boot device letter, found from either <strong class="command">ls /dev/sd*</strong> or
+<strong class="command">sudo blkid</strong></li>
+<li>X = the boot volume number on the boot device, as found previously.</li>
+</ul>
+</div>
+<div class="section" id="awkward-messages">
+<h2>Awkward Messages<a class="headerlink" href="#awkward-messages" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="qfilesystemwatcher-message">
+<h3>QFileSystemWatcher message<a class="headerlink" href="#qfilesystemwatcher-message" title="Permalink to this headline">¶</a></h3>
+<p>Messages from QFileSystemWatcher can be eliminated with:</p>
+<div class="highlight-python"><pre>mkdir -p ~/.config/ibus/bus</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="08_kde_tricks.html" title="KDE Desktop Management"
+             >next</a></li>
+        <li class="right" >
+          <a href="05_dosemu.html" title="DOS programs with dosemu"
+             >previous</a> |</li>
+        <li><a href="index.html">Configure KDE 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Gerald Lovel.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+    </div>
+  </body>
+</html>

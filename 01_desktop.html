@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Configure KDE 1.0 documentation" href="index.html" />
     <link rel="next" title="Remote Secure Shell Sessions" href="02_secureshell.html" />
-    <link rel="prev" title="Welcome to Configure KDE’s documentation!" href="index.html" /> 
+    <link rel="prev" title="Configuring Ubuntu Desktop and KDE" href="index.html" /> 
   </head>
   <body>
     <div class="related">
@@ -35,7 +35,7 @@
           <a href="02_secureshell.html" title="Remote Secure Shell Sessions"
              accesskey="N">next</a></li>
         <li class="right" >
-          <a href="index.html" title="Welcome to Configure KDE’s documentation!"
+          <a href="index.html" title="Configuring Ubuntu Desktop and KDE"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Configure KDE 1.0 documentation</a> &raquo;</li> 
       </ul>
@@ -45,22 +45,22 @@
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Desktop Configuration</a><ul>
-<li><a class="reference internal" href="#software-installation">Software Installation</a></li>
-<li><a class="reference internal" href="#id1">Desktop Configuration</a></li>
-<li><a class="reference internal" href="#clipboard-and-editor-configuration">Clipboard and Editor Configuration</a></li>
-<li><a class="reference internal" href="#avoiding-vim">Avoiding VIM</a></li>
-<li><a class="reference internal" href="#turn-on-apple-keyboard-function-keys">Turn on Apple Keyboard function keys</a></li>
-<li><a class="reference internal" href="#fixing-bugs">Fixing bugs</a><ul>
-<li><a class="reference internal" href="#qfilesystemwatcher-messages">QFileSystemWatcher messages</a></li>
+<li><a class="reference internal" href="#install-software-packages">Install Software Packages</a><ul>
+<li><a class="reference internal" href="#desktop-scripts-by-version">Desktop scripts by version</a></li>
+<li><a class="reference internal" href="#install-rest-sphinx-tools">Install ReST, Sphinx tools</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#configure-workspaces">Configure Workspaces</a></li>
+<li><a class="reference internal" href="#configure-clipboard-editor">Configure Clipboard, Editor</a></li>
+<li><a class="reference internal" href="#avoiding-vim">Avoiding VIM</a></li>
+<li><a class="reference internal" href="#turn-on-apple-keyboard-function-keys">Turn on Apple Keyboard function keys</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
-                        title="previous chapter">Welcome to Configure KDE&#8217;s documentation!</a></p>
+                        title="previous chapter">Configuring Ubuntu Desktop and KDE</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="02_secureshell.html"
                         title="next chapter">Remote Secure Shell Sessions</a></p>
@@ -92,13 +92,53 @@
             
   <div class="section" id="desktop-configuration">
 <h1>Desktop Configuration<a class="headerlink" href="#desktop-configuration" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="software-installation">
-<h2>Software Installation<a class="headerlink" href="#software-installation" title="Permalink to this headline">¶</a></h2>
-<p>Installation of Linux and scripted OS configuration is described at
-<a class="reference external" href="http://publish.aaltsys.com/02_installation.html">http://publish.aaltsys.com/02_installation.html</a>.</p>
+<div class="section" id="install-software-packages">
+<h2>Install Software Packages<a class="headerlink" href="#install-software-packages" title="Permalink to this headline">¶</a></h2>
+<p>There is a whole slew of software one would want on a computer for writing,
+graphic arts, and so forth. The selection of available packages changes with
+each operating system version. The easiest way to install the packages for a
+particular version is through a script, and scripts are provided for many
+recent system releases.</p>
+<div class="section" id="desktop-scripts-by-version">
+<h3>Desktop scripts by version<a class="headerlink" href="#desktop-scripts-by-version" title="Permalink to this headline">¶</a></h3>
+<p>Install a script as follows. First, download the script file appropriate for
+your system, saving it to file <tt class="file docutils literal"><span class="pre">first-install.sh</span></tt> in your home folder:</p>
+<ul class="simple">
+<li><a class="reference download internal" href="_downloads/KDE-Mint_12-desktop.sh"><tt class="xref download docutils literal"><span class="pre">KDE/Mint</span> <span class="pre">12</span> <span class="pre">desktop</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/KUbuntu_12-desktop.sh"><tt class="xref download docutils literal"><span class="pre">KUbuntu</span> <span class="pre">12/Mint</span> <span class="pre">13</span> <span class="pre">desktop</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/KUbuntu_13-desktop.sh"><tt class="xref download docutils literal"><span class="pre">KUbuntu</span> <span class="pre">13</span> <span class="pre">desktop</span></tt></a></li>
+</ul>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">If your browser saved this file without asking you where to put it or
+what to name it, then edit your browser preferences to always ask when
+saving downloads.</p>
 </div>
-<div class="section" id="id1">
-<h2>Desktop Configuration<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Now perform the following:</p>
+<ol class="arabic simple">
+<li>Open a console (terminal) window</li>
+<li>Type the command <strong class="command">sudo bash first-install.sh &lt;Enter&gt;</strong></li>
+<li>Enter your password when asked</li>
+<li>When asked for a mysql pasword, type <tt class="kbd docutils literal"><span class="pre">mysql</span></tt></li>
+<li>Wait an hour or so while over 1000 software packages are installed</li>
+<li>Restart your system to load updates to the Linux kernel</li>
+</ol>
+</div>
+<div class="section" id="install-rest-sphinx-tools">
+<h3>Install ReST, Sphinx tools<a class="headerlink" href="#install-rest-sphinx-tools" title="Permalink to this headline">¶</a></h3>
+<p>Install documentation tools with the following separate script:</p>
+<ol class="arabic simple">
+<li>Download <a class="reference download internal" href="_downloads/rest-install.sh"><tt class="xref download docutils literal"><span class="pre">reST</span> <span class="pre">script</span></tt></a> to filename
+<tt class="file docutils literal"><span class="pre">rest-install.sh</span></tt></li>
+<li>Open a console (terminal) window</li>
+<li>Type the command <strong class="command">sudo bash rest-install.sh &lt;Enter&gt;</strong></li>
+<li>Enter your password when asked</li>
+<li>Wait an hour or so while packages are installed and compiled</li>
+</ol>
+</div>
+</div>
+<div class="section" id="configure-workspaces">
+<h2>Configure Workspaces<a class="headerlink" href="#configure-workspaces" title="Permalink to this headline">¶</a></h2>
 <p>For laptops and netbooks, the workspace type may default to <em>Netbook</em>. This is
 changed as follows:</p>
 <ul class="simple">
@@ -117,8 +157,8 @@ changed as follows:</p>
 <li>If missing, add <em>Pager</em> (already installed on KUbuntu; not installed on Mint)</li>
 </ul>
 </div>
-<div class="section" id="clipboard-and-editor-configuration">
-<h2>Clipboard and Editor Configuration<a class="headerlink" href="#clipboard-and-editor-configuration" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="configure-clipboard-editor">
+<h2>Configure Clipboard, Editor<a class="headerlink" href="#configure-clipboard-editor" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Click the scissors on the task bar, and choose <em class="guilabel">Configure Klipper...</em>.</li>
 <li>On the <em class="guilabel">General</em> tab, check the box labeled
@@ -166,15 +206,6 @@ changed as follows:</p>
 <p>References:</p>
 <p><a class="reference external" href="https://help.ubuntu.com/community/AppleKeyboard">AppleKeyboard</a></p>
 </div>
-<div class="section" id="fixing-bugs">
-<h2>Fixing bugs<a class="headerlink" href="#fixing-bugs" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="qfilesystemwatcher-messages">
-<h3>QFileSystemWatcher messages<a class="headerlink" href="#qfilesystemwatcher-messages" title="Permalink to this headline">¶</a></h3>
-<p>Messages from QFileSystemWatcher can be eliminated with:</p>
-<div class="highlight-python"><pre>mkdir -p ~/.config/ibus/bus</pre>
-</div>
-</div>
-</div>
 </div>
 
 
@@ -190,7 +221,7 @@ changed as follows:</p>
           <a href="02_secureshell.html" title="Remote Secure Shell Sessions"
              >next</a></li>
         <li class="right" >
-          <a href="index.html" title="Welcome to Configure KDE’s documentation!"
+          <a href="index.html" title="Configuring Ubuntu Desktop and KDE"
              >previous</a> |</li>
         <li><a href="index.html">Configure KDE 1.0 documentation</a> &raquo;</li> 
       </ul>
