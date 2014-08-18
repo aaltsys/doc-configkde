@@ -21,7 +21,7 @@ General package rules
 
 +  Only one package management program may be run at a time. Do not,say, start 
    :program:`synaptics` in a window and try to run an :program:`apt-` utility 
-   in a console terminal at the same time.
+   in a console session at the same time.
 +  Package programs require root privileges. Use :command:`sudo` to execute all 
    commands.
 +  Wild-card expressions are permitted in version numbers. When using versions, 
