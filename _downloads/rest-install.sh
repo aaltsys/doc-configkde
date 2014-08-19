@@ -10,15 +10,23 @@ if [[ $EUID -ne 0 ]] ; then echo -e "\e[1;31m try again using sudo \e[0m" ; exit
 
 apt-pkgs() {
 
-  # Install packages listed in variable PKGS
+  # Install or purge packages listed in variable PKGS
   APT=0
   for i in $PKGS
   do
     dpkg -s $i > null
-    if [ $? -ne 0 ] ; then
-      APT=1
-      echo "$i is missing, it will be $OPERd"
-      apt-get -y $OPER $i
+    if [ $OPER = 'install' ] ; then
+      if [ $? -ne 0 ] ; then
+        APT=1
+        echo "$i is missing, it will be $OPERed"
+        apt-get -y $OPER $i
+      fi
+    elif [ $OPER = 'purge' ] ; then
+      if [ $? -eq 0 ] ; then
+        APT=1
+        echo "$i is installed, it will be $OPERd"
+        apt-get -y $OPER $i
+      fi
     fi
   done
    
@@ -45,3 +53,5 @@ OPER='purge'
 PKGS='python-configobj python-docutils python-pygments python-sphinx rst2pdf'
 apt-pkgs
 easy_install configobj docutils pygments sphinx rst2pdf 
+
+exit 0
