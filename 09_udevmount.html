@@ -97,11 +97,12 @@
 <li><p class="first">Plug in the hot-pluggable device on a <strong>USB</strong> or <strong>eSATA</strong> port.</p>
 </li>
 <li><p class="first">At the command prompt, type:</p>
-<div class="highlight-python"><pre>dmesg | tail 20</pre>
+<div class="highlight-python"><div class="highlight"><pre>dmesg | tail 20
+</pre></div>
 </div>
 </li>
 <li><p class="first">Output similar to the following will be displayed:</p>
-<div class="highlight-python"><pre>...
+<div class="highlight-python"><div class="highlight"><pre>...
 [ 5891.570018] ata6: link is slow to respond, please be patient (ready=0)
 [ 5893.250023] ata6: SATA link up 3.0 Gbps (SStatus 123 SControl 300)
 [ 5893.260131] ata6.00: ATA-6: BUFFALO External HDD, CC46, max UDMA/133
@@ -113,45 +114,51 @@
 [ 5893.272669] sd 5:0:0:0: [sdc] 1953525168 512-byte logical blocks: (1.00 TB/931 GiB)
 [ 5893.272727] sd 5:0:0:0: [sdc] Write Protect is off
 [ 5893.272731] sd 5:0:0:0: [sdc] Mode Sense: 00 3a 00 00
-[ 5893.272762] sd 5:0:0:0: [sdc] Write cache: enabled, read cache: enabled, doesn''t support DPO or FUA
+[ 5893.272762] sd 5:0:0:0: [sdc] Write cache: enabled, read cache: enabled, doesn&#39;&#39;t support DPO or FUA
 [ 5893.272939]  sdc: sdc1 &lt; sdc5 &gt;
-[ 5893.293515] sd 5:0:0:0: [sdc] Attached SCSI disk</pre>
+[ 5893.293515] sd 5:0:0:0: [sdc] Attached SCSI disk
+</pre></div>
 </div>
 </li>
 <li><p class="first">This shows a <tt class="docutils literal"><span class="pre">BUFFALO</span> <span class="pre">External</span></tt> device as <tt class="docutils literal"><span class="pre">sdc</span></tt>. Enumerate the system device information for <tt class="docutils literal"><span class="pre">sdc</span></tt> with the command:</p>
-<div class="highlight-python"><pre>udevadm info --name=sdc --attribute-walk</pre>
+<div class="highlight-python"><div class="highlight"><pre>udevadm info --name=sdc --attribute-walk
+</pre></div>
 </div>
 </li>
 <li><p class="first">Now scroll up the output to find the <em>BUFFALO External</em> parent device section. Note the subsystem, model, and state:</p>
-<div class="highlight-python"><pre>looking at parent device '/devices/pci0000:00/0000:00:1f.2/host5/target5:0:0/5:0:0:0':
-   KERNELS=="5:0:0:0"
-   SUBSYSTEMS=="scsi"
-   DRIVERS=="**sd**"
-   ATTRS{device_blocked}=="0"
-   ATTRS{type}=="0"
-   ATTRS{scsi_level}=="6"
-   ATTRS{vendor}=="ATA     "
-   ATTRS{model}=="BUFFALO External"
-   ATTRS{rev}=="CC46"
-   ATTRS{state}=="running"
-   ...</pre>
+<div class="highlight-python"><div class="highlight"><pre>looking at parent device &#39;/devices/pci0000:00/0000:00:1f.2/host5/target5:0:0/5:0:0:0&#39;:
+   KERNELS==&quot;5:0:0:0&quot;
+   SUBSYSTEMS==&quot;scsi&quot;
+   DRIVERS==&quot;**sd**&quot;
+   ATTRS{device_blocked}==&quot;0&quot;
+   ATTRS{type}==&quot;0&quot;
+   ATTRS{scsi_level}==&quot;6&quot;
+   ATTRS{vendor}==&quot;ATA     &quot;
+   ATTRS{model}==&quot;BUFFALO External&quot;
+   ATTRS{rev}==&quot;CC46&quot;
+   ATTRS{state}==&quot;running&quot;
+   ...
+</pre></div>
 </div>
 </li>
 <li><p class="first">Add a <tt class="docutils literal"><span class="pre">udev</span></tt> rule in directory <tt class="docutils literal"><span class="pre">/etc/udev/rules.d/</span></tt> to establish a mount for the device. We chose the filename:</p>
-<div class="highlight-python"><pre>/etc/udev/rules.d/20-buffalo.rules</pre>
+<div class="highlight-python"><div class="highlight"><pre>/etc/udev/rules.d/20-buffalo.rules
+</pre></div>
 </div>
 </li>
 <li><p class="first">Edit the file and insert the rule. Our data for the command, based on the attributes above and the specified mount point, is:</p>
-<div class="highlight-python"><pre>KERNEL=="sd?", SUBSYSTEMS=="scsi", ATTRS{model}=="BUFFALO External", ATTRS{state}=="running", RUN+="/bin/mount /dev/%k5 /home/mnt/backup"</pre>
+<div class="highlight-python"><div class="highlight"><pre>KERNEL==&quot;sd?&quot;, SUBSYSTEMS==&quot;scsi&quot;, ATTRS{model}==&quot;BUFFALO External&quot;, ATTRS{state}==&quot;running&quot;, RUN+=&quot;/bin/mount /dev/%k5 /home/mnt/backup&quot;
+</pre></div>
 </div>
 </li>
 <li><p class="first">After saving the rule, and with the device connected, verify the rule with the command:</p>
-<div class="highlight-python"><pre>sudo reload udev
-sudo udevadm test /block/sdc</pre>
+<div class="highlight-python"><div class="highlight"><pre>sudo reload udev
+sudo udevadm test /block/sdc
+</pre></div>
 </div>
 </li>
 <li><p class="first">The command output should be similar to the following:</p>
-<div class="highlight-python"><pre>...
+<div class="highlight-python"><div class="highlight"><pre>...
 udevadm_test: ID_ATA_SATA=1
 udevadm_test: ID_ATA_SATA_SIGNAL_RATE_GEN2=1
 udevadm_test: ID_ATA_SATA_SIGNAL_RATE_GEN1=1
@@ -163,21 +170,23 @@ udevadm_test: UDISKS_PARTITION_TABLE=1
 udevadm_test: UDISKS_PARTITION_TABLE_SCHEME=mbr
 udevadm_test: UDISKS_PARTITION_TABLE_COUNT=2
 udevadm_test: UDISKS_ATA_SMART_IS_AVAILABLE=1
-udevadm_test: run: '/bin/mount /dev/sdc5 /home/mnt/backup'
-udevadm_test: run: '/lib/udev/hdparm'
-udevadm_test: run: 'socket:@/org/freedesktop/hal/udev_event'</pre>
+udevadm_test: run: &#39;/bin/mount /dev/sdc5 /home/mnt/backup&#39;
+udevadm_test: run: &#39;/lib/udev/hdparm&#39;
+udevadm_test: run: &#39;socket:@/org/freedesktop/hal/udev_event&#39;
+</pre></div>
 </div>
 </li>
 <li><p class="first">Now unplug the <tt class="docutils literal"><span class="pre">eSATA</span></tt> or <tt class="docutils literal"><span class="pre">USB</span></tt> cable, and then plug it back into the device.</p>
 </li>
 <li><p class="first">Run the command <tt class="kbd docutils literal"><span class="pre">mount</span></tt> and look for the device in the command output, as for example the following:</p>
-<div class="highlight-python"><pre>/dev/mapper/ddf1_aaltsys1 on / type ext4 (rw,errors=remount-ro)
+<div class="highlight-python"><div class="highlight"><pre>/dev/mapper/ddf1_aaltsys1 on / type ext4 (rw,errors=remount-ro)
 ...
 none on /var/lib/ureadahead/debugfs type debugfs (rw,relatime)
 /dev/mapper/ddf1_aaltsys6 on /home type ext4 (rw,usrquota,grpquota,acl)
 rpc_pipefs on /var/lib/nfs/rpc_pipefs type rpc_pipefs (rw)
 nfsd on /proc/fs/nfsd type nfsd (rw)
-/dev/sdc5 on /home/mnt/backup type fuseblk (rw,nosuid,nodev,allow_other,blksize=4096)</pre>
+/dev/sdc5 on /home/mnt/backup type fuseblk (rw,nosuid,nodev,allow_other,blksize=4096)
+</pre></div>
 </div>
 </li>
 </ol>
@@ -243,7 +252,7 @@ nfsd on /proc/fs/nfsd type nfsd (rw)
     </div>
     <div class="footer">
         &copy; Copyright 2012, Gerald Lovel.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

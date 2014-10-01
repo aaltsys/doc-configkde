@@ -172,7 +172,8 @@ changed as follows:</p>
 <div class="section" id="avoiding-vim">
 <h2>Avoiding VIM<a class="headerlink" href="#avoiding-vim" title="Permalink to this headline">¶</a></h2>
 <p>Change default editor in KDE with the command:</p>
-<div class="highlight-python"><pre>sudo update-alternatives --config editor</pre>
+<div class="highlight-python"><div class="highlight"><pre>sudo update-alternatives --config editor
+</pre></div>
 </div>
 <p>Change default editor when opening files in Dolphin:</p>
 <ul class="simple">
@@ -185,7 +186,7 @@ changed as follows:</p>
 </div>
 <div class="section" id="turn-on-apple-keyboard-function-keys">
 <h2>Turn on Apple Keyboard function keys<a class="headerlink" href="#turn-on-apple-keyboard-function-keys" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><pre>#. display current keyboard state (1=off, 2=on):
+<div class="highlight-python"><div class="highlight"><pre>#. display current keyboard state (1=off, 2=on):
 
    cat /sys/module/hid_apple/parameters/fnmode
 
@@ -196,12 +197,13 @@ changed as follows:</p>
 #. make the configuration change permanent version 1 (not working on Mint 12):
 
    sudo touch /etc/sysfs.conf
-   sudo bash &lt; &lt;(echo 'echo "module/hid_apple/parameters/fnmode = 2" &gt;&gt; /etc/sysfs.conf')
+   sudo bash &lt; &lt;(echo &#39;echo &quot;module/hid_apple/parameters/fnmode = 2&quot; &gt;&gt; /etc/sysfs.conf&#39;)
 
 #. make configuration change permanent, version 2
-#. still working on this, as it must come before "exit 0":
+#. still working on this, as it must come before &quot;exit 0&quot;:
 
-   sudo bash &lt; &lt;(echo 'echo "echo 2 &gt; /sys/module/hid_apple/parameters/fnmode" &gt;&gt; /etc/rc.local')</pre>
+   sudo bash &lt; &lt;(echo &#39;echo &quot;echo 2 &gt; /sys/module/hid_apple/parameters/fnmode&quot; &gt;&gt; /etc/rc.local&#39;)
+</pre></div>
 </div>
 <p>References:</p>
 <p><a class="reference external" href="https://help.ubuntu.com/community/AppleKeyboard">AppleKeyboard</a></p>
@@ -228,7 +230,7 @@ changed as follows:</p>
     </div>
     <div class="footer">
         &copy; Copyright 2012, Gerald Lovel.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

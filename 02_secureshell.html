@@ -126,7 +126,8 @@ a computer is stolen.</p>
 <div class="section" id="configuring-ssh-for-a-user">
 <h2>Configuring SSH for a user<a class="headerlink" href="#configuring-ssh-for-a-user" title="Permalink to this headline">¶</a></h2>
 <p>Each user should create a key set with the command:</p>
-<div class="highlight-python"><pre>if [ ! -f ~/.ssh/id_rsa ]; then ssh-keygen -N '' -f ~/.ssh/id_rsa; fi</pre>
+<div class="highlight-python"><div class="highlight"><pre>if [ ! -f ~/.ssh/id_rsa ]; then ssh-keygen -N &#39;&#39; -f ~/.ssh/id_rsa; fi
+</pre></div>
 </div>
 <p>Resulting keys are stored in the files</p>
 <ul class="simple">
@@ -135,13 +136,15 @@ a computer is stolen.</p>
 <li>known hosts: <tt class="file docutils literal"><span class="pre">~/.ssh/known_hosts</span></tt></li>
 </ul>
 <p>List the hidden <tt class="file docutils literal"><span class="pre">.ssh</span></tt> directory to see the permissions:</p>
-<div class="highlight-python"><pre>ls -al ~/.ssh</pre>
+<div class="highlight-python"><div class="highlight"><pre>ls -al ~/.ssh
+</pre></div>
 </div>
 <div class="section" id="recommended-configuration">
 <h3>Recommended configuration<a class="headerlink" href="#recommended-configuration" title="Permalink to this headline">¶</a></h3>
 <p>On each computer, comment out the line <strong class="command">HashKnownHosts yes</strong> in file
 <tt class="file docutils literal"><span class="pre">/etc/ssh/ssh_config</span></tt> with the following command:</p>
-<div class="highlight-python"><pre>sudo sed -i "s/    HashKnown/#   HashKnown/" /etc/ssh/ssh_config</pre>
+<div class="highlight-python"><div class="highlight"><pre>sudo sed -i &quot;s/    HashKnown/#   HashKnown/&quot; /etc/ssh/ssh_config
+</pre></div>
 </div>
 </div>
 <div class="section" id="using-ssh-in-web-browsers">
@@ -154,14 +157,17 @@ session.</p>
 <p>For a KDE desktop system derived from Debian, replace <strong class="command">ssh</strong> with
 <strong class="command">PuTTY</strong> as the default <strong class="command">ssh://</strong> handler for your browser with
 the following command (courtesy of VonGrippen, AKA Michael Cochran):</p>
-<div class="highlight-python"><pre>bash &lt; &lt;(wget http://git.io/kde-putty -O-)</pre>
+<div class="highlight-python"><div class="highlight"><pre>bash &lt; &lt;(wget http://git.io/kde-putty -O-)
+</pre></div>
 </div>
 <p>Alternatively, click <a class="reference download internal" href="_downloads/putty-kde.sh"><tt class="xref download docutils literal"><span class="pre">this</span> <span class="pre">download</span> <span class="pre">link</span></tt></a>
 to download the script file and run it with the command:</p>
-<div class="highlight-python"><pre>sudo bash putty-kde.sh</pre>
+<div class="highlight-python"><div class="highlight"><pre>sudo bash putty-kde.sh
+</pre></div>
 </div>
 <p>Test this configuration in your browser by going to the link address:</p>
-<div class="highlight-python"><pre>ssh://github.com</pre>
+<div class="highlight-python"><div class="highlight"><pre>ssh://github.com
+</pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -177,7 +183,8 @@ Make changes permanent by saving <em class="menuselection">Session ‣ Default S
 <h3>Commands to install keys<a class="headerlink" href="#commands-to-install-keys" title="Permalink to this headline">¶</a></h3>
 <p>Where a user has login privileges on a system, add an ssh key to the remote
 system for secure access with the command:</p>
-<div class="highlight-python"><pre>ssh-copy-id `id -un`@HOSTNAME.DOMAIN.TLD</pre>
+<div class="highlight-python"><div class="highlight"><pre>ssh-copy-id `id -un`@HOSTNAME.DOMAIN.TLD
+</pre></div>
 </div>
 <p>replacing HOSTNAME.DOMAIN.TLD with the computer&#8217;s fully qualified domain name.</p>
 </div>
@@ -185,7 +192,8 @@ system for secure access with the command:</p>
 <h3>Secure web services<a class="headerlink" href="#secure-web-services" title="Permalink to this headline">¶</a></h3>
 <p>Many web services which require ssh keys, such as GitHub, install keys through
 cut-and-paste. Display a user&#8217;s local public key using the command:</p>
-<div class="highlight-python"><pre>kate ~/.ssh/id_rsa.pub</pre>
+<div class="highlight-python"><div class="highlight"><pre>kate ~/.ssh/id_rsa.pub
+</pre></div>
 </div>
 <p>In Kate, press <tt class="kbd docutils literal"><span class="pre">&lt;Ctrl-A&gt;&lt;Ctrl-C&gt;</span></tt> to copy, and paste the key to the web
 page with <tt class="kbd docutils literal"><span class="pre">&lt;Ctrl-V&gt;</span></tt>.</p>
@@ -199,11 +207,13 @@ this problem in a console session. When a new key is created on the local
 system, copy the key to the remote system with the <strong class="command">ssh-copy-id</strong>
 command as described above.</p>
 <p>If a remote system key is changed, connect to the remote system with:</p>
-<div class="highlight-python"><pre>ssh `id -un`@HOSTNAME.DOMAIN.TLD</pre>
+<div class="highlight-python"><div class="highlight"><pre>ssh `id -un`@HOSTNAME.DOMAIN.TLD
+</pre></div>
 </div>
 <p>A console message will identify the line number in <tt class="file docutils literal"><span class="pre">~/.ssh/known_hosts</span></tt>
 file which contains an invalid key. Delete this line with the command:</p>
-<div class="highlight-python"><pre>sed -i '[linenumber]d' ~/.ssh/known_hosts</pre>
+<div class="highlight-python"><div class="highlight"><pre>sed -i &#39;[linenumber]d&#39; ~/.ssh/known_hosts
+</pre></div>
 </div>
 <p>where the expression <tt class="docutils literal"><span class="pre">[linenumber]</span></tt> is replaced with a line number.</p>
 <p>Then reconnect from the console, and save the new key when prompted.</p>
@@ -213,12 +223,14 @@ file which contains an invalid key. Delete this line with the command:</p>
 <div class="section" id="basic">
 <h3>Basic:<a class="headerlink" href="#basic" title="Permalink to this headline">¶</a></h3>
 <p>From a console session, login to a remote system with the command:</p>
-<div class="highlight-python"><pre>ssh `id -un`@HOSTNAME.DOMAIN.TLD</pre>
+<div class="highlight-python"><div class="highlight"><pre>ssh `id -un`@HOSTNAME.DOMAIN.TLD
+</pre></div>
 </div>
 </div>
 <div class="section" id="port-forwarding-for-rdp">
 <h3>Port forwarding for RDP:<a class="headerlink" href="#port-forwarding-for-rdp" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><pre>ssh -L3389:[remoteIP]:3389 [username]@HOSTNAME.DOMAIN.TLD</pre>
+<div class="highlight-python"><div class="highlight"><pre>ssh -L3389:[remoteIP]:3389 [username]@HOSTNAME.DOMAIN.TLD
+</pre></div>
 </div>
 <p>Display the forwarded <strong class="command">RDP</strong> session in <strong class="command">Remmina</strong> or
 <strong class="command">KRDC</strong>.</p>
@@ -226,7 +238,8 @@ file which contains an invalid key. Delete this line with the command:</p>
 <div class="section" id="gnome-terminal">
 <h3>Gnome terminal<a class="headerlink" href="#gnome-terminal" title="Permalink to this headline">¶</a></h3>
 <p>NX performing X-11 Forwarding with gnome-terminal:</p>
-<div class="highlight-python"><pre>gnome-terminal -x ssh -L8889:localhost:8888 [username]@HOSTNAME.DOMAIN.TLD</pre>
+<div class="highlight-python"><div class="highlight"><pre>gnome-terminal -x ssh -L8889:localhost:8888 [username]@HOSTNAME.DOMAIN.TLD
+</pre></div>
 </div>
 </div>
 <div class="section" id="kde-putty">
@@ -257,7 +270,7 @@ menu.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2012, Gerald Lovel.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>

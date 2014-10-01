@@ -19,12 +19,15 @@ The DOS system can be started from
    **xauth** is required for remote X11 execution over **ssh**. Some versions of
    Ubuntu (8.04, for example) omit this package.
 
-DOS performance and video
+Configuring Dosemu
 =============================
 
-Change :program:`dosemu` configuration with commands to edit either global 
+Change :program:`dosemu` configuration with commands to edit either the global 
 configuration file :command:`sudoedit /etc/dosemu/dosemu.conf` or user file
 :command:`nano ~/.dosemurc`.
+
+Video settings
+-----------------------------
 
 Emulate the DOS 640X480 EGA/VGA display with the command::
 
@@ -38,6 +41,26 @@ The following command would change this setting globally for all users::
    DOS video configurations include: 
    ``vga, vga8x19, vga11x19, vga10x24, vga12x30, vga-cp866, and vga10x20-cp866``.
 
+Printing
+-----------------------------
+
+In :guilabel:`System Settings`, check the queue names of installed printers.
+Then set devices :guilabel:`lpt1`, :guilabel:`lpt2, and :guilabel:`lpt3` to use 
+these printer queues with commands such as ::
+
+   echo '$_lpt1 = "lpr -l -P HP_LaserJet"' >> ~/.dosemurc
+   echo '$_lpt2 = "lpr -l -P HP_ColorJet"' >> ~/.dosemurc
+
+or for global settings, ::
+
+   sudo sed -ie "/$_lpt1/c\$_lpt1 = 'lpr -l -P HP_LaserJet'" /etc/dosemu/dosemu.conf
+   sudo sed -ie "/$_lpt2/c\$_lpt2 = 'lpr -l -P HP_ColorJet'" /etc/dosemu/dosemu.conf
+
+where :guilabel:`HP_LaserJet` and :guilabel:`HP_ColorJet` are local queue names.
+
+Performance
+-----------------------------
+
 To make dosemu run faster for the current user, add a command:: 
 
    echo '$_hogthreshold = (xx)' >> ~/.dosemurc
@@ -45,11 +68,8 @@ To make dosemu run faster for the current user, add a command::
 where **xx** is the percentage of CPU time to devote to dosemu, which defaults 
 to 1 percent.
 
-Running Dosemu
+Managing Dosemu Sessions
 =============================
-
-Interactive DOSemu sessions
------------------------------
 
 To start an interactive DOSemu session, type :command:`dosemu` at the console 
 or select :menuselection:`Applications --> System --> DOS emulator` from the

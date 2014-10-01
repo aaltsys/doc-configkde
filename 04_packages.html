@@ -129,39 +129,46 @@ package changes.</p>
 </div>
 <div class="section" id="apt-get">
 <h3>apt-get<a class="headerlink" href="#apt-get" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><pre>sudo apt-get update &amp;&amp; sudo apt-get upgrade
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-get update &amp;&amp; sudo apt-get upgrade
 sudo apt-get install {package}={version}
-sudo apt-get -f install</pre>
+sudo apt-get -f install
+</pre></div>
 </div>
 </div>
 <div class="section" id="apt-cache">
 <h3>apt-cache<a class="headerlink" href="#apt-cache" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><pre>sudo apt-cache policy {package}</pre>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-cache policy {package}
+</pre></div>
 </div>
 </div>
 <div class="section" id="apt-mark">
 <h3>apt-mark<a class="headerlink" href="#apt-mark" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><pre>sudo apt-mark hold {package} --version {version}</pre>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt-mark hold {package} --version {version}
+</pre></div>
 </div>
 </div>
 <div class="section" id="apt-show-versions">
 <h3>apt-show-versions<a class="headerlink" href="#apt-show-versions" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><pre>apt-show-versions {package}</pre>
+<div class="highlight-python"><div class="highlight"><pre>apt-show-versions {package}
+</pre></div>
 </div>
 </div>
 <div class="section" id="dpkg">
 <h3>dpkg<a class="headerlink" href="#dpkg" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python"><pre>sudo dpkg --configure -a</pre>
+<div class="highlight-python"><div class="highlight"><pre>sudo dpkg --configure -a
+</pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="special-commands">
 <h2>Special commands<a class="headerlink" href="#special-commands" title="Permalink to this headline">¶</a></h2>
 <p>Show all packages installed or upgraded in the past 3 days:</p>
-<div class="highlight-python"><pre>find /var/lib/dpkg/info/ -name \*.list -mtime -3 | sed `s#.list$##; s#.*/##`</pre>
+<div class="highlight-python"><div class="highlight"><pre>find /var/lib/dpkg/info/ -name \*.list -mtime -3 | sed `s#.list$##; s#.*/##`
+</pre></div>
 </div>
 <p>Place a package on hold using a pin file:</p>
-<div class="highlight-python"><pre>sed -i 'Package: {program}\nPin: {version}\nPin-Priority: 1000' /etc/apt/preferences/{program/</pre>
+<div class="highlight-python"><div class="highlight"><pre>sed -i &#39;Package: {program}\nPin: {version}\nPin-Priority: 1000&#39; /etc/apt/preferences/{program/
+</pre></div>
 </div>
 </div>
 </div>
@@ -186,7 +193,7 @@ sudo apt-get -f install</pre>
     </div>
     <div class="footer">
         &copy; Copyright 2012, Gerald Lovel.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
     </div>
   </body>
 </html>
