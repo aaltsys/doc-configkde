@@ -26,8 +26,8 @@
     <link rel="top" title="Configure KDE 1.0 documentation" href="index.html" />
     <link rel="prev" title="KDE Desktop Management" href="08_kde_tricks.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -36,7 +36,7 @@
         <li><a href="index.html">Configure KDE 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
@@ -51,12 +51,14 @@
   <h4>Previous topic</h4>
   <p class="topless"><a href="08_kde_tricks.html"
                         title="previous chapter">KDE Desktop Management</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/09_udevmount.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/09_udevmount.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -75,7 +77,7 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="mounting-devices-through-udev">
 <h1>Mounting Devices through udev<a class="headerlink" href="#mounting-devices-through-udev" title="Permalink to this headline">¶</a></h1>
@@ -90,7 +92,7 @@
 <p class="last">This guide registers a <em>BUFFALO External</em> drive and mounts it at <em>/home/mnt/backup</em>.</p>
 </div>
 <ol class="arabic">
-<li><p class="first">The permanent logical mount point for the backup device will be <tt class="docutils literal"><span class="pre">/home/mnt/backup</span></tt>.</p>
+<li><p class="first">The permanent logical mount point for the backup device will be <code class="docutils literal"><span class="pre">/home/mnt/backup</span></code>.</p>
 </li>
 <li><p class="first">Display a terminal command line on the server console, or <em>ssh</em> to a server command shell.</p>
 </li>
@@ -120,7 +122,7 @@
 </pre></div>
 </div>
 </li>
-<li><p class="first">This shows a <tt class="docutils literal"><span class="pre">BUFFALO</span> <span class="pre">External</span></tt> device as <tt class="docutils literal"><span class="pre">sdc</span></tt>. Enumerate the system device information for <tt class="docutils literal"><span class="pre">sdc</span></tt> with the command:</p>
+<li><p class="first">This shows a <code class="docutils literal"><span class="pre">BUFFALO</span> <span class="pre">External</span></code> device as <code class="docutils literal"><span class="pre">sdc</span></code>. Enumerate the system device information for <code class="docutils literal"><span class="pre">sdc</span></code> with the command:</p>
 <div class="highlight-python"><div class="highlight"><pre>udevadm info --name=sdc --attribute-walk
 </pre></div>
 </div>
@@ -141,7 +143,7 @@
 </pre></div>
 </div>
 </li>
-<li><p class="first">Add a <tt class="docutils literal"><span class="pre">udev</span></tt> rule in directory <tt class="docutils literal"><span class="pre">/etc/udev/rules.d/</span></tt> to establish a mount for the device. We chose the filename:</p>
+<li><p class="first">Add a <code class="docutils literal"><span class="pre">udev</span></code> rule in directory <code class="docutils literal"><span class="pre">/etc/udev/rules.d/</span></code> to establish a mount for the device. We chose the filename:</p>
 <div class="highlight-python"><div class="highlight"><pre>/etc/udev/rules.d/20-buffalo.rules
 </pre></div>
 </div>
@@ -176,9 +178,9 @@ udevadm_test: run: &#39;socket:@/org/freedesktop/hal/udev_event&#39;
 </pre></div>
 </div>
 </li>
-<li><p class="first">Now unplug the <tt class="docutils literal"><span class="pre">eSATA</span></tt> or <tt class="docutils literal"><span class="pre">USB</span></tt> cable, and then plug it back into the device.</p>
+<li><p class="first">Now unplug the <code class="docutils literal"><span class="pre">eSATA</span></code> or <code class="docutils literal"><span class="pre">USB</span></code> cable, and then plug it back into the device.</p>
 </li>
-<li><p class="first">Run the command <tt class="kbd docutils literal"><span class="pre">mount</span></tt> and look for the device in the command output, as for example the following:</p>
+<li><p class="first">Run the command <code class="kbd docutils literal"><span class="pre">mount</span></code> and look for the device in the command output, as for example the following:</p>
 <div class="highlight-python"><div class="highlight"><pre>/dev/mapper/ddf1_aaltsys1 on / type ext4 (rw,errors=remount-ro)
 ...
 none on /var/lib/ureadahead/debugfs type debugfs (rw,relatime)
@@ -241,7 +243,7 @@ nfsd on /proc/fs/nfsd type nfsd (rw)
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -250,9 +252,9 @@ nfsd on /proc/fs/nfsd type nfsd (rw)
         <li><a href="index.html">Configure KDE 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2012, Gerald Lovel.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3b1.
     </div>
   </body>
 </html>

@@ -27,8 +27,8 @@
     <link rel="next" title="Repairing Problems" href="06_repair.html" />
     <link rel="prev" title="Managing Software Packages" href="04_packages.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -40,7 +40,7 @@
         <li><a href="index.html">Configure KDE 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
@@ -69,12 +69,14 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="06_repair.html"
                         title="next chapter">Repairing Problems</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/05_dosemu.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/05_dosemu.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -93,7 +95,7 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="dos-programs-with-dosemu">
 <h1>DOS programs with dosemu<a class="headerlink" href="#dos-programs-with-dosemu" title="Permalink to this headline">¶</a></h1>
@@ -132,7 +134,7 @@ configuration file <strong class="command">sudoedit /etc/dosemu/dosemu.conf</str
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">DOS video configurations include:
-<tt class="docutils literal"><span class="pre">vga,</span> <span class="pre">vga8x19,</span> <span class="pre">vga11x19,</span> <span class="pre">vga10x24,</span> <span class="pre">vga12x30,</span> <span class="pre">vga-cp866,</span> <span class="pre">and</span> <span class="pre">vga10x20-cp866</span></tt>.</p>
+<code class="docutils literal"><span class="pre">vga,</span> <span class="pre">vga8x19,</span> <span class="pre">vga11x19,</span> <span class="pre">vga10x24,</span> <span class="pre">vga12x30,</span> <span class="pre">vga-cp866,</span> <span class="pre">and</span> <span class="pre">vga10x20-cp866</span></code>.</p>
 </div>
 </div>
 <div class="section" id="printing">
@@ -167,11 +169,11 @@ to 1 percent.</p>
 or select <em class="menuselection">Applications ‣ System ‣ DOS emulator</em> from the
 system menu.</p>
 <p>Exit the command line of an interactive session by typing <strong class="command">exitemu</strong>
-or by pressing <tt class="kbd docutils literal"><span class="pre">Control-Alt-PgDn</span></tt>.</p>
+or by pressing <code class="kbd docutils literal"><span class="pre">Control-Alt-PgDn</span></code>.</p>
 <div class="section" id="keyboard-capture">
 <h3>Keyboard Capture<a class="headerlink" href="#keyboard-capture" title="Permalink to this headline">¶</a></h3>
-<p>Press <tt class="kbd docutils literal"><span class="pre">&lt;Shift-Ctrl-Alt-K&gt;</span></tt> to switch into and out of keygrab mode in
-DOSEMU. The <tt class="kbd docutils literal"><span class="pre">&lt;Shift&gt;</span></tt> is required in KDE, optional in Gnome and maybe
+<p>Press <code class="kbd docutils literal"><span class="pre">&lt;Shift-Ctrl-Alt-K&gt;</span></code> to switch into and out of keygrab mode in
+DOSEMU. The <code class="kbd docutils literal"><span class="pre">&lt;Shift&gt;</span></code> is required in KDE, optional in Gnome and maybe
 other desktops.</p>
 </div>
 <div class="section" id="dos-program-sessions">
@@ -187,7 +189,7 @@ close.</p>
 shell script may perform the complete task. For example, suppose program
 <strong>WARES</strong> would change shared file permissions from public to private when
 executed by a user not in group <cite>__USERS__</cite>. Issuing a <strong class="command">chmod</strong>
-command after executing WARES would fix permissions. A script <tt class="file docutils literal"><span class="pre">wares.sh</span></tt>
+command after executing WARES would fix permissions. A script <code class="file docutils literal"><span class="pre">wares.sh</span></code>
 for this purpose could be created with command <strong class="command">nano ~/wares.sh</strong>:</p>
 <div class="highlight-python"><div class="highlight"><pre>dosemu C:\WARES.BAT
 sudo chmod -R 777 /home/samba/shares/wares/*
@@ -215,7 +217,7 @@ W:
 WARES.BAT WARES
 </pre></div>
 </div>
-<p>Save the batch file and exit the editor with <tt class="kbd docutils literal"><span class="pre">&lt;Alt-F&gt;,S;&lt;Alt-F&gt;,X</span></tt>. Then
+<p>Save the batch file and exit the editor with <code class="kbd docutils literal"><span class="pre">&lt;Alt-F&gt;,S;&lt;Alt-F&gt;,X</span></code>. Then
 type the name of the batch file to execute it.</p>
 </div>
 </div>
@@ -226,7 +228,7 @@ type the name of the batch file to execute it.</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -238,9 +240,9 @@ type the name of the batch file to execute it.</p>
         <li><a href="index.html">Configure KDE 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2012, Gerald Lovel.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3b1.
     </div>
   </body>
 </html>

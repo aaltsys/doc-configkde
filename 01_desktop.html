@@ -27,8 +27,8 @@
     <link rel="next" title="Remote Secure Shell Sessions" href="02_secureshell.html" />
     <link rel="prev" title="Configuring Ubuntu Desktop and KDE" href="index.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -40,7 +40,7 @@
         <li><a href="index.html">Configure KDE 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
@@ -64,12 +64,14 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="02_secureshell.html"
                         title="next chapter">Remote Secure Shell Sessions</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/01_desktop.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/01_desktop.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -88,7 +90,7 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="desktop-configuration">
 <h1>Desktop Configuration<a class="headerlink" href="#desktop-configuration" title="Permalink to this headline">¶</a></h1>
@@ -102,11 +104,11 @@ recent system releases.</p>
 <div class="section" id="desktop-scripts-by-version">
 <h3>Desktop scripts by version<a class="headerlink" href="#desktop-scripts-by-version" title="Permalink to this headline">¶</a></h3>
 <p>Install a script as follows. First, download the script file appropriate for
-your system, saving it to file <tt class="file docutils literal"><span class="pre">first-install.sh</span></tt> in your home folder:</p>
+your system, saving it to file <code class="file docutils literal"><span class="pre">first-install.sh</span></code> in your home folder:</p>
 <ul class="simple">
-<li><a class="reference download internal" href="_downloads/KDE-Mint_12-desktop.sh"><tt class="xref download docutils literal"><span class="pre">KDE/Mint</span> <span class="pre">12</span> <span class="pre">desktop</span></tt></a></li>
-<li><a class="reference download internal" href="_downloads/KUbuntu_12-desktop.sh"><tt class="xref download docutils literal"><span class="pre">KUbuntu</span> <span class="pre">12/Mint</span> <span class="pre">13</span> <span class="pre">desktop</span></tt></a></li>
-<li><a class="reference download internal" href="_downloads/KUbuntu_13-desktop.sh"><tt class="xref download docutils literal"><span class="pre">KUbuntu</span> <span class="pre">13</span> <span class="pre">desktop</span></tt></a></li>
+<li><a class="reference download internal" href="_downloads/KDE-Mint_12-desktop.sh"><code class="xref download docutils literal"><span class="pre">KDE/Mint</span> <span class="pre">12</span> <span class="pre">desktop</span></code></a></li>
+<li><a class="reference download internal" href="_downloads/KUbuntu_12-desktop.sh"><code class="xref download docutils literal"><span class="pre">KUbuntu</span> <span class="pre">12/Mint</span> <span class="pre">13</span> <span class="pre">desktop</span></code></a></li>
+<li><a class="reference download internal" href="_downloads/KUbuntu_13-desktop.sh"><code class="xref download docutils literal"><span class="pre">KUbuntu</span> <span class="pre">13</span> <span class="pre">desktop</span></code></a></li>
 </ul>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
@@ -119,7 +121,7 @@ saving downloads.</p>
 <li>Open a console (terminal) window</li>
 <li>Type the command <strong class="command">sudo bash first-install.sh &lt;Enter&gt;</strong></li>
 <li>Enter your password when asked</li>
-<li>When asked for a mysql pasword, type <tt class="kbd docutils literal"><span class="pre">mysql</span></tt></li>
+<li>When asked for a mysql pasword, type <code class="kbd docutils literal"><span class="pre">mysql</span></code></li>
 <li>Wait an hour or so while over 1000 software packages are installed</li>
 <li>Restart your system to load updates to the Linux kernel</li>
 </ol>
@@ -128,8 +130,8 @@ saving downloads.</p>
 <h3>Install ReST, Sphinx tools<a class="headerlink" href="#install-rest-sphinx-tools" title="Permalink to this headline">¶</a></h3>
 <p>Install documentation tools with the following separate script:</p>
 <ol class="arabic simple">
-<li>Download <a class="reference download internal" href="_downloads/rest-install.sh"><tt class="xref download docutils literal"><span class="pre">reST</span> <span class="pre">script</span></tt></a> to filename
-<tt class="file docutils literal"><span class="pre">rest-install.sh</span></tt></li>
+<li>Download <a class="reference download internal" href="_downloads/rest-install.sh"><code class="xref download docutils literal"><span class="pre">reST</span> <span class="pre">script</span></code></a> to filename
+<code class="file docutils literal"><span class="pre">rest-install.sh</span></code></li>
 <li>Open a console (terminal) window</li>
 <li>Type the command <strong class="command">sudo bash rest-install.sh &lt;Enter&gt;</strong></li>
 <li>Enter your password when asked</li>
@@ -216,7 +218,7 @@ changed as follows:</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -228,9 +230,9 @@ changed as follows:</p>
         <li><a href="index.html">Configure KDE 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2012, Gerald Lovel.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3b1.
     </div>
   </body>
 </html>

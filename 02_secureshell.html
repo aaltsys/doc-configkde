@@ -27,8 +27,8 @@
     <link rel="next" title="Mounting Network File Systems" href="03_servershares.html" />
     <link rel="prev" title="Desktop Configuration" href="01_desktop.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -40,7 +40,7 @@
         <li><a href="index.html">Configure KDE 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
@@ -71,12 +71,14 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="03_servershares.html"
                         title="next chapter">Mounting Network File Systems</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/02_secureshell.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/02_secureshell.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -95,7 +97,7 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="remote-secure-shell-sessions">
 <h1>Remote Secure Shell Sessions<a class="headerlink" href="#remote-secure-shell-sessions" title="Permalink to this headline">¶</a></h1>
@@ -131,18 +133,18 @@ a computer is stolen.</p>
 </div>
 <p>Resulting keys are stored in the files</p>
 <ul class="simple">
-<li>private key: <tt class="file docutils literal"><span class="pre">~/.ssh/id_rsa</span></tt></li>
-<li>public key:  <tt class="file docutils literal"><span class="pre">~/.ssh/id_rsa.pub</span></tt></li>
-<li>known hosts: <tt class="file docutils literal"><span class="pre">~/.ssh/known_hosts</span></tt></li>
+<li>private key: <code class="file docutils literal"><span class="pre">~/.ssh/id_rsa</span></code></li>
+<li>public key:  <code class="file docutils literal"><span class="pre">~/.ssh/id_rsa.pub</span></code></li>
+<li>known hosts: <code class="file docutils literal"><span class="pre">~/.ssh/known_hosts</span></code></li>
 </ul>
-<p>List the hidden <tt class="file docutils literal"><span class="pre">.ssh</span></tt> directory to see the permissions:</p>
+<p>List the hidden <code class="file docutils literal"><span class="pre">.ssh</span></code> directory to see the permissions:</p>
 <div class="highlight-python"><div class="highlight"><pre>ls -al ~/.ssh
 </pre></div>
 </div>
 <div class="section" id="recommended-configuration">
 <h3>Recommended configuration<a class="headerlink" href="#recommended-configuration" title="Permalink to this headline">¶</a></h3>
 <p>On each computer, comment out the line <strong class="command">HashKnownHosts yes</strong> in file
-<tt class="file docutils literal"><span class="pre">/etc/ssh/ssh_config</span></tt> with the following command:</p>
+<code class="file docutils literal"><span class="pre">/etc/ssh/ssh_config</span></code> with the following command:</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo sed -i &quot;s/    HashKnown/#   HashKnown/&quot; /etc/ssh/ssh_config
 </pre></div>
 </div>
@@ -160,7 +162,7 @@ the following command (courtesy of VonGrippen, AKA Michael Cochran):</p>
 <div class="highlight-python"><div class="highlight"><pre>bash &lt; &lt;(wget http://git.io/kde-putty -O-)
 </pre></div>
 </div>
-<p>Alternatively, click <a class="reference download internal" href="_downloads/putty-kde.sh"><tt class="xref download docutils literal"><span class="pre">this</span> <span class="pre">download</span> <span class="pre">link</span></tt></a>
+<p>Alternatively, click <a class="reference download internal" href="_downloads/putty-kde.sh"><code class="xref download docutils literal"><span class="pre">this</span> <span class="pre">download</span> <span class="pre">link</span></code></a>
 to download the script file and run it with the command:</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo bash putty-kde.sh
 </pre></div>
@@ -176,7 +178,7 @@ to download the script file and run it with the command:</p>
 with ssh links, but will work. GitHub will not log you in over ssh, of
 course.</p>
 </div>
-<p>Press <tt class="kbd docutils literal"><span class="pre">&lt;Ctrl-RightClick&gt;</span></tt> to change PuTTY settings in a running session.
+<p>Press <code class="kbd docutils literal"><span class="pre">&lt;Ctrl-RightClick&gt;</span></code> to change PuTTY settings in a running session.
 Make changes permanent by saving <em class="menuselection">Session ‣ Default Settings</em>.</p>
 </div>
 <div class="section" id="commands-to-install-keys">
@@ -195,8 +197,8 @@ cut-and-paste. Display a user&#8217;s local public key using the command:</p>
 <div class="highlight-python"><div class="highlight"><pre>kate ~/.ssh/id_rsa.pub
 </pre></div>
 </div>
-<p>In Kate, press <tt class="kbd docutils literal"><span class="pre">&lt;Ctrl-A&gt;&lt;Ctrl-C&gt;</span></tt> to copy, and paste the key to the web
-page with <tt class="kbd docutils literal"><span class="pre">&lt;Ctrl-V&gt;</span></tt>.</p>
+<p>In Kate, press <code class="kbd docutils literal"><span class="pre">&lt;Ctrl-A&gt;&lt;Ctrl-C&gt;</span></code> to copy, and paste the key to the web
+page with <code class="kbd docutils literal"><span class="pre">&lt;Ctrl-V&gt;</span></code>.</p>
 </div>
 </div>
 <div class="section" id="managing-changed-ssh-keys">
@@ -210,12 +212,12 @@ command as described above.</p>
 <div class="highlight-python"><div class="highlight"><pre>ssh `id -un`@HOSTNAME.DOMAIN.TLD
 </pre></div>
 </div>
-<p>A console message will identify the line number in <tt class="file docutils literal"><span class="pre">~/.ssh/known_hosts</span></tt>
+<p>A console message will identify the line number in <code class="file docutils literal"><span class="pre">~/.ssh/known_hosts</span></code>
 file which contains an invalid key. Delete this line with the command:</p>
 <div class="highlight-python"><div class="highlight"><pre>sed -i &#39;[linenumber]d&#39; ~/.ssh/known_hosts
 </pre></div>
 </div>
-<p>where the expression <tt class="docutils literal"><span class="pre">[linenumber]</span></tt> is replaced with a line number.</p>
+<p>where the expression <code class="docutils literal"><span class="pre">[linenumber]</span></code> is replaced with a line number.</p>
 <p>Then reconnect from the console, and save the new key when prompted.</p>
 </div>
 <div class="section" id="remote-logins-over-ssh">
@@ -256,7 +258,7 @@ menu.</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -268,9 +270,9 @@ menu.</p>
         <li><a href="index.html">Configure KDE 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2012, Gerald Lovel.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3b1.
     </div>
   </body>
 </html>

@@ -27,8 +27,8 @@
     <link rel="next" title="Managing Software Packages" href="04_packages.html" />
     <link rel="prev" title="Remote Secure Shell Sessions" href="02_secureshell.html" /> 
   </head>
-  <body>
-    <div class="related">
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -40,7 +40,7 @@
         <li><a href="index.html">Configure KDE 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
@@ -72,12 +72,14 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="04_packages.html"
                         title="next chapter">Managing Software Packages</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/03_servershares.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/03_servershares.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -96,7 +98,7 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="mounting-network-file-systems">
 <h1>Mounting Network File Systems<a class="headerlink" href="#mounting-network-file-systems" title="Permalink to this headline">¶</a></h1>
@@ -119,7 +121,7 @@ for the work server at GitHub.</p>
 <h3>Part 1: Configure Filesystems<a class="headerlink" href="#part-1-configure-filesystems" title="Permalink to this headline">¶</a></h3>
 <p>This section configures the desktop to use remote filesystems by installing and
 loading the kernel module <strong>fuse</strong>, which is not included by default. Save the
-bash script <a class="reference download internal" href="_downloads/fuse.sh"><tt class="xref download docutils literal"><span class="pre">fuse.sh</span></tt></a> to your home folder,
+bash script <a class="reference download internal" href="_downloads/fuse.sh"><code class="xref download docutils literal"><span class="pre">fuse.sh</span></code></a> to your home folder,
 open a console session, and execute the script with the command:</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo bash fuse.sh
 </pre></div>
@@ -141,7 +143,7 @@ automount <strong>HOSTNAME</strong> shares.       Shares will be unmounted if id
 <p><strong>/etc/auto.HOSTNAME</strong></p>
 <p class="last">A list of share mappings is required for each remote computer. Here
 <strong>HOSTNAME</strong> has two shares, <strong>PUBLIC</strong> and remote user home folder <strong>*</strong>.
-Entries start with a name (e.g., <tt class="docutils literal"><span class="pre">public</span></tt>), followed by configuration
+Entries start with a name (e.g., <code class="docutils literal"><span class="pre">public</span></code>), followed by configuration
 parameters, user ssh credentials, and the URI for accessing the share.</p>
 </div>
 <p>This section is performed once for each remote computer, to add information
@@ -154,7 +156,7 @@ command (remember, replace HOSTNAME with the computer name):</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo bash &lt; &lt;(echo &#39;echo &quot;/mnt/HOSTNAME /etc/auto.HOSTNAME --timeout=30 --ghost&quot; &gt;&gt; /etc/auto.master&#39;)
 </pre></div>
 </div>
-<p>Create and edit the host computer configuration file, <tt class="file docutils literal"><span class="pre">auto.HOSTNAME</span></tt>, to
+<p>Create and edit the host computer configuration file, <code class="file docutils literal"><span class="pre">auto.HOSTNAME</span></code>, to
 provide share-specific information:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">sudoedit</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">auto</span><span class="o">.</span><span class="n">HOSTNAME</span>
 </pre></div>
@@ -169,7 +171,7 @@ provide share-specific information:</p>
 sudo ssh HOSTNAME.DOMAIN.TLD
 </pre></div>
 </div>
-<p>When prompted for the root password of the remote host, press <tt class="kbd docutils literal"><span class="pre">&lt;Ctrl-C&gt;</span></tt>
+<p>When prompted for the root password of the remote host, press <code class="kbd docutils literal"><span class="pre">&lt;Ctrl-C&gt;</span></code>
 to exit the command.</p>
 </div>
 <div class="section" id="part-3-provide-your-ssh-key">
@@ -187,7 +189,7 @@ ssh-copy-id `id -un`@HOSTNAME.DOMAIN.TLD
 <span class="n">ls</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">HOSTNAME</span><span class="o">/</span><span class="sb">`id -un`</span>
 </pre></div>
 </div>
-<p>Create desktop links to folders in <tt class="file docutils literal"><span class="pre">/mnt/HOSTNAME</span></tt> for easy access. On
+<p>Create desktop links to folders in <code class="file docutils literal"><span class="pre">/mnt/HOSTNAME</span></code> for easy access. On
 workstations which might access servers remotely over slow Internet links, do
 not create bookmarks.</p>
 </div>
@@ -261,7 +263,7 @@ will redirect SSH to PuTTY (courtesy of VonGrippen, AKA Michael Cochran):</p>
 <p class="last">The URL <a class="reference external" href="http://git.io/kde-putty">http://git.io/kde-putty</a> points to the source file at
 <a class="reference external" href="https://raw.github.com/aaltsys/doc-configkde/master/_downloads/putty-kde.sh">https://raw.github.com/aaltsys/doc-configkde/master/_downloads/putty-kde.sh</a>.
 The URL shortening command was
-<strong class="command">curl -i http://git.io -F &#8220;url=https://raw.github.com/aaltsys/doc-configkde/master/_downloads/putty-kde.sh&#8221; -F &#8220;code=kde-putty&#8221;</strong></p>
+<strong class="command">curl -i http://git.io -F &quot;url=https://raw.github.com/aaltsys/doc-configkde/master/_downloads/putty-kde.sh&quot; -F &quot;code=kde-putty&quot;</strong></p>
 </div>
 </div>
 <div class="section" id="example-putty-session">
@@ -269,8 +271,8 @@ The URL shortening command was
 <p>This program works magic which is best explained through an example, as follows.
 An administrator wishes to connect to a remote Windows session running on a
 network behind a Linux server. The Linux server is accessed at the domain
-name <tt class="docutils literal"><span class="pre">https://HOSTNAME.DOMAIN.TLD</span></tt>. Both the Windows session and the Linux
-server authenticate <tt class="docutils literal"><span class="pre">username</span></tt> and <tt class="docutils literal"><span class="pre">password</span></tt> for logins.</p>
+name <code class="docutils literal"><span class="pre">https://HOSTNAME.DOMAIN.TLD</span></code>. Both the Windows session and the Linux
+server authenticate <code class="docutils literal"><span class="pre">username</span></code> and <code class="docutils literal"><span class="pre">password</span></code> for logins.</p>
 <p>First start a console on the local machine, then ssh to the remote server:</p>
 <div class="highlight-python"><div class="highlight"><pre>xdg-open ssh://`id -un`@HOSTNAME.DOMAIN.TLD
 </pre></div>
@@ -281,24 +283,24 @@ commands are:</p>
 smbtree
 </pre></div>
 </div>
-<p>These commands identify a windows session on host <tt class="docutils literal"><span class="pre">XPUSER</span></tt>. Now find the IP
+<p>These commands identify a windows session on host <code class="docutils literal"><span class="pre">XPUSER</span></code>. Now find the IP
 for this machine using either of the commands:</p>
 <div class="highlight-python"><div class="highlight"><pre>net lookup XPUSER
 nmblookup XPUSER
 </pre></div>
 </div>
 <p>Suppose the remote Windows terminal server <strong>XPUSER</strong> uses IP <strong>192.168.2.243</strong>
-in its local network. Display the PuTTY menu with <tt class="kbd docutils literal"><span class="pre">&lt;Ctrl-RightClick&gt;</span></tt>, and
+in its local network. Display the PuTTY menu with <code class="kbd docutils literal"><span class="pre">&lt;Ctrl-RightClick&gt;</span></code>, and
 choose <em class="menuselection">Change Settings...</em>. Then select Category:
 <em class="menuselection">Connection &gt; SSH &gt; Tunnels</em> and enter:</p>
 <div class="line-block">
-<div class="line">Source port: <tt class="kbd docutils literal"><span class="pre">3389</span></tt></div>
-<div class="line">Destination: <tt class="kbd docutils literal"><span class="pre">192.168.2.243:3389</span></tt></div>
-<div class="line">Click &#8211; <tt class="kbd docutils literal"><span class="pre">Add</span></tt></div>
-<div class="line">Click &#8211; <tt class="kbd docutils literal"><span class="pre">Apply</span></tt></div>
+<div class="line">Source port: <code class="kbd docutils literal"><span class="pre">3389</span></code></div>
+<div class="line">Destination: <code class="kbd docutils literal"><span class="pre">192.168.2.243:3389</span></code></div>
+<div class="line">Click &#8211; <code class="kbd docutils literal"><span class="pre">Add</span></code></div>
+<div class="line">Click &#8211; <code class="kbd docutils literal"><span class="pre">Apply</span></code></div>
 </div>
 <p>Finally, open the KRDC Remote Desktop client on the KDE Desktop, and connect
-using protocol <tt class="kbd docutils literal"><span class="pre">rdp</span></tt> to <tt class="kbd docutils literal"><span class="pre">localhost</span></tt>. A remote Windows RDP session
+using protocol <code class="kbd docutils literal"><span class="pre">rdp</span></code> to <code class="kbd docutils literal"><span class="pre">localhost</span></code>. A remote Windows RDP session
 will display as if it were local, being redirected to you over SSH.</p>
 </div>
 </div>
@@ -307,7 +309,7 @@ will display as if it were local, being redirected to you over SSH.</p>
 <div class="section" id="configuring-ubuntu-desktop">
 <h3>Configuring Ubuntu desktop<a class="headerlink" href="#configuring-ubuntu-desktop" title="Permalink to this headline">¶</a></h3>
 <p>The computer hostname must be valid for Windows; meaning it must start with a
-letter, and only characters <tt class="kbd docutils literal"><span class="pre">A-Z</span></tt>, <tt class="kbd docutils literal"><span class="pre">0-9</span></tt>, or <tt class="kbd docutils literal"><span class="pre">._</span></tt> are allowed.
+letter, and only characters <code class="kbd docutils literal"><span class="pre">A-Z</span></code>, <code class="kbd docutils literal"><span class="pre">0-9</span></code>, or <code class="kbd docutils literal"><span class="pre">._</span></code> are allowed.
 Edit the host/hostname configuration using the command:</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo nano /etc/hosts /etc/hostname
 </pre></div>
@@ -330,7 +332,7 @@ Edit the host/hostname configuration using the command:</p>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -342,9 +344,9 @@ Edit the host/hostname configuration using the command:</p>
         <li><a href="index.html">Configure KDE 1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2012, Gerald Lovel.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3b1.
     </div>
   </body>
 </html>
