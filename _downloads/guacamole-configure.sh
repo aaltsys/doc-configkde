@@ -7,12 +7,12 @@ if [[ $EUID -ne 0 ]] ; then echo -e '\e[1;31m try again using sudo \e[0m' ; exit
 echo "Add Remote Client Configuration to Guacamole"
 
 # write configuration file
-cat > /etc/guacamole/guacamole.properties << CONF
-   guacd-hostname:      localhost
-   guacd-port:          4822
-   user-mapping:        /etc/guacamole/user-mapping.xml
-   auth-provider:       net.sourceforge.guacamole.net.basic.BasicFileAuthenticationProvider
-   basic-user-mapping:  /etc/guacamole/user-mapping.xml
-CONF
+cat > /etc/guacamole/guacamole.properties << '_CONF'
+guacd-hostname:      localhost
+guacd-port:          4822
+user-mapping:        /etc/guacamole/user-mapping.xml
+auth-provider:       net.sourceforge.guacamole.net.basic.BasicFileAuthenticationProvider
+basic-user-mapping:  /etc/guacamole/user-mapping.xml
+_CONF
 
 exit

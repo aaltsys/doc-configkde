@@ -24,7 +24,6 @@ make install
 ldconfig
 
 # download and rename client
-
 cd /var/lib/tomcat7
 wget http://sourceforge.net/projects/guacamole/files/current/binary/guacamole-0.9.9.war
 mv guacamole-0.9.9.war guacamole.war
@@ -33,15 +32,14 @@ mv guacamole-0.9.9.war guacamole.war
 mkdir /etc/guacamole
 mkdir /usr/share/tomcat7/.guacamole
 
-# write the configuration
-
-echo >> /etc/guacamole/guacamole.properties << CONF
-   guacd-hostname:      localhost
-   guacd-port:          4822
-   user-mapping:        /etc/guacamole/user-mapping.xml
-   auth-provider:       net.sourceforge.guacamole.net.basic.BasicFileAuthenticationProvider
-   basic-user-mapping:  /etc/guacamole/user-mapping.xml
-CONF
+# write configuration file
+cat > /etc/guacamole/guacamole.properties << '_CONF'
+guacd-hostname:      localhost
+guacd-port:          4822
+user-mapping:        /etc/guacamole/user-mapping.xml
+auth-provider:       net.sourceforge.guacamole.net.basic.BasicFileAuthenticationProvider
+basic-user-mapping:  /etc/guacamole/user-mapping.xml
+_CONF
 
 # create a symbolic link to configuration for tomcat:
 ln -s /etc/guacamole/guacamole.properties /usr/share/tomcat7/.guacamole/
