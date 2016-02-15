@@ -8,8 +8,11 @@ sudo bash << SCRIPT
 
    # install dependencies
    apt-get -y install libcairo2-dev libjpeg62-dev libpng12-dev libossp-uuid-dev 
+   apt-get -y update
    apt-get -y install libfreerdp-dev libpango1.0-dev libssh2-1-dev libssh-dev 
+   apt-get -y update
    apt-get -y install tomcat7 tomcat7-admin tomcat7-user 
+   apt-get -y update
 
    # download and extract Guacamole tarball
    wget http://sourceforge.net/projects/guacamole/files/current/source/guacamole-server-0.9.9.tar.gz 
