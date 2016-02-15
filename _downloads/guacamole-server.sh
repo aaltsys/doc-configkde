@@ -4,7 +4,7 @@
 
 if [[ $EUID -ne 0 ]] ; then echo -e '\e[1;31m try again using sudo \e[0m' ; exit 1 ; fi
 
-echo "Installing Guacamole Server and Client on Ubuntu"
+echo "\e[1;31m Installing Guacamole Server and Client on Ubuntu \e[0m"
 
 # install dependencies
 apt-get -y install libcairo2-dev libjpeg62-dev libpng12-dev libossp-uuid-dev 
