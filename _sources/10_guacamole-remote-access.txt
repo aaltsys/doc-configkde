@@ -19,16 +19,24 @@ Guacamole is not yet packaged properly for Ubuntu, and so dependencies must be
 met by a script. The following instructions were sourced from a 
 `TecMint Script <http://www.tecmint.com/guacamole-access-remote-linux-windows-machines-via-web-browser/>`_.
 
-Guacamole Server && Client
+Guacamole Server & Client
 -----------------------------
 
-Download the Guacamole installation script 
-:download:`_downloads/guacamole-server.sh` and run it from the command line:
+Download the Guacamole installation script:
 
-   :command:`guacamole-server.sh`
+   :download:`_downloads/guacamole-server.sh` 
+   
+Then run it from the console with the command:
+
+   :command:`sudo bash ./guacamole-server.sh`
 
 Configuring Guacamole
 -----------------------------
 
+Download the Guacamole configuration script:
 
-|
+   :download:`_downloads/guacamole-configure.sh` 
+   
+Then run it from the console with the command:
+
+   :command:`sudo bash ./guacamole-configure.sh`
