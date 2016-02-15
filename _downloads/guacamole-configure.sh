@@ -5,7 +5,7 @@
 echo "Add Remote Client Configuration to Guacamole"
 
 # write configuration file
-echo >> /etc/guacamole/guacamole.properties << CONF
+cat > /etc/guacamole/guacamole.properties << CONF
    guacd-hostname:      localhost
    guacd-port:          4822
    user-mapping:        /etc/guacamole/user-mapping.xml
